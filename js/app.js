@@ -15,5 +15,5 @@
 
     //function to open window
     function openWindow () {
-        console.log(123);
+        console.log('testing non nest html');
     }
