@@ -15,13 +15,15 @@ const {users} = data;
 ------------------------------------------------------------------------------- */
 routes.route('/questioner.com/api/v1/users')
     .get( (req, res) => {
-        res.send(users);
+        res.send({
+            status: 200, data: users});
     })
 // inserts a user into the syste,
     .post( (req, res) => {
     const {error} = validateUser(req.body);
     if(error) {
-        res.status(400).send(error.details[0].message);
+        res.status(400).send({
+            status: 400, Error: error.details[0].message});
         return;
     };
     const user = {
@@ -36,7 +38,8 @@ routes.route('/questioner.com/api/v1/users')
         isAdmin: req.body.isAdmin
     }
     users.push(user);
-    res.send(user);
+    res.send({
+        status: 200, data: user});
 });
 
 /* GET, UDATE, DELETE a specific user
@@ -44,19 +47,22 @@ routes.route('/questioner.com/api/v1/users')
 routes.route('/questioner.com/api/v1/users/:id') 
     .get((req, res) => {
         const user = users.find(ele => ele.id === parseInt(req.params.id));
-        if (!user) res.status(404).send('Username or password is incorect');
-        res.send(user);
+        if (!user) res.status(404).send({
+            status: 404, Error: 'Username or password is incorect'});
+        res.send({
+            status: 200, data: user});
     })
 // updates the the exisitng list of user
     .put( (req, res) => {
         const user = users.find(ele => ele.id === parseInt(req.params.id));
         if (!user) {
-            res.status(404).send('invalid user');
+            res.status(404).send({ status: 404, Error: 'invalid user'});
             return;
         };
         const {error} = validateOrder(req.body);
         if(error) {
-            res.status(400).send(error.details[0].message);
+            res.status(400).send({
+                status: 400, Error: error.details[0].message});
             return;
         };
         user.id = req.body.id,
@@ -74,13 +80,15 @@ routes.route('/questioner.com/api/v1/users/:id')
     .delete( (req, res) => {
         const user = users.find(ele => ele.id === parseInt(req.params.id));
         if (!user) {
-            res.status(404).send('Nothing to delete');
+            res.status(404).send({
+                status: 404, Error: 'Nothing to delete'});
             return;
         };
 
         const index = users.indexOf(user);
         users.splice(index, 1);
-        res.send(user);
+        res.send({
+            status: 200, data: user});
     });
 // using Joi to validate in this function
 function validateUser(user) {
