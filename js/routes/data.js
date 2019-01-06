@@ -42,6 +42,15 @@ const meetups = [{
     topic: 'Express',
     happeningOn: new Date() , // when the meetup is holding
     Tags: '[String, String]'
+},
+{
+    id: 2,
+    createdOn: new Date() ,
+    location : 'Kampala' ,
+    images: '[String, String]' , // OPTIONAL: URL to the image location
+    topic: 'Express',
+    happeningOn: new Date() , // when the meetup is holding
+    Tags: '[String, String]'
 }];
 //Questions Data array
 const questions = [{
