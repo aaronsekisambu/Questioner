@@ -1,8 +1,6 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const app = express();
-
-
 // call Joi for authotication
 const Joi = require('joi');
 // call express to json objects
@@ -16,8 +14,6 @@ const router = require('../js/routes/users');
 app.use(router)
 const routesQuestions  = require('../js/routes/questions');
 app.use(routesQuestions)
-const routesRSVP  = require('../js/routes/rsvp');
-app.use(routesRSVP);
 /*Global End point 
 =========================================================================== */
 //Root of Endpoint for all users

@@ -64,13 +64,10 @@ const questions = [{
 }];
 // Votes Data array
 const votes = [{
-    status: 1,
-    data: [ {
         meetup: 1, // meetup record primary key
         title: 'Express', // title of the question
         body: 'Why so many libaries in Javascript', // body of the question
-        votes: -1
-    }]
+        votes: 01
 }];
 // RSVP Data array
 const rsvps = [{
