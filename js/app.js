@@ -1,8 +1,6 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const app = express();
-
-
 // call Joi for authotication
 const Joi = require('joi');
 // call express to json objects
