@@ -20,5 +20,4 @@ routesMeetup.route('/questioner.com/api/v1/meetups/:id')
 .delete(MeetupController.deleteAMeetup);
 /* End of Meet up End points 
 -----------------------------------------------------------------------------*/
-
 module.exports = routesMeetup;

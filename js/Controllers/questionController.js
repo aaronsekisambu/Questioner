@@ -119,7 +119,7 @@ class QuestionController {
         if (!question) {
             res.status(404).send({ 
                 status: 404,
-                message: 'No Question currently'});
+                error: 'No Question currently'});
             return;
         };
         const validateQuestion = Validate._validateQuestion;
@@ -147,7 +147,8 @@ class QuestionController {
         const question = questions.find(ele => ele.id === parseInt(req.params.id));
         if (!question) {
             res.status(404).send({
-                status:  404, Error: 'Nothing to delete'});
+                status:  404,
+                error: 'Nothing to delete'});
             return;
         };
         const index = questions.indexOf(question);

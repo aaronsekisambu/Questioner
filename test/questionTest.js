@@ -8,10 +8,6 @@ const chaiHttp = require('chai-http');
 chai.use(require('chai-http'));
 
 
-
-
-
-
 const questionSpecTest = () => {
     // Testing the root get function for questions
     describe('Test the questioner root', () => {
@@ -27,28 +23,53 @@ const questionSpecTest = () => {
     });
     // Testing a specific user to be got from the data base
     describe('A Question details', () => {
-        it('GET a specific question ID', (done) => {
+        it('return 404 on GET a specific question ID', (done) => {
             chai.request(app)
-            .get('/questioner.com/api/v1/questions/:id')
+            .get('/questioner.com/api/v1/questions/5')
             .end((err, res)=> {
             expect(res.body.error).to.eql('Username or password is incorect');
-            expect(res).to.have.status(200);
+            expect(res.body.status).to.eql(404);
+            done();
+            });
+        
+        });
+        it('GET a specific question ID', (done) => {
+            chai.request(app)
+            .get('/questioner.com/api/v1/questions/1')
+            .end((err, res)=> {
+                expect(res.body.status).to.eql(200);
+            expect(res.body.data).to.have.property('createdOn');
+            expect(res.body.data).to.have.property('createdBy');
             done();
             });
         });
-        it('It to a specific user ID', (done) => {
+        it('PUT/ to a specific question', (done) => {
             chai.request(app)
-            .put('/questioner.com/api/v1/questions/:id')
+            .put('/questioner.com/api/v1/questions/1')
             .end((err, res)=> {
               expect(res).to.have.status(404);
-            //   expect(res.body).to.have.property('id');
-            //   expect(res.body.message).to.eql('No Question currently');
-            //   expect(res).to.be.json;
-            //   expect(res.body).to.be.an('object');
-            //   expect(res.body.results).to.be.an('array');
+              expect(res.body.error).to.eql('No Question currently');
             done();
             });
         });
+        it('Delete/ a Question', (done) => {
+            chai.request(app)
+            .delete('/questioner.com/api/v1/questions/1')
+            .end((err, res) => {
+                expect(res.body.error).to.eql('Nothing to delete')
+                expect(res.body).to.be.an('object')
+            done();
+            })
+        })
+        // it('Delete/ a Questio jhgn', (done) => {
+        //     chai.request(app)
+        //     .delete('/questioner.com/api/v1/questions/1')
+        //     .end((err, res) => {
+        //         expect(res.body.error).to.eql('Nothing to delete')
+        //         expect(res.body).to.be.an('object')
+        //     done();
+        //     })
+        // })
     });
 }
 
