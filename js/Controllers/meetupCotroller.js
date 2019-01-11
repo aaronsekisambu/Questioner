@@ -15,8 +15,7 @@ class MeetupController {
                 tags,
             })
         })
-        res.status(200);
-            res.send({
+        res.status(200).send({
                 status: 200,
                  data: result
                 });
@@ -38,7 +37,7 @@ class MeetupController {
         if (!meetup) {
         return res.status(404).send({
             status: 404, 
-            error: 'Username or password is incorect'});
+            error: 'Invalid Meetup or Meetup not created'});
         }
         return res.send({
             status: 200, 
@@ -62,7 +61,7 @@ class MeetupController {
             tags: req.body.tags,
         }
         meetups.push(meetup);
-        res.send({
+        res.status(200).send({
             status: 200, 
             data: meetup
         });
@@ -72,14 +71,16 @@ class MeetupController {
         const meetup = meetups.find(ele => ele.id === parseInt(req.params.id));
         if (!meetup) {
             res.status(404).send({ 
-                status: 404, error: 'No meetup selected'});
+                status: 404, 
+                error: 'No meetup selected'});
             return;
         };
         const validateMeetup = Validate._validateMeetup;
         const {error} = validateMeetup(req.body);
         if(error) {
             res.status(400).send({
-                status: 400, Error: error.details[0].message});
+                status: 400, 
+                error: error.details[0].message});
             return;
         };
         meetup.id = req.body.id,
@@ -111,7 +112,8 @@ class MeetupController {
         const {error} = validateRsvp(req.body);
         if(error) {
             res.status(400).send({
-                status: 400, Error: error.details[0].message});
+                status: 400,
+                 error: error.details[0].message});
             return;
         };
         const rsvp  = {

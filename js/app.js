@@ -14,10 +14,8 @@ const router = require('../js/routes/users');
 app.use(router)
 const routesQuestions  = require('../js/routes/questions');
 app.use(routesQuestions)
-/*Global End point 
-=========================================================================== */
 //Root of Endpoint for all users
-app.get('/questioner.com', (req, res)=> {
+app.get('/', (req, res)=> {
     res.status(200).send({ 
         status: 200, 
         message: 'This is the root directory, You have not made any request'})
@@ -28,7 +26,7 @@ app.get('/questioner.com', (req, res)=> {
 app.all('*', (req, res) => {
     res.status(404).send({
         status: 200,
-        Error: "Page not found. Please try again"});
+        error: "Page not found. Please try again"});
 });
 module.exports = app;
 

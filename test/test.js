@@ -2,6 +2,8 @@ const request = require('request');
 const assert = require('assert');
 const app = require('../js/app');
 const questionSpecTest = require('../test/questionTest');
+const MeetupSpecTest = require('../test/meetupTests');
+const UserTests = require('../test/userTests');
 const expect = require('chai').expect;
 const chai = require('chai');
 const supertest = require('supertest');
@@ -16,7 +18,7 @@ describe('Testing the Qustioner API', () => {
     describe('Testing the home directory ', () => {
       it('Find "/questioner.com" ', (done) => {
         chai.request(app)
-          .get('/questioner.com')
+          .get('/')
           .end((err, res) => {
             expect(res).to.have.status(200);
             expect(res.body.message).to.eql("This is the root directory, You have not made any request");
@@ -30,11 +32,13 @@ describe('Testing the Qustioner API', () => {
           .get('/*')
           .end((err, res) => {
             expect(res).to.have.status(404);
-            expect(res.body.Error).to.eql("Page not found. Please try again");
+            expect(res.body.error).to.eql("Page not found. Please try again");
             done();
           });
       });
     });
 
     questionSpecTest;
+    MeetupSpecTest;
+    UserTests;
   });

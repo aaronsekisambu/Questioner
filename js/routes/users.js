@@ -14,10 +14,10 @@ const {users} = data;
 
 /* GET all users and POST a specific user
 ------------------------------------------------------------------------------- */
-routes.route('/questioner.com/api/v1/users')
+routes.route('/api/v1/users')
     .get(UserController.getAllUsers )
     .post(UserController.postAUser);
-routes.route('/questioner.com/api/v1/users/:id') 
+routes.route('/api/v1/users/:id') 
     .get(UserController.getASpecificUser)
 // updates the the exisitng list of user
     .put(UserController.updateAUser)

@@ -26,7 +26,7 @@ class QuestionController {
             if (!question) {
                return res.send({ 
                     status: 404, 
-                    error:'Username or password is incorect'});
+                    error:'No Question Selected'});
                 }
            return res.send({
              status: 200, 
@@ -34,19 +34,13 @@ class QuestionController {
         }
     getVotesOnAQuestion (req, res) {
         const votes = QuestionModel._votes;
-        res.send({
+        res.status(200).send({
             status: 200,
             data: votes
         }); 
     }
     upVote (req, res) { 
-        if (!req.params.id) {
-          return res.status(400).send({
-            status: 400,
-            error: 'No Current User ID',
-          });
-        }
-    
+  
         const questionId = Number(req.params.id);
         const userId = Number(req.body.userId);
     
@@ -66,12 +60,6 @@ class QuestionController {
       }
 
     downVote(req, res)  {
-        if (!req.params.id) {
-            return res.status(400).send({
-              status: 400,
-              error: 'No Current User ID',
-            });
-          }
     
           const questionId = Number(req.params.id);
           const userId = Number(req.body.userId);
@@ -137,7 +125,7 @@ class QuestionController {
         question.title = req.body.title,
         question.body = req.body.body, 
         question.votes = req.body.votes
-        res.send({
+        res.status(200).send({
             status: 200, 
             data: question
         });
