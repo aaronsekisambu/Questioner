@@ -12,7 +12,8 @@ class UserController {
         const users = UserModel._users;
         const user = users.find(ele => ele.id === parseInt(req.params.id));
         if (!user) res.status(404).send({
-            status: 404, Error: 'Username or password is incorect'});
+            status: 404, 
+            error: 'Username or password is incorect'});
         res.send({
             status: 200, 
             data: user});
@@ -48,7 +49,7 @@ class UserController {
         if (!user) {
             res.status(404).send({ 
                 status: 404, 
-                Error: 'invalid user'});
+                error: 'invalid user'});
             return;
         };
         const validateUser = Validate._validateUser;
