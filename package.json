@@ -23,7 +23,8 @@
   },
   "scripts": {
     "start": "nodemon server.js",
-    "test": "mocha"
+    "test": "NODE_ENV=test nyc --reporter=lcov --reporter=text mocha --exit",
+    "coveralls": "cat ./coverage/lcov.info | node node_modules/.bin/coveralls"
   },
   "repository": {
     "type": "git",
@@ -35,5 +36,8 @@
   "bugs": {
     "url": "https://github.com/aaronsekisambu/Questioner/issues"
   },
-  "homepage": "https://github.com/aaronsekisambu/Questioner#readme"
+  "homepage": "https://github.com/aaronsekisambu/Questioner#readme",
+  "devDependencies": {
+    "nyc": "^13.1.0"
+  }
 }
