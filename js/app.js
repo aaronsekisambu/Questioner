@@ -1,7 +1,5 @@
 // Create a pop page for creating a meet up and meet up tittle.
 
-
-
     // Get the button that opens the comment window
     let btnOpenCommentArea = document.getElementById('on-off-meetup-btns-comment');
     // Get the img that closes the comment window
