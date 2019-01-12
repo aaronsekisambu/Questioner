@@ -40,3 +40,10 @@
     
 
 
+<<<<<<< HEAD
+=======
+    //function to open window
+    function openWindow () {
+        console.log('testing non nest html');
+    }
+>>>>>>> gh-pages
