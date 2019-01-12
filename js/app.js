@@ -39,11 +39,7 @@
       document.getElementById('current-month').innerText = currentDate();
     
 
-
-<<<<<<< HEAD
-=======
-    //function to open window
-    function openWindow () {
-        console.log('testing non nest html');
-    }
->>>>>>> gh-pages
+ //function to open window
+ function openWindow () {
+    console.log('testing non nest html');
+}
