@@ -1,19 +1,49 @@
 // Create a pop page for creating a meet up and meet up tittle.
 
+    // Get the button that opens the comment window
+    let btnOpenCommentArea = document.getElementById('on-off-meetup-btns-comment');
+    // Get the img that closes the comment window
+    let btnCloseCommentArea = document.getElementById('btn-close-comment');
+    // Get the comment window
+    let createCommentWindow = document.getElementById('begin-comment-area');
+ 
 
 
-    // Get the button that opens the Meetup window
-    let btnCreateNewMeetup = document.getElementById('btn-new-meetups');
-    // Get the img that closes the meet up
-    let btnCloseNewMeetup = document.getElementById('btn-close');
-    // Get the new meetup window
-    let createNewMeetupWindow = document.getElementById('parent-qstn-area');
+    // Listen for open click
+    btnOpenCommentArea.addEventListener('click', openComment);
+
+    // Listen for close click
+    btnCloseCommentArea.addEventListener('click', closeComment);
+
+    //function to open coment area
+    function openComment () {
+        createCommentWindow.style.opacity = 1;
+        console.log('Open')
+    }
+
+    // function to close comment area
+    function closeComment () {
+        createCommentWindow.style.opacity = 0;
+        console.log('closed')
+    }
+
+  
+
+    currentDate = () => {
+        let today = new Date();
+        let dateOptions = {weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'};
+        return today.toLocaleDateString('en-US', dateOptions)
+    };
+    
+      // Difine todays Month and year.
+      document.getElementById('current-month').innerText = currentDate();
+    
 
 
-    // Listen for a click
-    btnCreateNewMeetup.addEventListener('click', openWindow);
-
+<<<<<<< HEAD
+=======
     //function to open window
     function openWindow () {
         console.log('testing non nest html');
     }
+>>>>>>> gh-pages

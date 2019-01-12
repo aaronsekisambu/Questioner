@@ -5,6 +5,10 @@ body{
     line-height: 1em;
 }
 
+button {
+    outline: none;
+}
+
 .wrapper {
     background-color: #737677;
     display: grid;
@@ -75,6 +79,7 @@ ul {
     height: 2.5em;
     width: 2.5em;
 }
+
 #btn-text01 {
     font-size: 15px;
     padding: 5px 5px 0 10px;
@@ -208,30 +213,74 @@ ul {
     text-align: center;
 }
 
-.on-off-meetup-btns {
+#on-off-meetup-btns-del, #on-off-meetup-btns-edit, #on-off-meetup-btns-view, #on-off-meetup-btns-comment {
     float: right;
     margin: 2em 2em 0 0;
     border: none;
     border-radius: .5em;
     background-color: #EAEAEA;
     height: 3em;
-    width: 4em
+    width: 4em;
+}
+#on-hover-icons {
+    opacity: 0;
+    transition: 2s;
+}
+#on-off-meetup-btns-comment:hover, #on-off-meetup-btns-view:hover, #on-off-meetup-btns-edit:hover, #on-off-meetup-btns-del:hover {
+    background-color: white;
+    border: 1px   solid #00A5CB;
+}
+
+#on-hover-icons:hover {
+    opacity: 1.0;
+}
+.view-text {
+    position: absolute;
+    display: grid;
+    background-color: #0190B0;
+    margin: .8em 0 0 -1em;
+    height: 1.5em;
+    width: 5.5em;
+    color: white;
+    border-radius: 0.4em;
+    padding: .2em 0 0 0;
+    opacity: 0;
+}
+.view-text::after {
+    content: "";
+}
+.view-text:hover {
+    visibility: visible;
+    opacity: 1;
 }
 .created-meetup-onhover-icons {
     height: 1.8em;
 }
-
-
 label[for="comments"] {
     background-color: #C2C9CE;
     width: 100%;
-    display: flex;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
 }
+#begin-comment-area {
+    opacity: 0;
+    transition: 3s;
+}
+
 #comments {
     padding: 1em 0 1em 2em;
     font-size: 18px
 }
+/* #close-comment {
+   float: left;
+} */
+#btn-close-comment {
+    height: 2em;
+    width: 2em;
+    margin: .67em 1em 0 0;
+    float: right;
 
+}
 #comment-circular-image-profile {
     height: 1em;
     margin: 0.5em 1em 0 2em;
