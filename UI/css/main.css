@@ -1,0 +1,303 @@
+body[name="index"] {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    line-height: 1em;
+    background: url(../img/background-blur-clean-531880.jpg);
+}
+
+/* Sign up flow body styling */
+body[name="crt-account"] {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    line-height: 1em;
+    background: url(../img/Sign\ up.jpg) 0 -400px no-repeat;
+}
+
+
+
+/* This area describe the header region  for Sign in and Create account landing page*/
+.header-container {
+    background-color: #F7F7F7;
+    height: auto;
+    width: 100%;
+    display: inline-block;
+}
+
+.header-sign {
+    float: right;
+}
+
+.create-account {
+    float: right;
+    height: auto;
+    width: auto;
+}
+
+#create-account-btn {
+    height: 4.5em;
+    width: 100%;
+    margin-left: 2em; 
+    text-align: center;
+    padding: 0 4em 0 2em;
+    background-color:#0A70AE; 
+    color: #ffffff;
+    border: none;
+    font-size: 12px;
+}
+
+#sign-btn {
+    height: 4.5em;
+    width: 100%;
+    color: #05587B;
+    border: none;
+    font-size: 12px;
+    background-color: #F7F7F7; 
+}
+
+/* Sign in form area for index/landing page*/
+#parent-form {
+    display: table;
+    width:20%;
+    border: none;
+    box-shadow: #000000;
+    position: absolute;
+	top:0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+    margin: auto;
+    padding: 1em;
+    background-color: #ffffff;
+}
+
+form .logo img {
+    width: 3em;
+    height: 3em;
+    position: relative;
+    display: inline-block;
+    margin:  1em  10em  1em;
+}
+
+/* New meet up page */
+#parent-qstn-area {
+    display: table;
+    width:40%;
+    box-shadow: #000000;
+    position: absolute;
+	top:0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+    margin: auto;
+    padding: 1em;
+    /* background-color: #ffffff; */
+}
+
+form .sub-container input[name="uname"], [name="pswd"], [name="email"] {
+    width: 25.3em;
+    height: 1.5em;
+    border-radius: 2em;
+    font-size: 12px;
+    margin: 1em 0 1em 2em;
+    padding: 0.5em 0.5em 0.5em 2em;
+}
+#new-qstn {
+    background-color: #000000;
+    padding: 1em;
+}
+#btn-close {
+    height: 2em;
+    width: 2em;
+    float: right;
+}
+#tittle, #message {
+    padding: 1em 0 0 2em;
+}
+
+.qn-container {
+    border: 1px solid;
+    display: grid;
+    padding: 0 0 2em 0;
+}
+form label[for="new-qstn"] {
+    color: #ffffff;
+    font-size: 18px;
+}
+
+form input[name="title"], input[name="question"] {
+    width: 85%;
+    height: 2em;
+    border-radius: 0.5em;
+    font-size: 12px;
+    margin: 1.5em 0 1em 2em;
+    padding: 0.5em 0.5em 0.5em 2em;
+}
+.btn-add {
+    display: flex;
+    margin: 1em 0 0 1.5em;
+}
+#add-something {
+    height: 2em;
+    width: 2em;
+}
+#msg, #tittle {
+    font-size: 15px;
+    padding: 3px 0 0 5px;
+    font-weight: 500;
+    display: inline;
+}
+.btn-add {
+    border: none;
+
+}
+
+/* .btn-active {
+    display: inline;
+} */
+
+#btn-del, #btn-edit, #btn-save {
+    width: 5em;
+    height: 2em;
+    border-radius: 0.5em;
+    font-size: 12px;
+    color: #ffffff;
+    background-color:#0A70AE; 
+    border: none;
+    margin: 0 0em 0 2em;
+    text-transform: uppercase;
+    float: left;
+}
+
+#btn-del {
+    background-color:#ae0a0a; 
+}
+#btn-save {
+    background-color:#0aae25; 
+}
+
+.btn-createMeetup {
+    margin: 3em 0 0 2em;
+    border-top: .5px dotted #05587B;
+    padding-top: 1em;
+}
+#btn-createMeetup {
+    width: 10em;
+    height: 4em;
+    background-color:#0aae7d; 
+    border: none;
+    font-size: 15px;
+    color: #ffffff;
+    border-radius: 0.5em;
+}
+#attach-tag {
+    height: 2em;
+    width: 2em;
+}
+/* All Pages Labels description */
+ form .sub-container label[for="username"], [for="pswd"], [for="name"], [for="pnumber"] {
+    color: #000000;
+    font-size: 12px;
+    padding-left: 2em;
+}
+
+/* Input  description for index page only */
+form .sub-container input[name="uname"], [name="pswd"], [name="email"] {
+    width: 25.3em;
+    height: 1.5em;
+    border-radius: 2em;
+    font-size: 12px;
+    margin: 1em 0 1em 2em;
+    padding: 0.5em 0.5em 0.5em 2em;
+}
+
+/* Input description for create account name/ singUp flow only*/
+form .sub-container input[name="names"] {
+    width: 10em;
+    height: 1.5em;
+    border-radius: 2em;
+    font-size: 12px;
+    margin: 1em 0 1em 2em;
+    padding: 0.5em 0.5em 0.5em 2em;
+}
+/*Input description for create acctount passwords only*/
+form .sub-container input[name="new-pswd"], [name="conf-pswd"] {
+    width: 10em;
+    height: 1.5em;
+    border-radius: 2em;
+    font-size: 12px;
+    margin: 1em 0 1em 2em;
+    padding: 0.5em 0.5em 0.5em 2em;
+}
+
+form .sub-container button[name="sign01"] {
+    width: 26em;
+    height: 3em;
+    border-radius: 2em;
+    font-size: 12px;
+    color: #ffffff;
+    background-color:#0A70AE; 
+    border: none;
+    margin: 0.5em 0 0 2em;
+    text-transform: uppercase;
+}
+
+/* Next01 and opt-back- signIn Button Create account Page*/
+form .sub-container button[name="next01"] {
+    width: 5em;
+    height: 3em;
+    border-radius: 2em;
+    font-size: 12px;
+    position: absolute;
+    color: #ffffff;
+    background-color:#0A70AE; 
+    border: none;
+    margin: .5em 3.5em 0 5.5em;
+    text-transform: uppercase;
+}
+
+form .sub-container button[name="opt-back-signIn"] {
+    width: 14.3em;
+    height: 3em;
+    border-radius: 2em;
+    font-size: 12px;
+    color: #0A70AE;
+    border: none;
+    margin: .5em 3.5em 0 1.2em;
+    text-transform: capitalize;
+    text-align: left
+}
+form #opt-text02 {
+    margin: .5em 2em 0 2em;
+    color: #0A70AE;
+    font-size: 12px;
+}
+
+form #checkbox {
+    margin: 0.5em 0 0 2em;
+    font-size: 12px;
+    display: flex; 
+}
+
+form .fgt-pswd {
+   margin: 0 0 0 8em;
+}
+form .tc{
+   font-size: 11px;
+   margin: 3em 0 0 2em;
+   float: left;
+ }
+form .opt-signIn  img {
+    width: 2em;
+    height: 2em;
+    position: relative;
+    display: flex;
+    margin: 0.5em 3.3em 1em 2em;
+    float: left;
+}
+form #opt-text01 {
+    margin: 2em 2em 0 2em;
+    color: #0A70AE;
+    font-size: 12px;
+}

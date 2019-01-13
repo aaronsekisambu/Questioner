@@ -1,5 +1,4 @@
-const app = require('./js/app');
+const app = require('./app');
 
-// port listening automatically
 const port = process.env.PORT || 5000;
 app.listen(port, () => console.log(`listening at port ${port}....`));
