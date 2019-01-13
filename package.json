@@ -23,7 +23,7 @@
   },
   "scripts": {
     "start": "nodemon server.js",
-    "test": "NODE_ENV=test nyc --reporter=lcov --reporter=text mocha --exit",
+    "test": "NODE_ENV=test nyc --reporter=lcov --reporter=text mocha \"server/test/*.js\" --exit",
     "coveralls": "cat ./coverage/lcov.info | node node_modules/.bin/coveralls"
   },
   "repository": {
