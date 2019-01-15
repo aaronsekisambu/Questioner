@@ -4,6 +4,7 @@ body[name="index"] {
     font-family: Arial, Helvetica, sans-serif;
     line-height: 1em;
     background: url(../img/background-blur-clean-531880.jpg);
+    overflow: hidden;
 }
 
 /* Sign up flow body styling */
@@ -16,13 +17,14 @@ body[name="crt-account"] {
 }
 
 
-
 /* This area describe the header region  for Sign in and Create account landing page*/
 .header-container {
     background-color: #F7F7F7;
     height: auto;
     width: 100%;
     display: inline-block;
+    position: fixed;
+    overflow: hidden;
 }
 
 .header-sign {
@@ -46,6 +48,9 @@ body[name="crt-account"] {
     border: none;
     font-size: 12px;
 }
+.main-container {
+    position: relative;
+}
 
 #sign-btn {
     height: 4.5em;
@@ -57,19 +62,31 @@ body[name="crt-account"] {
 }
 
 /* Sign in form area for index/landing page*/
-#parent-form {
-    display: table;
-    width:20%;
+#parent-form  form {
+    height: 430px;
+    width: 400px;
     border: none;
-    box-shadow: #000000;
-    position: absolute;
-	top:0;
-	bottom: 0;
-	left: 0;
-	right: 0;
-    margin: auto;
-    padding: 1em;
+    position: fixed;
+    top: 10%;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto auto;
+    padding: 1.2em;
     background-color: #ffffff;
+    overflow: hidden;
+    z-index: -1;
+}
+/*@media  (min-width: 500px) {*/
+    /*.main-container {*/
+        /*min-width: 100px;*/
+        /*min-height: auto;*/
+    /*}*/
+/*}*/
+
+
+.sub-container {
+    display: grid;
 }
 
 form .logo img {
