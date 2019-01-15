@@ -3,6 +3,10 @@ body{
     padding: 0;
     font-family: Arial, Helvetica, sans-serif;
     line-height: 1em;
+    box-sizing: border-box;
+    display: flex;
+    overflow-x: hidden;
+    height: auto;
 }
 
 button {
@@ -11,23 +15,39 @@ button {
 
 .wrapper {
     background-color: #737677;
-    display: grid;
-    grid-template-columns: 0.5fr 2.8fr 0.8fr;
-    grid-template-rows: auto;
-    overflow: hidden;
-    position: fixed;
+    margin-left: 230px;
+    margin-top: 50px;
+    padding-top: 2em;
 }
 
 .main-header {
     background-color: #FFFFFF;
-    grid-column-start: 1;
-    grid-column-end: 4;
-    grid-row-start: 1; 
-    grid-row-end: 3;
-    display: grid;
-    grid-template-columns: 0.5fr 1fr 2.5fr;
+    display: flex; 
+    justify-content: space-between;
+    position: fixed;
+    z-index: 2;
+    width: 100%
+   
 }
 
+.side-bar {
+        height: 100%;
+        width: auto;
+        position: fixed;
+        z-index: 1;
+        top: 5%;
+        left: 0;
+        background-color: #737677;
+        overflow-x: hidden;
+        padding-top: 2em;
+}
+
+.main-meetups-container {
+    padding: 1em;
+}
+#header-meetup {
+    padding: 0.5em 1em 0 1em;
+}
 
 #changing-logo {
     height: 2.6em;
@@ -75,6 +95,7 @@ ul {
     height: 5em;
     background-color: #00A5CB;
     border: none;
+    padding: 1em;
 }
 
 #new-meetups-img {
@@ -133,8 +154,9 @@ ul {
 
 
 #crt-meetups-img {
-    height: 2.5em;
-    width: 4em;
+    height: 3em;
+    width: auto;
+    padding-left: 3em;
 }
 #btn-text02 {
     font-size: 15px;
@@ -145,7 +167,7 @@ ul {
 
 /* Styling the curent month and year */
 #current-month {
-    margin: 2em 0 1em 0;
+    margin: 1em 0 1em 0;
     color: #FFFFFF;
     font-weight: 500;
 }
@@ -225,7 +247,7 @@ ul {
     width: 4em;
 }
 #on-hover-icons {
-    opacity: 0;
+    opacity: 1;
     transition: 2s;
 }
 #on-off-meetup-btns-comment:hover, #on-off-meetup-btns-view:hover, #on-off-meetup-btns-edit:hover, #on-off-meetup-btns-del:hover {
@@ -246,14 +268,15 @@ ul {
     color: white;
     border-radius: 0.4em;
     padding: .2em 0 0 0;
-    opacity: 0;
+    opacity: 1;
+    transform: 2s;
 }
 .view-text::after {
     content: "";
 }
 .view-text:hover {
     visibility: visible;
-    opacity: 1;
+    opacity: 0;
 }
 .created-meetup-onhover-icons {
     height: 1.8em;
