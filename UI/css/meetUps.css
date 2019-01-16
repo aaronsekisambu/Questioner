@@ -15,9 +15,10 @@ button {
 
 .wrapper {
     background-color: #737677;
-    margin-left: 230px;
+    margin-left: 14%;
     margin-top: 50px;
     padding-top: 2em;
+    width: 100%;
 }
 
 .main-header {
@@ -33,7 +34,7 @@ button {
 
 .side-bar {
         height: 100%;
-        width: auto;
+        width: 14%;
         position: fixed;
         z-index: 1;
         top: 5%;
@@ -41,6 +42,7 @@ button {
         background-color: #737677;
         overflow-x: hidden;
         padding-top: 2em;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
 }
 
 .main-meetups-container {
@@ -90,13 +92,19 @@ button {
 ul {
     list-style-type: none;
 }
-#btn-new-meetups {
+.btn-new-meetups {
     display: flex;
     border-radius: 0.5em;
-    height: 5em;
+    height: auto;
     background-color: #00A5CB;
     border: none;
     padding: 1em;
+}
+.btn-new-meetups:hover {
+    background-color: red;
+}
+.sideway-nav {
+    margin-right: 2em;
 }
 
 #new-meetups-img {
@@ -106,9 +114,10 @@ ul {
 
 #btn-text01 {
     font-size: 15px;
-    padding: 5px 5px 0 10px;
+    padding: 12px 5px 0 10px;
     color: #FFFFFF;
     font-weight: 500;
+    float: left;
 }
 #aside-left-links {
     padding: 2em 0 0 0;
@@ -130,11 +139,11 @@ ul {
 #btn-meetups {
     display: flex;
     border-radius: 0.5em;
-    height: 5em;
+    height: 6.3em;
     width: 100%;
     background-color:#0190B0;
     border: none;
-    margin: 1.5em 0 0 0;
+    margin: 1.3em 3em 0 0;
     align-items: center;
     justify-content: center;
     text-transform: capitalize;
@@ -143,14 +152,14 @@ ul {
 #btn-meetups-leftAlign {
     display: flex;
     border-radius: 0.5em;
-    height: 5em;
+    height: 6.3em;
     width: 100%;
     background-color:#0190B0;
     border: none;
-    margin: 1.5em 0 0 0;
-    align-items:flex-start;
+    margin: 1.3em 3em 0 2em;
+    /* align-items:flex-start;
     justify-content: flex-start;
-    text-transform: capitalize;
+    text-transform: capitalize; */
 }
 
 
@@ -180,7 +189,8 @@ ul {
     grid-row-start: 1; 
     grid-row-end: 3;
     display: grid;
-    grid-template-columns: 0.5fr 1fr 2.5fr;
+    grid-template-columns: 1.5fr auto 1fr;
+    box-shadow: 0 4px 8px 0 rgba(3, 91, 133, 0.2);
 }
 #vote-area {
     display: flex;
@@ -226,12 +236,13 @@ ul {
     grid-row-start: 1; 
     grid-row-end: 3;
     display: grid;
-    grid-template-columns: 0.5fr 1fr 2.5fr;
+    grid-template-columns: 1.5fr auto 1fr;
+    box-shadow: 0 4px 8px 0 rgba(3, 91, 133, 0.2);
 }
 
 .created-meetup-tittle {
-    margin: 2em 0 2em 0;
-    text-align: center;
+    margin: 2em 0 2em 2em;
+    text-align: left;
 }
 .created-meetup-description {
     margin: 2em 0 2em 0;
@@ -240,7 +251,7 @@ ul {
 
 #on-off-meetup-btns-del, #on-off-meetup-btns-edit, #on-off-meetup-btns-view, #on-off-meetup-btns-comment {
     float: right;
-    margin: 2em 2em 0 0;
+    margin: 1.5em 2em 0 2em;
     border: none;
     border-radius: .5em;
     background-color: #EAEAEA;
@@ -250,6 +261,8 @@ ul {
 #on-hover-icons {
     opacity: 1;
     transition: 2s;
+    margin: 0 2em 0 0em;
+    grid-column-end: left;
 }
 #on-off-meetup-btns-comment:hover, #on-off-meetup-btns-view:hover, #on-off-meetup-btns-edit:hover, #on-off-meetup-btns-del:hover {
     background-color: white;
@@ -277,7 +290,7 @@ ul {
 }
 .view-text:hover {
     visibility: visible;
-    opacity: 0;
+    opacity: 1;
 }
 .created-meetup-onhover-icons {
     height: 1.8em;
@@ -400,14 +413,15 @@ input[name="comment-insert"] {
 #user-details {
     display: grid;
     border-radius: 0.2em;
-    height: auto;
+    /* height: auto; */
     /* width: 100%; */
     /* background-color:#0190B0; */
     border: none;
     margin: 1em 2em 0 2em;
-    align-items: left;
-    justify-content: center;
-    grid-template-columns: 1fr;
+    /* align-items: left; */
+    /* justify-content: center; */
+    /* grid-template-columns: 1fr; */
+    font-size: 15px;
 }
 label[for="user-qstns"] {
     color: white;
@@ -422,7 +436,7 @@ label[for="user-qstns"] {
 }
 label[for="posted-qstns"] {
     color: white;
-    margin: 0 0 1em 2em;
+    /* margin: 0 0 1em 2em; */
 }
 #posted-img {
     height: 1.2em;
@@ -430,21 +444,21 @@ label[for="posted-qstns"] {
 }
 
 #total-posted-qstns {
-    color: white;
+    color: black;
     margin: 0 0 1em 5.2em;
 }
 
 #posted-qstns {
-    color: white;
+    color: black;
     margin: .1em 0 1em 0.2em;
 }
 label[for="commeted"] {
-    color: white;
-    margin: 0 0 1em 0;
+    color: black;
+    /* margin: 0 0 1em 0; */
 }
 
 #total-commentd {
-    color: white;
+    color: black;
     margin: 0 0 1em 2em;
 }
 
@@ -513,11 +527,24 @@ label[for="commeted"] {
   }
   .title {
     color: grey;
-    font-size: 12px;
+    font-size: 15px;
     padding-left: 2em;
+    line-height: 3em;
   }
   
   #tel {
+    border: none;
+    outline: 0;
+    display: inline-block;
+    padding: 8px;
+    color: white;
+    background-color: #000;
+    text-align: center;
+    cursor: pointer;
+    width: 100%;
+    font-size: 18px;
+  }
+  #tel2 {
     border: none;
     outline: 0;
     display: inline-block;
@@ -541,13 +568,15 @@ label[for="commeted"] {
   }
   .main {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    margin-top: 5%;
-    margin-left: 20%; /* Same as the width of the sidenav */
+    /* grid-template-columns: 1fr; */
+    margin-top: 4%;
+    margin-left: 40%; 
     font-size: 28px; /* Increased text to enable scrolling */
     padding: 0 1em 0 2em ;
-    /* top: 25%; */
-    left: 5%;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
     position: fixed;
     height: auto;
     float: left;
