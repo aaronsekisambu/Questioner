@@ -94,7 +94,7 @@ class MeetupController {
 		res.status(200).send({
 			status: 200,
 			data: meetup
-		})
+		});
 	}
 
 	deleteAMeetup (req, res) {
@@ -117,13 +117,19 @@ class MeetupController {
 		const validateRsvp = Validate._validateRsvp;
 		const {error} = validateRsvp(req.body);
 		if(!error) {
+			const {details} = error;
+			const messages = [];
+			details.forEach(detail => {
+				messages.push(detail.message);
+			});
 			return res.status(400).send({
 				status: 400,
-				error: error.details[0].message});
+				error: messages
+			});
 		} else  {
 			const rsvp  = {
 				id: rsvps.length + 1,
-				meetup: req.body.meetup,
+				meetup: req.params.id,
 				topic: req.body.topic,
 				status: req.body.status,
 			};

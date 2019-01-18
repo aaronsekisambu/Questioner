@@ -41,11 +41,9 @@ class ValidateQuestion {
 
 	_validateRsvp(rsvp) {
 		const schema = {
-			meetup: Joi.number().required(),
-			topic: Joi.string().min(2).required(),
-			status: Joi.string().min(3).required(),
+			status: Joi.string().min(3).required().trim(),
 		};
-		return Joi.validate(rsvp, schema);
+		return Joi.validate(rsvp, schema, { abortEarly: false });
 	}
 }
 
