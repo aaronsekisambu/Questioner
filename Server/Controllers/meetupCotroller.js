@@ -19,8 +19,8 @@ class MeetupController {
 			if (!upcoming === meetups[i].happeningOn) {
 				today.push(meetups[i]);
 			}
-			return res.status(404).send({
-				status: 404,
+			return res.status(400).send({
+				status: 400,
 				error: 'Currently no upcoming meetup(s)'
 			});
 		}
@@ -48,7 +48,7 @@ class MeetupController {
 		const meetups = MeetupModel._meetups;
 		const validateMeetup = Validate._validateMeetup;
 		const {error} = validateMeetup(req.body);
-		if(!error) {
+		if(error) {
 			return res.status(400).send({
 				status: 400,
 				error:  error.details
@@ -73,27 +73,28 @@ class MeetupController {
 		const meetups = MeetupModel._meetups;
 		const meetup = meetups.find(ele => ele.id === parseInt(req.params.id));
 		if (!meetup) {
-			return res.status(404).send({
+			res.status(404).send({
 				status: 404, 
 				error: 'No meetup selected'});
+			return;
 
-		}else {
-			const validateMeetup = Validate._validateMeetup;
-			const {error} = validateMeetup(req.body);
-			if(!error) {
-				return res.status(400).send({
-					status: 400,
-					error: error.details[0].message});
-			}
-			meetup.id = req.body.id,
-			meetup.happeningOn = req.body.happeningOn,
-			meetup.location = req.body.location,
-			meetup.topic = req.body.topic,
-			meetup.tags = req.body.tags,
-			res.status(200).send({
-				status: 200,
-				data: meetup});
 		}
+		const validateMeetup = Validate._validateMeetup;
+		const {error} = validateMeetup(req.body);
+		if(error) {
+			res.status(400).send({
+				status: 400,
+				error: error.details[0].message});
+		}
+		meetup.id = req.body.id,
+		meetup.happeningOn = req.body.happeningOn,
+		meetup.location = req.body.location,
+		meetup.topic = req.body.topic,
+		meetup.tags = req.body.tags,
+		res.status(200).send({
+			status: 200,
+			data: meetup
+		})
 	}
 
 	deleteAMeetup (req, res) {
@@ -115,12 +116,13 @@ class MeetupController {
 		const rsvps = MeetupModel._rsvp;
 		const validateRsvp = Validate._validateRsvp;
 		const {error} = validateRsvp(req.body);
-		if(error) {
+		if(!error) {
 			return res.status(400).send({
 				status: 400,
 				error: error.details[0].message});
 		} else  {
 			const rsvp  = {
+				id: rsvps.length + 1,
 				meetup: req.body.meetup,
 				topic: req.body.topic,
 				status: req.body.status,
