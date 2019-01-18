@@ -121,7 +121,6 @@ class QuestionController {
 				status: 400,
 				error: messages
 			});
-			return;
 		}
 		question.id = req.body.id,
 		question.createdOn = req.body.createdOn,

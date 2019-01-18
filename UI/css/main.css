@@ -4,6 +4,7 @@ body[name="index"] {
     font-family: Arial, Helvetica, sans-serif;
     line-height: 1em;
     background: url(../img/background-blur-clean-531880.jpg);
+    overflow: hidden;
 }
 
 /* Sign up flow body styling */
@@ -23,6 +24,8 @@ body[name="crt-account"] {
     height: auto;
     width: 100%;
     display: inline-block;
+    position: fixed;
+    overflow: hidden;
 }
 
 .header-sign {
@@ -46,6 +49,9 @@ body[name="crt-account"] {
     border: none;
     font-size: 12px;
 }
+.main-container {
+    position: relative;
+}
 
 #sign-btn {
     height: 4.5em;
@@ -57,27 +63,42 @@ body[name="crt-account"] {
 }
 
 /* Sign in form area for index/landing page*/
-#parent-form {
-    display: table;
-    width:20%;
+#parent-form  form {
+    height: 465px;
+    width: 400px;
     border: none;
-    box-shadow: #000000;
-    position: absolute;
-	top:0;
-	bottom: 0;
-	left: 0;
-	right: 0;
-    margin: auto;
-    padding: 1em;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto auto;
+    padding: 1.2em;
     background-color: #ffffff;
+    overflow: hidden;
+    z-index: -1;
+    border: 3px solid #0A70AE;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    border-radius: 0.1em
+}
+/*@media  (min-width: 500px) {*/
+    /*.main-container {*/
+        /*min-width: 100px;*/
+        /*min-height: auto;*/
+    /*}*/
+/*}*/
+
+
+.sub-container {
+    display: grid;
 }
 
 form .logo img {
-    width: 3em;
-    height: 3em;
+    width: 3.5em;
+    height: 3.5em;
     position: relative;
     display: inline-block;
-    margin:  1em  10em  1em;
+    margin:  1em  10em  2em 10em ;
 }
 
 /* New meet up page */
@@ -113,7 +134,7 @@ form .sub-container input[name="uname"], [name="pswd"], [name="email"] {
     float: right;
 }
 #tittle, #message {
-    padding: 1em 0 0 2em;
+    padding: 1em 0 0 0;
 }
 
 .qn-container {
@@ -232,20 +253,20 @@ form .sub-container input[name="new-pswd"], [name="conf-pswd"] {
 }
 
 form .sub-container button[name="sign01"] {
-    width: 26em;
+    width: 10em;
     height: 3em;
-    border-radius: 2em;
+    border-radius: .5em;
     font-size: 12px;
     color: #ffffff;
     background-color:#0A70AE; 
     border: none;
-    margin: 0.5em 0 0 2em;
+    margin: 1.5em 0 1em 11em;
     text-transform: uppercase;
 }
 
 /* Next01 and opt-back- signIn Button Create account Page*/
 form .sub-container button[name="next01"] {
-    width: 5em;
+    width: 8em;
     height: 3em;
     border-radius: 2em;
     font-size: 12px;
@@ -253,8 +274,11 @@ form .sub-container button[name="next01"] {
     color: #ffffff;
     background-color:#0A70AE; 
     border: none;
-    margin: .5em 3.5em 0 5.5em;
+    margin: 1.2em 3.5em 0 2.5em;
     text-transform: uppercase;
+}
+a form .sub-container button[name="next01"] {
+    color: #F7F7F7;
 }
 
 form .sub-container button[name="opt-back-signIn"] {
@@ -264,7 +288,7 @@ form .sub-container button[name="opt-back-signIn"] {
     font-size: 12px;
     color: #0A70AE;
     border: none;
-    margin: .5em 3.5em 0 1.2em;
+    margin: 1.2em 3.5em 0 2em;
     text-transform: capitalize;
     text-align: left
 }
@@ -281,7 +305,7 @@ form #checkbox {
 }
 
 form .fgt-pswd {
-   margin: 0 0 0 8em;
+   margin: 0 0 0 11em;
 }
 form .tc{
    font-size: 11px;
@@ -301,3 +325,13 @@ form #opt-text01 {
     color: #0A70AE;
     font-size: 12px;
 }
+
+.img-opt {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    margin: 1em 3em 2em 1em;
+    /* background: #000000; */
+    width: 100%;
+}
+
+

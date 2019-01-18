@@ -5,54 +5,55 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="../css/meetUps.css">
-    <title> View Meet-ups</title>
+    <title> View Questions</title>
 </head>
 <body>
-    <div class="wrapper">
         <div class="main-header">
-            <aside id="hd-logo"> <img  id="changing-logo" src="../img/kogoQnier.png" alt=""></aside>
-            <section id="search">
-                <input type="text" name="search" placeholder="Search...">
-            </section>
-            <aside id="hd-top-right-corner">
-                <div  id="username"> username</div>
-                <div id="circular-image-profile"></div>
-                <img class="hd-top-right-icons" src="../img/notification.png" alt="">
-                <img class="hd-top-right-icons" src="../img/setting.png" alt="">
+                <aside id="hd-logo"> <img id="changing-logo" src="../img/kogoQnier.png" alt=""></aside>
+                <section id="search">
+                    <input type="text" name="search" placeholder="Search...">
+                </section>
+                <aside id="hd-top-right-corner">
+                  <a href="./userProfile.html"> <div  id="username"> username</div> </a> 
+                    <div id="circular-image-profile"></div>
+                    <img class="hd-top-right-icons" src="../img/notification.png" alt="">
+                    <img class="hd-top-right-icons" src="../img/setting.png" alt="">
+                </aside>
+            </div>
+            <aside class="side-bar"> 
+                <div class="panel-body">
+                    <div class="sideway-nav">
+                            <ul>
+                                <li>
+                                  <a  class="btn-new-meetups" href="./writeMeetup.html">
+                                        <img src="../img/add.png" id="new-meetups-img" alt="">
+                                        <div id="btn-text01">New Question</div> 
+                                  </a> 
+                                    <div id="aside-left-links">Favourite</div>
+                                    <div id="aside-left-links">Draft meet-ups</div>
+                                </li>
+                            </ul>
+                    </div>
+        
+                    <div id="bottom-sideleft-links">
+                            <ul>
+                                <li>
+                                    <div id="aside-bottomleft-links">Documentation</div> 
+                                    <div id="aside-bottomleft-links"> Video Tutorials</div>
+                                    <div id="aside-bottomleft-links">Need Support?</div>
+                                    <div id="aside-bottomleft-links">Sign out</div>
+                                </li>
+                            </ul>
+                    </div>
+                    </div>
+    
             </aside>
-        </div>
-        <aside> 
-            <div>
-                    <ul>
-                        <li>
-                            <!-- <button id="btn-new-meetups">
-                                <img src="./img/add.png" id="new-meetups-img" alt=""> 
-                                <div id="btn-text01">New Meet-up</div> 
-                            </button> -->
-                            <div id="aside-left-links">Favourite</div>
-                            <div id="aside-left-links">Draft meet-ups</div>
-                        </li>
-                    </ul>
-            </div>
-
-            <div id="bottom-sideleft-links">
-                    <ul>
-                        <li>
-                            <div id="aside-bottomleft-links">Documentation</div> 
-                            <div id="aside-bottomleft-links"> Video Tutorials</div>
-                            <div id="aside-bottomleft-links">Need Support?</div>
-                            <div id="aside-bottomleft-links">Sign out</div>
-                        </li>
-                    </ul>
-            </div>
-
-        </aside>
-
+    <div class="wrapper">
         <section class="crt-meetups-details">
             <div>
-                <button id="btn-meetups-leftAlign">
-                    <img src="../img/Meetup_Icons-traditionalmt-06.png"  id="crt-meetups-img" alt="">
-                    <div id="btn-text02">meet-ups</div>
+                <button id="btn-meetups">
+                    <img src="../img/questions.png" id="crt-meetups-img" alt="">
+                    <div id="btn-text02">Questions</div>
                 </button>
             </div>
             <section class="main-meetups-container">
@@ -68,193 +69,249 @@
                             </button>
                     </section>
                             <div class="created-meetup-description">
-                                [Question 01]
+                                What is the difference between ES5 and ES6?
                             </div>
                             <aside id="on-hover-icons">
                                 <button id="on-off-meetup-btns-comment">
                                     <img class="created-meetup-onhover-icons" src="../img/Comments-512.png" alt="Comment">
+                                    <span class="view-text">Comment</span>
                             </button>
 
                                 <button id="on-off-meetup-btns-edit">
                                     <img class="created-meetup-onhover-icons" src="../img/edit.png" alt="edit">
+                                    <span class="view-text">Edit</span>
                                </button>
                                <button id="on-off-meetup-btns-del">
                                 <img class="created-meetup-onhover-icons" src="../img/bin.png" alt="Delete">
+                                <span class="view-text">Delete</span>
                         </button>
                             </aside>
             </section>
-            <section>
-                <label for="comments"> <div id="comments">comments</div> </label>
-                <div id="comment-details">
-                        <div id="comment-circular-image-profile"></div>
-                        <div  id="comment-username"> username</div>
-                </div>
-
-                <div id="comment-area">What is Lorem Ipsum?
-                        Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-                         Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s, 
-                         when an unknown printer took a galley of type and scrambled it to make a type specimen book. 
-                         It has survived not only five centuries, but also the leap into electronic typesetting, 
-                         remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets 
-                         containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus 
-                         PageMaker including versions of Lorem Ipsum.
-                </div>
-                <section class="write-comment">
-                        <aside> 
-                            <ul >
-                                <li id="style-write-comment">  <a href="#" id="btn-write">Write</a> </li>
-                                <li id="style-write-comment"> <a href="#" id="preview"> Preview</a> </li>
-                            </ul> 
-                        </aside>
-                        <aside id="on-hover-icons">
-                            <button id="on-off-meetup-btns-comment">
-                                <img class="created-meetup-onhover-icons" src="../img/Comments-512.png" alt="Comment">
-                          </button>
-                          <button id="on-off-meetup-btns-view">
-                            <img class="created-meetup-onhover-icons" src="../img/view-01-512.png" alt="view">
-                          </button>
-                           <button class="on-off-meetup-btns">
-                                <img class="created-meetup-onhover-icons" src="../img/edit.png" alt="edit">
-                           </button>
-                           <button id="on-off-meetup-btns-del">
-                            <img class="created-meetup-onhover-icons" src="../img/bin.png" alt="Delete">
+            <section id="begin-comment-area">
+                    <label for="comments">
+                         <div id="comments">comments</div> 
+                         <div id="close-comment" >
+                            <img id="btn-close-comment" src="../img/close.png" alt="">
+                         </div>
+                    </label>
+                    <div id="comment-details">
+                            <div id="comment-circular-image-profile"></div>
+                            <div  id="comment-username"> username</div>
+                    </div>
+    
+                    <div id="comment-area">What is Lorem Ipsum?
+                            Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+                             Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s, 
+                             when an unknown printer took a galley of type and scrambled it to make a type specimen book. 
+                             It has survived not only five centuries, but also the leap into electronic typesetting, 
+                             remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets 
+                             containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus 
+                             PageMaker including versions of Lorem Ipsum.
+                    </div>
+                    <section class="write-comment">
+                            <aside> 
+                                <ul >
+                                    <li id="style-write-comment">  <a href="#" id="btn-write">Comment</a> </li>
+                                </ul> 
+                            </aside>
+                    </section>
+    
+                    <div id="insert-comment">
+                            <input name="comment-insert" type="text" placeholder="Insert comment">
+                            <button id="btn-new-comment">
+                                <div id="btn-text01-commet">Comment</div> 
                             </button>
-                        </aside>
-                </section>
-                <div id="insert-comment">
-                        <input name="comment-insert" type="text" placeholder="Insert comment">
-                        <button id="btn-new-comment">
-                            <div id="btn-text01-commet">Comment</div> 
-                        </button>
-                </div>
-            
-            </section>
+                    </div>
+                </section> 
+            <!-- Temporary Code -->
+            <div id="current-month">December 2018</div>
+            <section class="crt-meetups-viewMeetups">
+                    <section id="vote-area">
+                            <button class="btn-upvote">
+                                    <img class="created-meetup-onhover-icons" src="../img/upvote.png" alt="Comment">
+                            </button>
+                                <div id="vote">5</div> 
+                            <button class="btn-downvote">
+                                    <img class="created-meetup-onhover-icons" src="../img/downvote.png" alt="Comment">
+                            </button>
+                    </section>
+                            <div class="created-meetup-description">
+                                What is the difference between ES5 and ES6?
+                            </div>
+                            <aside id="on-hover-icons">
+                                <button id="on-off-meetup-btns-comment">
+                                    <img class="created-meetup-onhover-icons" src="../img/Comments-512.png" alt="Comment">
+                                    <span class="view-text">Comment</span>
+                            </button>
 
-            <!-- Templary Code
-                 To be deleted just for preview purposes -->
-                 <div id="current-month">December 2018</div>
-                 <section class="crt-meetups-viewMeetups">
-                         <section id="vote-area">
-                                 <button class="btn-upvote">
-                                         <img class="created-meetup-onhover-icons" src="../img/upvote.png" alt="Comment">
-                                 </button>
-                                     <div id="vote">100</div> 
-                                 <button class="btn-downvote">
-                                         <img class="created-meetup-onhover-icons" src="../img/downvote.png" alt="Comment">
-                                 </button>
-                         </section>
-                                 <div class="created-meetup-description">
-                                     [Question 02]
-                                 </div>
-                                 <aside id="on-hover-icons">
-                                    <button id="on-off-meetup-btns-comment">
-                                        <img class="created-meetup-onhover-icons" src="../img/Comments-512.png" alt="Comment">
-                                    </button>
-     
-                                     <button id="on-off-meetup-btns-edit">
-                                        <img class="created-meetup-onhover-icons" src="../img/edit.png" alt="edit">
-                                   </button>
-                                    <button id="on-off-meetup-btns-del">
-                                        <img class="created-meetup-onhover-icons" src="../img/bin.png" alt="Delete">
-                                     </button>
-                                 </aside>
-                 </section>
-
-                 <div id="current-month">December 2018</div>
-                 <section class="crt-meetups-viewMeetups">
-                         <section id="vote-area">
-                                 <button class="btn-upvote">
-                                         <img class="created-meetup-onhover-icons" src="../img/upvote.png" alt="Comment">
-                                 </button>
-                                     <div id="vote">-25</div> 
-                                 <button class="btn-downvote">
-                                         <img class="created-meetup-onhover-icons" src="../img/downvote.png" alt="Comment">
-                                 </button>
-                         </section>
-                                 <div class="created-meetup-description">
-                                     [Question 03]
-                                 </div>
-                                 <aside id="on-hover-icons">
-                                    <button id="on-off-meetup-btns-comment">
-                                        <img class="created-meetup-onhover-icons" src="../img/Comments-512.png" alt="Comment">
-                                </button>
-     
                                 <button id="on-off-meetup-btns-edit">
                                     <img class="created-meetup-onhover-icons" src="../img/edit.png" alt="edit">
+                                    <span class="view-text">Edit</span>
                                </button>
                                <button id="on-off-meetup-btns-del">
                                 <img class="created-meetup-onhover-icons" src="../img/bin.png" alt="Delete">
-                                 </button>
-                                 </aside>
-                 </section>
-            <!-- End of deletable code -->
+                                <span class="view-text">Delete</span>
+                        </button>
+                            </aside>
+            </section>
+
+            <div id="current-month">December 2018</div>
+            <section class="crt-meetups-viewMeetups">
+                    <section id="vote-area">
+                            <button class="btn-upvote">
+                                    <img class="created-meetup-onhover-icons" src="../img/upvote.png" alt="Comment">
+                            </button>
+                                <div id="vote">5</div> 
+                            <button class="btn-downvote">
+                                    <img class="created-meetup-onhover-icons" src="../img/downvote.png" alt="Comment">
+                            </button>
+                    </section>
+                            <div class="created-meetup-description">
+                                What is the difference between ES5 and ES6?
+                            </div>
+                            <aside id="on-hover-icons">
+                                <button id="on-off-meetup-btns-comment">
+                                    <img class="created-meetup-onhover-icons" src="../img/Comments-512.png" alt="Comment">
+                                    <span class="view-text">Comment</span>
+                            </button>
+
+                                <button id="on-off-meetup-btns-edit">
+                                    <img class="created-meetup-onhover-icons" src="../img/edit.png" alt="edit">
+                                    <span class="view-text">Edit</span>
+                               </button>
+                               <button id="on-off-meetup-btns-del">
+                                <img class="created-meetup-onhover-icons" src="../img/bin.png" alt="Delete">
+                                <span class="view-text">Delete</span>
+                        </button>
+                            </aside>
+            </section>
+
+            <div id="current-month">December 2018</div>
+            <section class="crt-meetups-viewMeetups">
+                    <section id="vote-area">
+                            <button class="btn-upvote">
+                                    <img class="created-meetup-onhover-icons" src="../img/upvote.png" alt="Comment">
+                            </button>
+                                <div id="vote">5</div> 
+                            <button class="btn-downvote">
+                                    <img class="created-meetup-onhover-icons" src="../img/downvote.png" alt="Comment">
+                            </button>
+                    </section>
+                            <div class="created-meetup-description">
+                                What is the difference between ES5 and ES6?
+                            </div>
+                            <aside id="on-hover-icons">
+                                <button id="on-off-meetup-btns-comment">
+                                    <img class="created-meetup-onhover-icons" src="../img/Comments-512.png" alt="Comment">
+                                    <span class="view-text">Comment</span>
+                            </button>
+
+                                <button id="on-off-meetup-btns-edit">
+                                    <img class="created-meetup-onhover-icons" src="../img/edit.png" alt="edit">
+                                    <span class="view-text">Edit</span>
+                               </button>
+                               <button id="on-off-meetup-btns-del">
+                                <img class="created-meetup-onhover-icons" src="../img/bin.png" alt="Delete">
+                                <span class="view-text">Delete</span>
+                        </button>
+                            </aside>
+            </section>
+            <div id="current-month">December 2018</div>
+            <section class="crt-meetups-viewMeetups">
+                    <section id="vote-area">
+                            <button class="btn-upvote">
+                                    <img class="created-meetup-onhover-icons" src="../img/upvote.png" alt="Comment">
+                            </button>
+                                <div id="vote">5</div> 
+                            <button class="btn-downvote">
+                                    <img class="created-meetup-onhover-icons" src="../img/downvote.png" alt="Comment">
+                            </button>
+                    </section>
+                            <div class="created-meetup-description">
+                                What is the difference between ES5 and ES6?
+                            </div>
+                            <aside id="on-hover-icons">
+                                <button id="on-off-meetup-btns-comment">
+                                    <img class="created-meetup-onhover-icons" src="../img/Comments-512.png" alt="Comment">
+                                    <span class="view-text">Comment</span>
+                            </button>
+
+                                <button id="on-off-meetup-btns-edit">
+                                    <img class="created-meetup-onhover-icons" src="../img/edit.png" alt="edit">
+                                    <span class="view-text">Edit</span>
+                               </button>
+                               <button id="on-off-meetup-btns-del">
+                                <img class="created-meetup-onhover-icons" src="../img/bin.png" alt="Delete">
+                                <span class="view-text">Delete</span>
+                        </button>
+                            </aside>
+            </section>
+            <div id="current-month">December 2018</div>
+            <section class="crt-meetups-viewMeetups">
+                    <section id="vote-area">
+                            <button class="btn-upvote">
+                                    <img class="created-meetup-onhover-icons" src="../img/upvote.png" alt="Comment">
+                            </button>
+                                <div id="vote">5</div> 
+                            <button class="btn-downvote">
+                                    <img class="created-meetup-onhover-icons" src="../img/downvote.png" alt="Comment">
+                            </button>
+                    </section>
+                            <div class="created-meetup-description">
+                                What is the difference between ES5 and ES6?
+                            </div>
+                            <aside id="on-hover-icons">
+                                <button id="on-off-meetup-btns-comment">
+                                    <img class="created-meetup-onhover-icons" src="../img/Comments-512.png" alt="Comment">
+                                    <span class="view-text">Comment</span>
+                            </button>
+
+                                <button id="on-off-meetup-btns-edit">
+                                    <img class="created-meetup-onhover-icons" src="../img/edit.png" alt="edit">
+                                    <span class="view-text">Edit</span>
+                               </button>
+                               <button id="on-off-meetup-btns-del">
+                                <img class="created-meetup-onhover-icons" src="../img/bin.png" alt="Delete">
+                                <span class="view-text">Delete</span>
+                        </button>
+                            </aside>
+            </section>
+
+            <div id="current-month">December 2018</div>
+            <section class="crt-meetups-viewMeetups">
+                    <section id="vote-area">
+                            <button class="btn-upvote">
+                                    <img class="created-meetup-onhover-icons" src="../img/upvote.png" alt="Comment">
+                            </button>
+                                <div id="vote">5</div> 
+                            <button class="btn-downvote">
+                                    <img class="created-meetup-onhover-icons" src="../img/downvote.png" alt="Comment">
+                            </button>
+                    </section>
+                            <div class="created-meetup-description">
+                                What is the difference between ES5 and ES6?
+                            </div>
+                            <aside id="on-hover-icons">
+                                <button id="on-off-meetup-btns-comment">
+                                    <img class="created-meetup-onhover-icons" src="../img/Comments-512.png" alt="Comment">
+                                    <span class="view-text">Comment</span>
+                            </button>
+
+                                <button id="on-off-meetup-btns-edit">
+                                    <img class="created-meetup-onhover-icons" src="../img/edit.png" alt="edit">
+                                    <span class="view-text">Edit</span>
+                               </button>
+                               <button id="on-off-meetup-btns-del">
+                                <img class="created-meetup-onhover-icons" src="../img/bin.png" alt="Delete">
+                                <span class="view-text">Delete</span>
+                        </button>
+                            </aside>
+            </section>
+            <!-- End of temporary code -->
+            
         </section>
     </section>
-        <aside>
-            <div id="user-details">
-                <label for="user-qstns">Questions</label>
-                <div id="posted">
-                    <label for="posted-qstns">
-                        <img src="../img/postedicon.png" id="posted-img" alt=""> 
-                    </label>
-                    <div id="posted-qstns">Posted :</div>
-                    <div id="total-posted-qstns">12</div>
-                </div>
-                <div id="comments">
-                    <label for="commeted">
-                            <img src="../img/commted on.png" id="posted-img" alt=""> 
-                    </label>
-                    <div id="posted-qstns">Comments :</div>
-                    <div id="total-commentd">15</div>
-                </div>
-            </div>
-
-
-            <!-- To be Deleted -->
-            <aside>
-                <div id="user-details">
-                    <label for="user-qstns">Questions</label>
-                    <div id="posted">
-                        <label for="posted-qstns">
-                            <img src="../img/postedicon.png" id="posted-img" alt=""> 
-                        </label>
-                        <div id="posted-qstns">Posted :</div>
-                        <div id="total-posted-qstns">4</div>
-                    </div>
-                    <div id="comments">
-                        <label for="commeted">
-                                <img src="../img/commted on.png" id="posted-img" alt=""> 
-                        </label>
-                        <div id="posted-qstns">Comments :</div>
-                        <div id="total-commentd">10</div>
-                    </div>
-                </div>
-            </aside>
-
-            <!-- To be Deleted -->
-            <aside>
-                <div id="user-details">
-                    <label for="user-qstns">Questions</label>
-                    <div id="posted">
-                        <label for="posted-qstns">
-                            <img src="../img/postedicon.png" id="posted-img" alt=""> 
-                        </label>
-                        <div id="posted-qstns">Posted :</div>
-                        <div id="total-posted-qstns">11</div>
-                    </div>
-                    <div id="comments">
-                        <label for="commeted">
-                                <img src="../img/commted on.png" id="posted-img" alt=""> 
-                        </label>
-                        <div id="posted-qstns">Comments :</div>
-                        <div id="total-commentd">1</div>
-                    </div>
-                </div>
-            </aside>
-        </aside>
-
-        
     </div>
-    <script src="../js/index.js"></script>  
+    <script src="../js/index.js"></script>
 </body>
 </html>
