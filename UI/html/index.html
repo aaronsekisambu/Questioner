@@ -8,54 +8,56 @@
     <title>Login</title>
 </head>
 <body name="index">
-    <div class="main-container">
-        <div class="header-container">
-            <div class="create-account">
-               <a href="../html/createMeetUps.html"><button id="create-account-btn">Create Account</button></a> 
-            </div>
-            <div class="header-sign">
-                <button id="sign-btn">Sign</button>
-            </div>
+<div class="main-container">
+    <div class="header-container">
+        <div class="create-account">
+            <a href="./signUpFlow.html">  <button id="create-account-btn">Create Account</button></a>
         </div>
-        <div id="parent-form">
-            <form action="">
-                    <div class="logo">
-                        <img src="../img/kogoQnier.png" alt="">
-                    </div>
-                    <div class="sub-container">
+        <div class="header-sign">
+            <button id="sign-btn">Sign In</button>
+        </div>
+    </div>
+    <div id="parent-form">
+        <form action="">
+            <div class="logo">
+                <img src="../img/kogoQnier.png" alt="">
+            </div>
+            <div class="sub-container">
+                <div>
+                    <label for="username">Username/Email</label> <br>
+                    <input type="text" placeholder="Username or Email" name="uname" required> <br>
+
+                    <label for="pswd">Password</label> <br>
+                    <input type="password" placeholder="Password" name="pswd" required> <br>
+
+                    <button type="submit" name="sign01">Sign In</button> <br>
+                    <div  id="checkbox">
+                        <label>
+                            <input type="checkbox" checked="" name="remember"> Remember me
+                        </label>
                         <div>
-                            <label for="username">Username/Email</label> <br>
-                            <input type="text" placeholder="Username or Email" name="uname" required> <br>
-
-                            <label for="pswd">Password</label> <br>
-                            <input type="password" placeholder="Password" name="pswd" required> <br>
-
-                            <button type="submit" name="sign01">Sign In</button> <br>
-                            <div  id="checkbox">
-                                    <label>
-                                            <input type="checkbox" checked="" name="remember"> Remember me
-                                        </label>
-                                        <div>
                                              <span class="fgt-pswd">Forgot <a href="#">
                                                         password?
                                                     </a></span>
-                                        </div>
-                            </div>
                         </div>
-                     </div>
-                     <div class="opt-signIn">
-                         <div id="opt-text01"> Sign in using</div>
-                         <div>  <img src="../img/gmail.png" alt="">  </div>
-                        <div>  <img src="../img/linked in logo.png" alt="">  </div>
-                        <div>  <img src="../img/facebook icon.png" alt="">  </div>
-                     </div>
+                    </div>
+                </div>
+            </div>
+            <div class="opt-signIn">
+                <div id="opt-text01"> Sign in using</div>
+                <div class="img-opt">
+                    <img src="../img/gmail.png" alt="">
+                    <img src="../img/linked in logo.png" alt="">
+                    <img src="../img/facebook icon.png" alt="">
+                </div>
+            </div>
 
-             </form>
+        </form>
     </div>
-    
-        
-    </div>
-    
-    <script src="../js/index.js"></script>
+
+
+</div>
+
+<script src="../js/index.js"></script>
 </body>
 </html>

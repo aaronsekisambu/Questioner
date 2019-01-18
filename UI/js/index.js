@@ -38,3 +38,5 @@ currentDate = () => {
 // Difine todays Month and year.
 document.getElementById('current-month').innerText = currentDate();
     
+
+
