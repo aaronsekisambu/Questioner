@@ -68,8 +68,7 @@ const questionSpecTest = () => {
 			const questions = {
 				createdBy: 1, // represents the user asking the question
 				title: 'Express',
-				body: 'Why so many libaries in Javascript',
-				votes: 0
+				body: 'Why so many libaries in Javascript'
 			};
 			chai.request(app)
 				.post('/api/v1/meetups/1/questions')
@@ -86,8 +85,7 @@ const questionSpecTest = () => {
 			const questions = {
 				createdBy: 1, // represents the user asking the question
 				title: 'Express',
-				body: 'Why so many libaries in Javascript',
-				votes: 0
+				body: 'Why so many libaries in Javascript'
 			};
 			chai.request(app)
 				.put('/api/v1/questions/1')
@@ -153,7 +151,7 @@ const questionSpecTest = () => {
 			});
 			it('Should PATCH/ Upvote a specific question', (done) => {
 				chai.request(app)
-					.patch('/api/v1/questions/1/upvote')
+					.patch('/api/v1/questions/1/upvotes')
 					.end((err, res)=> {
 						expect(res.body.status).to.eql(400);
 						done();
@@ -161,7 +159,7 @@ const questionSpecTest = () => {
 			});
 			it('Should return a 400 on Upvoting a specific question', (done) => {
 				chai.request(app)
-					.patch('/api/v1/questions/1/upvote')
+					.patch('/api/v1/questions/1/upvotes')
 					.end((err, res)=> {
 						expect(res.body.status).to.eql(400);
 						done();
@@ -169,7 +167,7 @@ const questionSpecTest = () => {
 			});
 			it('Should return a 400 on downvoting a specific question', (done) => {
 				chai.request(app)
-					.patch('/api/v1/questions/1/downvote')
+					.patch('/api/v1/questions/1/downvotes')
 					.end((err, res)=> {
 						expect(res.body.status).to.eql(400);
 						done();

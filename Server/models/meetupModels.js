@@ -5,13 +5,11 @@ class MeetupModel {
 			id: 1,
 			topic : 'Javascript',
 			location : 'Kigali' ,
-			happeningOn : 'Now',
+			happeningOn : 'January 20, 2019',
+			CreatedOn:	'January 5, 2019',
 			tags : ['Js', 'Py']
 		}],
 		this._rsvp = [{
-			id: 1,
-			meetup : 1 , // meetup record primary key
-			topic : 'Javascript' , // meetup topic
 			status : 'Yes' // [yes, no or maybe]
 		}];
 

@@ -15,7 +15,7 @@ const MeetupSpecTest = () => {
 					expect(res.body.data[0].id).to.eql(1);
 					expect(res.body.data[0].topic).to.eql('Javascript');
 					expect(res.body.data[0].location).to.eql('Kigali');
-					expect(res.body.data[0].happeningOn).to.eql('Now');
+					expect(res.body.data[0].happeningOn).to.eql('January 20, 2019');
 					expect(res.body.data[0].tags).to.eql(['Js', 'Py']);
 					done();
 				});
@@ -24,9 +24,8 @@ const MeetupSpecTest = () => {
 			chai.request(app)
 				.get('/api/v1/meetups/upcoming')
 				.end((err, res)=> {
-					expect(res).to.have.status(400);
+					expect(res).to.have.status(200);
 					expect(res.body).to.be.an('object');
-					expect(res.body.error).to.eql('Currently no upcoming meetup(s)');
 					done();
 				});
 		});
@@ -135,10 +134,10 @@ const MeetupSpecTest = () => {
 				status : 'Yes' // [yes, no or maybe]
 			};
 			chai.request(app)
-				.post('/api/v1/meetups/1/rsvp')
+				.post('/api/v1/meetups/1/rsvps')
 				.send(rsvps)
 				.end((err, res)=> {
-					expect(res.status).to.eql(500);
+					expect(res.status).to.eql(200);
 					done();
 				});
 		});
@@ -147,10 +146,10 @@ const MeetupSpecTest = () => {
 				status : '' // [yes, no or maybe]
 			};
 			chai.request(app)
-				.post('/api/v1/meetups/1/rsvp')
+				.post('/api/v1/meetups/1/rsvps')
 				.send(rsvps)
 				.end((err, res)=> {
-					expect(res.body.status).to.eql(200);
+					expect(res.body.status).to.eql(400);
 					done();
 				});
 		});

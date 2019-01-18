@@ -1,6 +1,7 @@
 const MeetupModel = require('../models/meetupModels');
 const Validate = require('../helpers/utils');
-
+const moment = require('moment');
+moment.suppressDeprecationWarnings = true;
 
 class MeetupController {
 	getAllMeetups (req, res) {
@@ -12,21 +13,25 @@ class MeetupController {
 	}
 	getAllUpcomingMeetups (req, res) {
 		const meetups = MeetupModel._meetups;
-		const upcoming = 'then';
+		const upcoming = moment().format('LL');
 		const today = [];
 
-		for(let i = 0; i !== meetups[i].length; i++) {
-			if (!upcoming === meetups[i].happeningOn) {
+		for(let i = 0; i < meetups.length; i++) {
+			if (moment(meetups[i].happeningOn).isSameOrAfter(upcoming)){
 				today.push(meetups[i]);
 			}
-			return res.status(400).send({
-				status: 400,
-				error: 'Currently no upcoming meetup(s)'
-			});
+
 		}
-		return res.send({
-			status: 200,
-			data: meetups
+
+		if(today)
+			return res.send({
+				status: 200,
+				data: today
+			});
+
+		return res.status(400).send({
+			status: 400,
+			error: 'Currently no upcoming meetup(s)'
 		});
 
 	}
@@ -58,7 +63,7 @@ class MeetupController {
 				id: meetups.length + 1,
 				location: req.body.location,
 				topic: req.body.topic,
-				happeningOn: 'Now',
+				happeningOn: moment(req.body.happeningOn).format('LL'),
 				tags: req.body.tags,
 			};
 			meetups.push(meetup);
@@ -116,7 +121,7 @@ class MeetupController {
 		const rsvps = MeetupModel._rsvp;
 		const validateRsvp = Validate._validateRsvp;
 		const {error} = validateRsvp(req.body);
-		if(!error) {
+		if(error) {
 			const {details} = error;
 			const messages = [];
 			details.forEach(detail => {
@@ -128,9 +133,6 @@ class MeetupController {
 			});
 		} else  {
 			const rsvp  = {
-				id: rsvps.length + 1,
-				meetup: req.params.id,
-				topic: req.body.topic,
 				status: req.body.status,
 			};
 			rsvps.push(rsvp);
