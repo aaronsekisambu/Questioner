@@ -77,7 +77,7 @@ class QuestionController {
 			const messages = [];
 			details.forEach(detail => {
 				messages.push(detail.message);
-			})
+			});
 			return res.status(400).send({
 				status: 400, 
 				error: messages
@@ -116,7 +116,7 @@ class QuestionController {
 			const messages = [];
 			details.forEach(detail => {
 				messages.push(detail.message);
-			})
+			});
 			return res.status(400).send({
 				status: 400,
 				error: messages

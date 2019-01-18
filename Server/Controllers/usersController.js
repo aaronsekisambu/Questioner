@@ -25,7 +25,8 @@ class UserController {
 		if(error) {
 			res.status(400).send({
 				status: 400,
-				error: error.details});
+				error: error.details
+			});
 			return;
 		}
 		const user = {

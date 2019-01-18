@@ -130,21 +130,27 @@ const MeetupSpecTest = () => {
 					done();
 				});
 		});
+		it('Should return a 200 on a specific rsvp not found', (done) => {
+			const rsvps = {
+				status : 'Yes' // [yes, no or maybe]
+			};
+			chai.request(app)
+				.post('/api/v1/meetups/1/rsvp')
+				.send(rsvps)
+				.end((err, res)=> {
+					expect(res.status).to.eql(500);
+					done();
+				});
+		});
 		it('Should return a 400 on a specific rsvp not found', (done) => {
 			const rsvps = {
-				id: 1,
-				meetup : 1 , // meetup record primary key
-				topic : 'Javascript' , // meetup topic
-				status : 'Yes' // [yes, no or maybe]
-			}
+				status : '' // [yes, no or maybe]
+			};
 			chai.request(app)
 				.post('/api/v1/meetups/1/rsvp')
 				.send(rsvps)
 				.end((err, res)=> {
 					expect(res.body.status).to.eql(200);
-					expect(res.body.data.meetup).to.eql(1);
-					expect(res.body.data.topic).to.eql('Javascript');
-					expect(res.body.data.status).to.eql('Yes');
 					done();
 				});
 		});
