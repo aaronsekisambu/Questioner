@@ -81,12 +81,6 @@ body[name="crt-account"] {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
     border-radius: 0.1em
 }
-/*@media  (min-width: 500px) {*/
-    /*.main-container {*/
-        /*min-width: 100px;*/
-        /*min-height: auto;*/
-    /*}*/
-/*}*/
 
 
 .sub-container {
@@ -173,10 +167,6 @@ form input[name="title"], input[name="question"] {
     border: none;
 
 }
-
-/* .btn-active {
-    display: inline;
-} */
 
 #btn-del, #btn-edit, #btn-save {
     width: 5em;
@@ -330,7 +320,6 @@ form #opt-text01 {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     margin: 1em 3em 2em 1em;
-    /* background: #000000; */
     width: 100%;
 }
 

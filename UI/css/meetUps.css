@@ -157,9 +157,6 @@ ul {
     background-color:#0190B0;
     border: none;
     margin: 1.3em 3em 0 2em;
-    /* align-items:flex-start;
-    justify-content: flex-start;
-    text-transform: capitalize; */
 }
 
 
@@ -213,16 +210,12 @@ ul {
     font-size: 22px;
 }
 
-/* #vote-area {
-    background-color: #00A5CB;
-} */
 
 .btn-downvote {
     float: right;
     margin: 2em 2em 0 0;
     border: none;
     border-radius: .5em;
-    /* background-color: #EAEAEA; */
     background-color: #00A5CB;
     height: 3em;
     width: 4em
@@ -413,14 +406,8 @@ input[name="comment-insert"] {
 #user-details {
     display: grid;
     border-radius: 0.2em;
-    /* height: auto; */
-    /* width: 100%; */
-    /* background-color:#0190B0; */
     border: none;
     margin: 1em 2em 0 2em;
-    /* align-items: left; */
-    /* justify-content: center; */
-    /* grid-template-columns: 1fr; */
     font-size: 15px;
 }
 label[for="user-qstns"] {
@@ -436,7 +423,6 @@ label[for="user-qstns"] {
 }
 label[for="posted-qstns"] {
     color: white;
-    /* margin: 0 0 1em 2em; */
 }
 #posted-img {
     height: 1.2em;
@@ -454,7 +440,6 @@ label[for="posted-qstns"] {
 }
 label[for="commeted"] {
     color: black;
-    /* margin: 0 0 1em 0; */
 }
 
 #total-commentd {
@@ -462,13 +447,6 @@ label[for="commeted"] {
     margin: 0 0 1em 2em;
 }
 
-
-/* User Profile page */
-/* #profile-container {
-    overflow-x: hidden;
-    position: fixed;
-    display: block;
-} */
 .sidemenu {
     display: grid;
     border-radius: 0.2em;
@@ -490,16 +468,9 @@ label[for="commeted"] {
     top: 8%;
     left: 0;
     background-color: #737677;
-    /* overflow-x: hidden; */
     padding-top: 20px;
   }
-  
-  /* .details {
-      display: block;
-      max-width: 100%;
-      background-color: #0190B0;
-      float: right;
-  } */
+
   .sidenav a {
     padding: 6px 8px 6px 16px;
     text-decoration: none;
@@ -557,18 +528,14 @@ label[for="commeted"] {
     font-size: 18px;
   }
   
-  /* a  {
-    text-decoration: none;
-    font-size: 22px;
-    color: black;
-  } */
+
   
   #tel:hover, a:hover {
     opacity: 0.7;
   }
   .main {
     display: grid;
-    /* grid-template-columns: 1fr; */
+
     margin-top: 4%;
     margin-left: 40%; 
     font-size: 28px; /* Increased text to enable scrolling */
