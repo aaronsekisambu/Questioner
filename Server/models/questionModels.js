@@ -26,7 +26,7 @@ class QuestionModel {
 		this._vote(questionId, 1);
 	}
 	downVote(questionId) {
-		this._vote(questionId, 1);
+		this._vote(questionId, -1);
 	}
 }
 

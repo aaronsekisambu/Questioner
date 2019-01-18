@@ -8,7 +8,7 @@ const MeetupController  = require('../Controllers/meetupCotroller');
 routesMeetup.route('/api/v1/meetups')
 	.get(MeetupController.getAllMeetups)
 	.post(MeetupController.postAMeetup);
-routesMeetup.route('/api/v1/meetups/:id/rsvp')
+routesMeetup.route('/api/v1/meetups/:id/rsvps')
 	.post(MeetupController.postARsvp);
 routesMeetup.route('/api/v1/meetups/upcoming')
 	.get(MeetupController.getAllUpcomingMeetups);

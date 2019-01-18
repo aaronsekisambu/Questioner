@@ -18,9 +18,9 @@ routesQuestions.route('/api/v1/questions/:id')
 routesQuestions.route('/api/v1/questions/:id/votes')
 	.get(QuestionController.getVotesOnAQuestion);
 // PATCH the Questions with an upvote or downvote
-routesQuestions.route('/api/v1/questions/:id/upvote')
+routesQuestions.route('/api/v1/questions/:id/upvotes')
 	.patch(QuestionController.upVote);
-routesQuestions.route('/api/v1/questions/:id/downvote')
+routesQuestions.route('/api/v1/questions/:id/downvotes')
 	.patch(QuestionController.downVote);
 /* End of Meet up End points 
 -----------------------------------------------------------------------------*/

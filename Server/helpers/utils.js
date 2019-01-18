@@ -11,7 +11,6 @@ class ValidateQuestion {
 			meetup: Joi.number().min(1),
 			title: Joi.string().min(2).required().trim(),
 			body: Joi.string().min(2).required().trim(),
-			votes: Joi.number().min(0).required()
 		};
 		return Joi.validate(question, schema, { abortEarly: false });
 	}
