@@ -1,5 +1,5 @@
-# Project Title
-  - Questioner
+# Questioner
+
 
   Crowd-source questions for a meetup. Questioner helps the meetup organizer prioritize
 questions to be answered. Other users can vote on asked questions and they bubble to the top
@@ -12,34 +12,32 @@ These instructions will get you a copy of the project up and running on your loc
 
 ### Prerequisites
 
-What things you need to install the software and how to install them
+You need set the following in your as your dependecies
 
 ```
 - Node 11+
 - jest
-- mocha + chai
+- mocha
+- chai
 - express
 - joi
 - nodemon
 - eslint
 ```
 
-### Installing
-### Run the following
+## Set up
+### Clone the repo
 ```
-Clone the repository, then command cd into the root directory then run npm install 
+git clone [https://github.com/aaronsekisambu/Questioner]
 ```
 
-### Clone this
+### Run
 
 ```
-https://github.com/aaronsekisambu/Questioner
+- run command cd in the root directory 
+- run npm install 
 ```
-### Set up
-
-### If you want more syntax highlighting, format your code like this 
-- update and install this package first
-
+### Install
 ```
 $ brew update
 $ npm update
@@ -49,18 +47,19 @@ now install npm and bower packages
 $ npm install
 $ bower install
 ```
+## Run Tests
 
-## Running the tests
-
-`npm test`
-
-
-## To start Server
-`npm nodemon server`
+``` 
+npm test
+```
+## Start Server
+``` 
+npm nodemon server
+```
 
 ### Unit Testing
 
-The tests are testin all the 3 Endpoints
+The tests are testing all the 3 Endpoints
 
 ```
 1. Users Endpoints
@@ -69,7 +68,7 @@ The tests are testin all the 3 Endpoints
 ```
 
 ### coding style
-`eslint
+`eslint and Airbnb`
 ```
 {
     "env": {
@@ -135,10 +134,9 @@ Chidinma Orajiaku
 Arthur Thungu
 Mercy Muchai
 ```
-
 ## Versioning
 
-We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/aaronsekisambu/Questioner). 
+We use [url-versioning](https://www.baeldung.com/rest-versioning) where you append a version number in the URL, see the [tags on this repository](https://github.com/aaronsekisambu/Questioner). 
 
 ## Authors
 
