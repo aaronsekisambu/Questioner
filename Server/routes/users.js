@@ -1,6 +1,6 @@
 const express = require('express');
 const routes = express.Router();
-const UserController = require('../Controllers/usersController');
+const UserController = require('../queries/userQueries');
 
 /* Users End Points 
 ============================================================================*/ 
@@ -8,14 +8,14 @@ const UserController = require('../Controllers/usersController');
 /* GET all users and POST a specific user
 ------------------------------------------------------------------------------- */
 routes.route('/api/v1/users')
-	.get(UserController.getAllUsers )
-	.post(UserController.postAUser);
+// .get(UserController.getAllUsers )
+	.post(UserController.create);
 routes.route('/api/v1/users/:id') 
-	.get(UserController.getASpecificUser)
+	.get(UserController.getOne);
 // updates the the exisitng list of user
-	.put(UserController.updateAUser)
+// .put(UserController.updateAUser)
 // deletes or removes any specified user
-	.delete(UserController.deleteAUser);
+// .delete(UserController.deleteAUser);
 /* End of Users up End points 
 -----------------------------------------------------------------------------*/
 module.exports = routes;

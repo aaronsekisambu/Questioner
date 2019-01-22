@@ -1,5 +1,7 @@
-const UserModel = require('../models/usersModels');
+const UserModel = require('../queries/userQueries');
 const Validate = require('../helpers/utils');
+// const moment = require('moment');
+// const uuid = require('uuid');
 
 class UserController {
 	getAllUsers (req, res) {
@@ -19,30 +21,17 @@ class UserController {
 			data: user});
 	}
 	postAUser (req, res) {
-		const users = UserModel._users;
+		const user = UserModel.create(req.body);
 		const validateUser = Validate._validateUser;
 		const {error} = validateUser(req.body);
 		if(error) {
-			res.status(400).send({
+			return res.status(400).send({
 				status: 400,
 				error: error.details
 			});
-			return;
 		}
-		const user = {
-			id: users.length + 1,
-			firstname: req.body.firstname,
-			lastname: req.body.lastname,
-			othername: req.body.othername,
-			email: req.body.email,
-			phoneNumber: req.body.phoneNumber,
-			username: req.body.username,
-			registered: req.body.registered,
-			isAdmin: req.body.isAdmin
-		};
-		users.push(user);
-		res.send({
-			status: 200, 
+		return res.send({
+			status: 201, 
 			data: user});
 	}
 	updateAUser (req, res) {
