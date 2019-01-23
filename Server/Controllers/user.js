@@ -196,7 +196,13 @@ const UserQuery = {
 			if(!Helper.comparePassword(rows[0].password, req.body.password)) {
 				return res.status(400).send({ 'message': 'The credentials you provided are incorrect' });
 			}
-			const token = Helper.generateToken(rows[0].id);
+			const payload={
+				userId:rows[0].u_id,
+				username:rows[0].username,
+				email:rows[0].email,
+				firstname:rows[0].firstname
+			};
+			const token = Helper.generateToken(payload);
 			return res.status(200).send({ 
 				status: 200,
 				token,
