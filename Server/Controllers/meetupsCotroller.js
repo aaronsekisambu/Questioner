@@ -1,18 +1,18 @@
-const MeetupModel = require('../models/meetupModels');
+const meetupModel = require('../models/meetupModels');
 const Validate = require('../helpers/utils');
 const moment = require('moment');
 moment.suppressDeprecationWarnings = true;
 
-class MeetupController {
+class meetupsController {
 	getAllMeetups (req, res) {
-		const meetups = MeetupModel._meetups;
+		const meetups = meetupModel._meetups;
 		res.status(200).send({
 			status: 200,
 			data: meetups
 		});
 	}
 	getAllUpcomingMeetups (req, res) {
-		const meetups = MeetupModel._meetups;
+		const meetups = meetupModel._meetups;
 		const upcoming = moment().format('LL');
 		const today = [];
 
@@ -37,7 +37,7 @@ class MeetupController {
 	}
 
 	getAMeetup (req, res) {
-		const meetups = MeetupModel._meetups;
+		const meetups = meetupModel._meetups;
 		const meetup = meetups.find(ele => ele.id === parseInt(req.params.id));
 		if (!meetup) {
 			return res.status(404).send({
@@ -50,7 +50,7 @@ class MeetupController {
         
 	}
 	postAMeetup (req, res) {
-		const meetups = MeetupModel._meetups;
+		const meetups = meetupModel._meetups;
 		const validateMeetup = Validate._validateMeetup;
 		const {error} = validateMeetup(req.body);
 		if(error) {
@@ -75,7 +75,7 @@ class MeetupController {
 
 	}
 	updateAMeetup (req, res) {
-		const meetups = MeetupModel._meetups;
+		const meetups = meetupModel._meetups;
 		const meetup = meetups.find(ele => ele.id === parseInt(req.params.id));
 		if (!meetup) {
 			res.status(404).send({
@@ -103,7 +103,7 @@ class MeetupController {
 	}
 
 	deleteAMeetup (req, res) {
-		const meetups = MeetupModel._meetups;
+		const meetups = meetupModel._meetups;
 		const meetup = meetups.find(ele => ele.id === parseInt(req.params.id));
 		if (!meetup) {
 			res.status(404).send({
@@ -118,7 +118,7 @@ class MeetupController {
 			data: meetup});
 	}
 	postARsvp (req, res){
-		const rsvps = MeetupModel._rsvp;
+		const rsvps = meetupModel._rsvp;
 		const validateRsvp = Validate._validateRsvp;
 		const {error} = validateRsvp(req.body);
 		if(error) {
@@ -144,4 +144,4 @@ class MeetupController {
 
 	}
 }
-module.exports = new MeetupController();
+module.exports = new meetupsController();

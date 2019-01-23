@@ -1,19 +1,19 @@
 const express = require('express');
 const routes = express.Router();
-const UserController = require('../controllers/user');
+const usersController = require('../controllers/users');
 
 routes.route('/api/v1/users')
-	.get(UserController.getAll )
-	.post(UserController.create);
+	.get(usersController.getAll )
+	.post(usersController.create);
 
 routes.route('/api/v1/users/:id') 
-	.get(UserController.getOne);
+	.get(usersController.getOne);
 
 routes.route('/api/v1/users/:id')
-	.put(UserController.update)
-	.delete(UserController.delete);
+	.put(usersController.update)
+	.delete(usersController.delete);
 
 routes.route('/api/v1/users/login')
-	.post(UserController.login);
+	.post(usersController.login);
 
 module.exports = routes;
