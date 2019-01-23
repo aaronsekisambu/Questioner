@@ -121,7 +121,7 @@ const questionSpecTest = () => {
 				body: 'Why so many libaries in Javascript',
 				votes: 0
 			};
-			questionModel._questions.push(question)
+			questionModel._questions.push(question);
 			chai.request(app)
 				.delete('/api/v1/questions/1')
 				.end((err, res) => {

@@ -1,27 +1,27 @@
 const express = require('express');
 const routesQuestions = express.Router();
-const QuestionController = require('../Controllers/questionController');
+const questionsController = require('../controllers/questionController');
 
 /* Questions End Points
 ================================================================================= */
 // shows all questions available
 routesQuestions.route('/api/v1/questions')
-	.get(QuestionController.getAllQuestions);
+	.get(questionsController.getAllQuestions);
 routesQuestions.route('/api/v1/meetups/:id/questions')
-	.post(QuestionController.postAQuestion);
+	.post(questionsController.postAQuestion);
 // Gets a specific question using the question ID
 routesQuestions.route('/api/v1/questions/:id')
-	.get(QuestionController.getAQuestion)
-	.put(QuestionController.updateAQuestion)
+	.get(questionsController.getAQuestion)
+	.put(questionsController.updateAQuestion)
 	.delete(QuestionController.deleteAQuestion );
 
 routesQuestions.route('/api/v1/questions/:id/votes')
-	.get(QuestionController.getVotesOnAQuestion);
+	.get(questionsController.getVotesOnAQuestion);
 // PATCH the Questions with an upvote or downvote
 routesQuestions.route('/api/v1/questions/:id/upvotes')
-	.patch(QuestionController.upVote);
+	.patch(questionsController.upVote);
 routesQuestions.route('/api/v1/questions/:id/downvotes')
-	.patch(QuestionController.downVote);
+	.patch(questionsController.downVote);
 /* End of Meet up End points 
 -----------------------------------------------------------------------------*/
 

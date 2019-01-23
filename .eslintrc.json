@@ -9,7 +9,10 @@
     "parserOptions": {
         "ecmaVersion": 6
     },
+    "parser": "babel-eslint",
     "rules": {
+        "no-console": "off",
+        "no-undef": 1,
         "indent": [
             "error",
             "tab"
