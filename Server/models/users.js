@@ -16,6 +16,8 @@ class UserModel {
 			registered: moment.now(),
 			modified_date: moment.now(),
 			isadmin: data.isadmin
+
+	
 		};
 		this.users.push(newUser);
 		return newUser;

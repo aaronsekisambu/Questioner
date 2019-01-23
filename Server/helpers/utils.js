@@ -29,7 +29,7 @@ class ValidateQuestion {
 		const schema = {
 			firstname: Joi.string().min(2).required().trim(),
 			lastname: Joi.string().min(2).required().trim(),
-			othername: Joi.string().min(2).valid('').optional(),
+			othername: Joi.string().min(2).optional(),
 			email: Joi.string().min(2).email().required().trim(),
 			phonenumber: Joi.number().min(3).required(),
 			password: Joi.string().min(5).required(),
