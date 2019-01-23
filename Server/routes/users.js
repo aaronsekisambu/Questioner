@@ -1,6 +1,6 @@
 const express = require('express');
 const routes = express.Router();
-const UserController = require('../Controllers/user');
+const UserController = require('../controllers/user');
 
 routes.route('/api/v1/users')
 	.get(UserController.getAll )

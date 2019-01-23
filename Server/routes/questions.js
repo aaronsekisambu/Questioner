@@ -1,6 +1,6 @@
 const express = require('express');
 const routesQuestions = express.Router();
-const QuestionController = require('../Controllers/questionController');
+const QuestionController = require('../controllers/questionController');
 
 /* Questions End Points
 ================================================================================= */

@@ -1,7 +1,4 @@
-// call Joi for authotication
 const Joi = require('joi');
-
-
 
 class ValidateQuestion {
 // using Joi to validate the question function

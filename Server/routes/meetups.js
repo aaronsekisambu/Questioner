@@ -1,6 +1,6 @@
 const express = require('express');
 const routesMeetup = express.Router();
-const MeetupController  = require('../Controllers/meetupCotroller');
+const MeetupController  = require('../controllers/meetupCotroller');
 /*---------------------------------------------------------------------------- */
 /* Meetups End Points
 ================================================================================= */

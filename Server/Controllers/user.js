@@ -7,6 +7,7 @@ const Helper = require('../helpers/helper');
 const Validate = require('../helpers/utils');
 
 const UserQuery = {
+	// Get all users from the database
 	async getAll(req, res) {
 		const findAllQuery = 'SELECT * FROM users';
 		try {
@@ -22,7 +23,8 @@ const UserQuery = {
 			return res.status(400).send(error);
 		}
 	},
-	
+
+	// Get a specific user from the database
 	async getOne(req, res) {
 		const text = 'SELECT * FROM users WHERE u_id = $1';
 		try {
@@ -40,6 +42,8 @@ const UserQuery = {
 			return res.status(400).send(error);
 		}
 	},
+
+	// created a user and insert a user in the database
 	async create(req, res) {
 		if (!req.body.email || !req.body.password) {
 			return res.status(400).send({'message': 'Some values are missing'});
@@ -93,10 +97,10 @@ const UserQuery = {
 			if (error.routine === '_bt_check_unique') {
 				return res.status(400).send({ 'message': 'username or email already exists' });
 			}
-			// console.log(error);
 			return res.status(400).send(error);
 		}
 	},
+
 	// Update a specific user
 	async update(req, res) {
 		const updatedme=await db.query('SELECT * FROM users WHERE u_id=$1',[req.params.id]);
@@ -122,9 +126,18 @@ const UserQuery = {
 			});
 		}
 		const hashPassword=Helper.hashPassword(req.body.password);
-		const update=await db.query('UPDATE users set email=$1,password=$2,username=$3,lastname=$4,firstname=$5,phonenumber=$6,othername=$7,modified=$8 WHERE u_id=$9 returning *',
-			[req.body.email,hashPassword,req.body.username,req.body.lastname,
-				req.body.firstname,req.body.phonenumber,req.body.othername,moment(new Date()),req.params.id]);
+		const update=await db.query(`UPDATE users set email = $1, password = $2, username = $3, lastname = $4,
+		firstname = $5, phonenumber = $6, othername = $7, modified= $8 WHERE u_id = $9 returning *`,
+		[
+			req.body.email,
+			hashPassword,
+			req.body.username,
+			req.body.lastname,
+			req.body.firstname,
+			req.body.phonenumber,
+			req.body.othername,
+			moment(new Date()),
+			req.params.id]);
 		if(update){
 			return res.status(200).send({
 				status: 200,
@@ -136,6 +149,7 @@ const UserQuery = {
 		}	
 	},
   
+	// Delete a user from the database
 	async delete(req, res) {
 		const deleteQuery = 'DELETE FROM users WHERE u_id=$1 returning *';
 		try {
@@ -165,6 +179,7 @@ const UserQuery = {
 		}
 	},
   
+	// Login into your account
 	async login(req, res) {
 		if (!req.body.email || !req.body.password) {
 			return res.status(400).send({'message': 'Some values are missing'});
