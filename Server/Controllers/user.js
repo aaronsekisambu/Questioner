@@ -1,8 +1,8 @@
 const moment = require('moment');
 const uuidv4 = require('uuidv4');
-const db = require('../db');
 moment.suppressDeprecationWarnings = true;
 
+const db = require('../db');
 const Helper = require('../helpers/helper');
 const Validate = require('../helpers/utils');
 
