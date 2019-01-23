@@ -33,11 +33,8 @@ const Helper = {
    * @param {string} id
    * @returns {string} token
    */
-	generateToken(id) {
-		const token = jwt.sign({
-			userId: id
-		},
-		key.secret, { expiresIn: '7d' }
+	generateToken(payload) {
+		const token = jwt.sign(payload,key.secret, { expiresIn: '7d' }
 		);
 		return token;
 	}
