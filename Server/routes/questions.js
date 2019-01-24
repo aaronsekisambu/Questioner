@@ -1,28 +1,25 @@
 const express = require('express');
 const routesQuestions = express.Router();
 const questionsController = require('../controllers/questions');
+const auth = require('../middleware/authenticate/verify');
 
-/* Questions End Points
-================================================================================= */
-// shows all questions available
 routesQuestions.route('/api/v1/questions')
-	.get(questionsController.getAllQuestions);
+	.get(auth.verifyToken, questionsController.getAllQuestions);
 routesQuestions.route('/api/v1/meetups/:id/questions')
-	.post(questionsController.postAQuestion);
-// Gets a specific question using the question ID
+	.post(auth.verifyToken, questionsController.postAQuestion);
+
 routesQuestions.route('/api/v1/questions/:id')
-	.get(questionsController.getAQuestion)
-	.put(questionsController.updateAQuestion)
-	.delete(questionsController.deleteAQuestion);
+	.get(auth.verifyToken, questionsController.getAQuestion)
+	.put(auth.verifyToken, questionsController.updateAQuestion)
+	.delete(auth.verifyToken, questionsController.deleteAQuestion);
 
 routesQuestions.route('/api/v1/questions/:id/votes')
-	.get(questionsController.getVotesOnAQuestion);
-// PATCH the Questions with an upvote or downvote
+	.get(auth.verifyToken, questionsController.getVotesOnAQuestion);
+
 routesQuestions.route('/api/v1/questions/:id/upvotes')
-	.patch(questionsController.upVote);
+	.patch(auth.verifyToken, questionsController.upVote);
 routesQuestions.route('/api/v1/questions/:id/downvotes')
-	.patch(questionsController.downVote);
-/* End of Meet up End points 
------------------------------------------------------------------------------*/
+	.patch(auth.verifyToken, questionsController.downVote);
+
 
 module.exports = routesQuestions;

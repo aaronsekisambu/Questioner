@@ -18,7 +18,7 @@ const meetupsController = {
 			req.body.location,
 			moment(new Date()),
 			moment(new Date()),
-			req.body.userId
+			req.body.createdby
 		];
 		try {
 			const { rows } = await db.query(createQuery, values);
@@ -66,7 +66,7 @@ const meetupsController = {
 		];
 		try {
 			const { rows } = await db.query(createQuery, values);
-			return res.status(204).send(rows[0]);
+			return res.status(200).send(rows[0]);
 		} catch(error) {
 			return res.status(400).send(error.message);
 		}
