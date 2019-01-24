@@ -11,7 +11,7 @@ class QuestionController {
 		try {
 			const { rows } = await db.query(createQuery);
 	
-			return res.status(201).send(rows);
+			return res.status(200).send(rows);
 		} catch(error) {
 			return res.status(400).send(error.message);
 		}
