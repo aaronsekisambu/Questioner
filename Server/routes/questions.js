@@ -13,7 +13,7 @@ routesQuestions.route('/api/v1/meetups/:id/questions')
 routesQuestions.route('/api/v1/questions/:id')
 	.get(questionsController.getAQuestion)
 	.put(questionsController.updateAQuestion)
-	.delete(questionsController.deleteAQuestion );
+	.delete(questionsController.deleteAQuestion);
 
 routesQuestions.route('/api/v1/questions/:id/votes')
 	.get(questionsController.getVotesOnAQuestion);

@@ -6,7 +6,7 @@ const db = require('../db');
 
 class QuestionController {
 	// Get all questions
-	static async getAllQuestions(req, res) {
+	async getAllQuestions(req, res) {
 		const createQuery = 'select * from questions';
 		try {
 			const { rows } = await db.query(createQuery);
@@ -17,20 +17,20 @@ class QuestionController {
 		}
 	}
 	// Get a specific question
-	static async getAQuestion(req, res) {
+	async getAQuestion(req, res) {
 		const { id } = req.params;
 		const createQuery = `select * from questions where q_id='${id}'`;
 	
 		try {
 			const { rows } = await db.query(createQuery);
 	
-			return res.status(201).send(rows);
+			return res.status(200).send(rows);
 		} catch(error) {
 			return res.status(400).json({ error: error.message });
 		}
 	}
 	// Get votes on a question
-	static getVotesOnAQuestion (req, res) {
+	async getVotesOnAQuestion (req, res) {
 		const votes = QuestionModel._votes;
 		res.status(200).send({
 			status: 200,
@@ -38,7 +38,7 @@ class QuestionController {
 		}); 
 	}
 	//upvote on a question
-	static async upVote (req, res) {
+	async upVote (req, res) {
 		const { id: questionId } = req.params;
 		const { id: userId } = req.body;
 		try {
@@ -64,7 +64,7 @@ class QuestionController {
 		}
 	}
 	// downvote on a question
-	static async downVote (req, res) {
+	async downVote (req, res) {
 		const { id: questionId } = req.params;
 		const { id: userId } = req.body;
 		try {
@@ -90,7 +90,7 @@ class QuestionController {
 		}
 	}
 	// post a question
-	static async postAQuestion (req, res) {
+	async postAQuestion (req, res) {
 		const { id: meetupId } = req.params;
 		const question = req.body;
 	
@@ -102,23 +102,22 @@ class QuestionController {
 				meetupId,
 				question.title,
 				question.body,
-				question.createdBy,
+				question.createdby,
 				moment(new Date()),
 				0,
 				0
 			];
-	
 			await db.query(insert, insertValues);
-			return res.status(200).json({ message: 'Your question ha s been saved'});
+			return res.status(200).json({ message: 'Your question has been saved'});
 		} catch (err) {
 			res.status(400).send({
 				status: 400,
-				error: err.message,
+				error: err.message
 			});
 		}
 	}
 	// update a specific questions
-	static async updateAQuestion(req, res) {
+	async updateAQuestion(req, res) {
 		const createQuery = 'update questions set title=$1, body=$2 ' +
 				'where (meetup=$3 and createdby=$4) returning *';
 		const values = [
@@ -129,27 +128,23 @@ class QuestionController {
 		];
 		try {
 			const { rows } = await db.query(createQuery, values);
-			return res.status(201).send(rows[0]);
+			return res.status(200).send(rows[0]);
 		} catch(error) {
 			return res.status(400).send(error.message);
 		}
 	}
 	// delete a specific question
-	static deleteAQuestion (req, res) {
-		const questions = QuestionModel._questions;
-		const question = questions.find(ele => ele.id === parseInt(req.params.id));
-		if (!question) {
-			res.status(404).send({
-				status:  404,
-				error: 'Nothing to delete'});
-			return;
+	async deleteAQuestion(req, res) {
+		const { id } = req.params;
+		const createQuery = `delete from questions where q_id='${id}' returning *`;
+
+		try {
+			const { rows } = await db.query(createQuery);
+
+			return res.status(200).send(rows);
+		} catch(error) {
+			return res.status(400).json({ error: error.message });
 		}
-		const index = questions.indexOf(question);
-		questions.splice(index, 1);
-		res.status(200).send({
-			status:  200, 
-			data: question
-		});
 	}
 }
 module.exports = new QuestionController();
