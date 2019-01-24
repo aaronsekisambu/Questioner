@@ -23,7 +23,6 @@ const UserQuery = {
 			return res.status(400).send(error);
 		}
 	},
-
 	// Get a specific user from the database
 	async getOne(req, res) {
 		const text = 'SELECT * FROM users WHERE u_id = $1';
@@ -42,7 +41,6 @@ const UserQuery = {
 			return res.status(400).send(error);
 		}
 	},
-
 	// created a user and insert a user in the database
 	async create(req, res) {
 		if (!req.body.email || !req.body.password) {
@@ -100,7 +98,6 @@ const UserQuery = {
 			return res.status(400).send(error);
 		}
 	},
-
 	// Update a specific user
 	async update(req, res) {
 		const updatedme=await db.query('SELECT * FROM users WHERE u_id=$1',[req.params.id]);
@@ -148,7 +145,6 @@ const UserQuery = {
 			});
 		}	
 	},
-  
 	// Delete a user from the database
 	async delete(req, res) {
 		const deleteQuery = 'DELETE FROM users WHERE u_id=$1 returning *';
@@ -178,7 +174,6 @@ const UserQuery = {
 			return res.status(400).send(error);
 		}
 	},
-  
 	// Login into your account
 	async login(req, res) {
 		if (!req.body.email || !req.body.password) {
