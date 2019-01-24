@@ -1,6 +1,6 @@
 const express = require('express');
 const routesQuestions = express.Router();
-const questionsController = require('../controllers/questionsController');
+const questionsController = require('../controllers/questions');
 
 /* Questions End Points
 ================================================================================= */
@@ -13,7 +13,7 @@ routesQuestions.route('/api/v1/meetups/:id/questions')
 routesQuestions.route('/api/v1/questions/:id')
 	.get(questionsController.getAQuestion)
 	.put(questionsController.updateAQuestion)
-	.delete(questionsController.deleteAQuestion );
+	.delete(questionsController.deleteAQuestion);
 
 routesQuestions.route('/api/v1/questions/:id/votes')
 	.get(questionsController.getVotesOnAQuestion);
