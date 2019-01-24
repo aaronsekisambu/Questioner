@@ -1,19 +1,23 @@
 const express = require('express');
 const routes = express.Router();
 const usersController = require('../controllers/users');
+const auth = require('../middleware/authenticate/verify');
 
 routes.route('/api/v1/users')
-	.get(usersController.getAll )
+	.get(auth.verifyToken, usersController.getAll )
 	.post(usersController.create);
 
 routes.route('/api/v1/users/:id') 
-	.get(usersController.getOne);
+	.get(auth.verifyToken, usersController.getOne);
 
 routes.route('/api/v1/users/:id')
-	.put(usersController.update)
+	.put(auth.verifyToken, usersController.update)
 	.delete(usersController.delete);
 
-routes.route('/api/v1/users/login')
-	.post(usersController.login);
+routes.route('/api/v1/auth/login')
+	.post(auth.verifyToken, usersController.login);
+
+routes.route('/api/v1/auth/signup')
+	.post(usersController.create);
 
 module.exports = routes;

@@ -1,18 +1,16 @@
 const express = require('express');
 const routesMeetup = express.Router();
 const meetupsController  = require('../controllers/meetups');
-/*---------------------------------------------------------------------------- */
-/* Meetups End Points
-================================================================================= */
-// shows all meetups available
+const auth = require('../middleware/authenticate/verify');
+
 routesMeetup.route('/api/v1/meetups')
-	.get(meetupsController.getAllMeetups)
-	.post(meetupsController.postAMeetup);
+	.get(auth.verifyToken, meetupsController.getAllMeetups)
+	.post(auth.verifyToken, meetupsController.postAMeetup);
 	
 routesMeetup.route('/api/v1/meetups/:id')
-	.get(meetupsController.getAMeetup)
-	.put(meetupsController.updateAMeetup)
-	.delete(meetupsController.deleteAMeetup);
+	.get(auth.verifyToken, meetupsController.getAMeetup)
+	.put(auth.verifyToken, meetupsController.updateAMeetup)
+	.delete(auth.verifyToken, meetupsController.deleteAMeetup);
 /* End of Meet up End points 
 -----------------------------------------------------------------------------*/
 module.exports = routesMeetup;

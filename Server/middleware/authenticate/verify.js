@@ -1,5 +1,5 @@
 const jwt=require('jsonwebtoken');
-const secret=require('../helpers/keys').secret;
+const secret=require('../../helpers/keys').secret;
 module.exports={
 	verifyToken:(req,res,next)=>{
 		const token=req.headers.authorization || req.body.token;

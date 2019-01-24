@@ -1,6 +1,5 @@
 const moment = require('moment');
 const uuidv4 = require('uuidv4');
-const QuestionModel = require('../models/questionsModels');
 
 const db = require('../db');
 
