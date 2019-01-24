@@ -370,12 +370,6 @@ pool.on('remove', () => {
 	console.log('client removed');
 	process.exit(0);
 });
-createUsersTable();
-createQuestionsTable();
-createVotesTable();
-createTagsTable();
-createCommentsTable();
-createRsvpsTable();
 module.exports = {
 	createUsersTable,
 	createQuestionsTable,
@@ -383,14 +377,7 @@ module.exports = {
 	createVotesTable,
 	createTagsTable,
 	createCommentsTable,
-	createRsvpsTable,
-	dropUsersTable,
-	dropQuestionsTable,
-	dropMeetupsTable,
-	dropVotesTable,
-	dropTagsTable,
-	dropCommentsTable,
-	dropRsvpsTable
+	createRsvpsTable
 };
 
 require('make-runnable');
