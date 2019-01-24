@@ -1,2 +1,15 @@
-release: node db.js
+release: node db.js createUsersTable,
+	createQuestionsTable,
+	createMeetupsTable,
+	createVotesTable,
+	createTagsTable,
+	createCommentsTable,
+	createRsvpsTable,
+	dropUsersTable,
+	dropQuestionsTable,
+	dropMeetupsTable,
+	dropVotesTable,
+	dropTagsTable,
+	dropCommentsTable,
+	dropRsvpsTable
 web: node server.js
