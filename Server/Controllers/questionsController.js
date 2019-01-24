@@ -1,4 +1,4 @@
-const QuestionModel = require('../models/questionModels');
+const QuestionModel = require('../models/questionsModels');
 const Validate = require('../helpers/utils');
 
 
