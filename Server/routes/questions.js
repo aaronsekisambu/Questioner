@@ -6,10 +6,10 @@ const auth = require('../middleware/authenticate/verify');
 routesQuestions.route('/api/v1/questions')
 	.get(auth.verifyToken, questionsController.getAllQuestions);
 routesQuestions.route('/api/v1/meetups/:id/questions')
-	.post(auth.verifyToken, questionsController.postAQuestion);
+	.post(auth.verifyToken, questionsController.postAQuestion)
+	.get(auth.verifyToken, questionsController.getAQuestion);
 
 routesQuestions.route('/api/v1/questions/:id')
-	.get(auth.verifyToken, questionsController.getAQuestion)
 	.put(auth.verifyToken, questionsController.updateAQuestion)
 	.delete(auth.verifyToken, questionsController.deleteAQuestion);
 

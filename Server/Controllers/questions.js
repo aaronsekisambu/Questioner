@@ -18,8 +18,8 @@ class QuestionController {
 	// Get a specific question
 	async getAQuestion(req, res) {
 		const { id } = req.params;
-		const createQuery = `select * from questions where q_id='${id}'`;
-	
+
+		const createQuery = `select * from meetups where m_id='${id}'`;
 		try {
 			const { rows } = await db.query(createQuery);
 	
@@ -39,6 +39,7 @@ class QuestionController {
 	//upvote on a question
 	async upVote (req, res) {
 		const { id: questionId } = req.params;
+		console.log(questionId);
 		const { id: userId } = req.body;
 		try {
 			const find = `select * from votes where users_id='${userId}'`;
@@ -90,15 +91,15 @@ class QuestionController {
 	}
 	// post a question
 	async postAQuestion (req, res) {
-		const { id: meetupId } = req.params;
+		// const { id: meetupId } = req.params;
 		const question = req.body;
+		
 	
 		try {
 			const insert = 'insert into questions(q_id, meetup, title, body, createdby, createdon, upvote, downvote) ' +
 					'values($1, $2, $3, $4, $5, $6, $7, $8)';
 			const insertValues = [
 				uuidv4(),
-				meetupId,
 				question.title,
 				question.body,
 				question.createdby,
