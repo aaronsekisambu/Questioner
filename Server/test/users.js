@@ -16,7 +16,6 @@ const UserTests = () => {
 				.end((err, res)=> {
 					expect(res).to.have.status(200);
 					expect(res.body.data.user[0].firstname).to.eql('Aaron');
-					console.log(res.body.data.user[0].firstname);
 					expect(res.body.data.user[0]).to.have.property('firstname');
 					expect(res.body.data.user[0].lastname).to.eql('Sekisambu');
 					expect(res.body.data.user[0]).to.have.property('lastname');
