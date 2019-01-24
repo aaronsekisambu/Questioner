@@ -334,13 +334,6 @@ createVotesTable();
 createTagsTable();
 createCommentsTable();
 createRsvpsTable();
-dropUsersTable();
-dropQuestionsTable();
-dropMeetupsTable();
-dropVotesTable();
-dropTagsTable();
-dropCommentsTable();
-dropRsvpsTable();
 module.exports = {
 	createUsersTable,
 	createQuestionsTable,
