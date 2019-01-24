@@ -370,7 +370,20 @@ pool.on('remove', () => {
 	console.log('client removed');
 	process.exit(0);
 });
-
+createUsersTable(),
+createQuestionsTable(),
+createMeetupsTable(),
+createVotesTable(),
+createTagsTable(),
+createCommentsTable(),
+createRsvpsTable(),
+dropUsersTable(),
+dropQuestionsTable(),
+dropMeetupsTable(),
+dropVotesTable(),
+dropTagsTable(),
+dropCommentsTable(),
+dropRsvpsTable();
 module.exports = {
 	createUsersTable,
 	createQuestionsTable,

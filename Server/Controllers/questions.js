@@ -39,8 +39,8 @@ class QuestionController {
 	//upvote on a question
 	async upVote (req, res) {
 		const { id: questionId } = req.params;
-		console.log(questionId);
 		const { id: userId } = req.body;
+
 		try {
 			const find = `select * from votes where users_id='${userId}'`;
 			const insert = 'insert into votes(v_id, upvote, downvote, users_id, questions_id) values($1, 1, 0, $2, $3)';
@@ -93,7 +93,7 @@ class QuestionController {
 	async postAQuestion (req, res) {
 		// const { id: meetupId } = req.params;
 		const question = req.body;
-		
+
 	
 		try {
 			const insert = 'insert into questions(q_id, meetup, title, body, createdby, createdon, upvote, downvote) ' +
@@ -101,6 +101,7 @@ class QuestionController {
 			const insertValues = [
 				uuidv4(),
 				question.title,
+				question.meetup,
 				question.body,
 				question.createdby,
 				moment(new Date()),
