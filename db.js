@@ -6,7 +6,7 @@ dotenv.config();
 const pool = new Pool({
 	connectionString: process.env.DATABASE_URL
 });
-const connect = async () => pool.connect();
+// nconst connect = async () => pool.connect();
 
 pool.on('connect', () => {
 	console.log('connected to the db');
@@ -248,10 +248,10 @@ const createCommentsTable = () => {
 	  c_id uuid NOT NULL PRIMARY KEY,
 	  user_id uuid NOT NULL,
 	  questions_id uuid NOT NULL,
-	  body text  NOT NULL,
-	  FOREIGN KEY (user_id) REFERENCES users  (u_id) ON DELETE CASCADE,
-	  FOREIGN KEY (questions_id) REFERENCES questions  (q_id) ON DELETE CASCADE
-  ))`;
+	  body text NOT NULL,
+	  FOREIGN KEY (user_id) REFERENCES users (u_id) ON DELETE CASCADE,
+	  FOREIGN KEY (questions_id) REFERENCES questions (q_id) ON DELETE CASCADE
+    )`;
 
 	pool.query(queryText)
 		.then((res) => {
@@ -287,13 +287,12 @@ const createRsvpsTable = () => {
 	const queryText =
   `CREATE TABLE IF NOT EXISTS rsvps
   (
-	  rsvp_id uuid NOT NULL PRIMARY KEY,
-	  users_id uuid NOT NULL,
-	  status text NOT NULL,
-	  meetup_id uuid NOT NULL,
-	  FOREIGN KEY (meetup_id) REFERENCES questions (m_id) ON DELETE CASCADE,
-	  FOREIGN KEY (users_id) REFERENCES users (u_id) ON DELETE CASCADE
-
+	rsvp_id uuid NOT NULL PRIMARY KEY,
+	users_id uuid NOT NULL,
+	status text NOT NULL,
+	meetup_id uuid NOT NULL,
+	FOREIGN KEY (meetup_id) REFERENCES questions (q_id) ON DELETE CASCADE,
+	FOREIGN KEY (users_id) REFERENCES users (u_id) ON DELETE CASCADE
   )`;
 
 	pool.query(queryText)
@@ -329,12 +328,10 @@ pool.on('remove', () => {
 	process.exit(0);
 });
 createUsersTable();
-createQuestionsTable();
 createMeetupsTable();
+createQuestionsTable();
 createVotesTable();
-createTagsTable();
-createCommentsTable();
-createRsvpsTable();
+
 module.exports = {
 	createUsersTable,
 	createQuestionsTable,
@@ -352,10 +349,4 @@ module.exports = {
 	dropRsvpsTable
 };
 
-const migrateDb = () => new Promise( async(resolve) => {
-	const connection = await connect();
-	await connection.query(createCommentsTable);
-	connection.release();
-	resolve();
-});
-migrateDb();
+require('make-runnable');
