@@ -15,7 +15,7 @@ routes.route('/api/v1/users/:id')
 	.delete(usersController.delete);
 
 routes.route('/api/v1/auth/login')
-	.post(auth.verifyToken, usersController.login);
+	.post(usersController.login);
 
 routes.route('/api/v1/auth/signup')
 	.post(usersController.create);

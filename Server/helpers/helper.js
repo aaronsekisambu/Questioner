@@ -34,7 +34,7 @@ const Helper = {
    * @returns {string} token
    */
 	generateToken(payload) {
-		const token = jwt.sign(payload,key.secret, { expiresIn: '7d' }
+		const token = jwt.sign(payload, key.secret
 		);
 		return token;
 	}

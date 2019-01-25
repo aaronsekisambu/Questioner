@@ -78,8 +78,6 @@ const UserQuery = {
 		];
 
 		try {
-			const { rows } = await db.query(createQuery, values);
-			const token = Helper.generateToken(rows[0].id);
 			const validation = Validate._validateUser;
 			const {error} = validation(req.body);
 			if(error){
@@ -93,6 +91,8 @@ const UserQuery = {
 					error: messages
 				});
 			}
+			const { rows } = await db.query(createQuery, values);
+			const token = Helper.generateToken(rows[0].u_id);
 			return res.status(201).send({ 
 				status: 201,
 				token,
@@ -199,7 +199,7 @@ const UserQuery = {
 	async login(req, res) {
 		if (!req.body.email || !req.body.password) {
 			return res.status(400).send({
-				status: 200,
+				status: 400,
 				data: {
 					message: 'Some values are missing'
 				}
