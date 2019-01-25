@@ -354,7 +354,7 @@ module.exports = {
 
 const migrateDb = () => new Promise( async(resolve) => {
 	const connection = await connect();
-	await connection.query(tableQueries);
+	await connection.query(createCommentsTable);
 	connection.release();
 	resolve();
 });
