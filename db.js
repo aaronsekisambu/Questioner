@@ -207,8 +207,8 @@ const createTagsTable = () => {
 	  user_id uuid NOT NULL,
 	  questions_id uuid NOT NULL,
 	  tagname text NOT NULL,
-	  FOREIGN KEY (questions_id) REFERENCES questions  (q_id) ON DELETE CASCADE,
-	  FOREIGN KEY (user_id) REFERENCES users  (u_id) ON DELETE CASCADE
+	  FOREIGN KEY (questions_id) REFERENCES questions (q_id) ON DELETE CASCADE,
+	  FOREIGN KEY (user_id) REFERENCES users (u_id) ON DELETE CASCADE
   )`;
 
 	pool.query(queryText)
