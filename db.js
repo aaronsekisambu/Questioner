@@ -6,6 +6,7 @@ dotenv.config();
 const pool = new Pool({
 	connectionString: process.env.DATABASE_URL
 });
+const connect = async () => pool.connect();
 
 pool.on('connect', () => {
 	console.log('connected to the db');
@@ -351,4 +352,10 @@ module.exports = {
 	dropRsvpsTable
 };
 
-require('make-runnable');
+const migrateDb = () => new Promise( async(resolve) => {
+	const connection = await connect();
+	await connection.query(tableQueries);
+	connection.release();
+	resolve();
+});
+migrateDb();
