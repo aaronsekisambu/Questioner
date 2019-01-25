@@ -4,12 +4,22 @@ module.exports={
 	verifyToken:(req,res,next)=>{
 		const token=req.headers.authorization || req.body.token;
 		if(!token){
-			return res.status(401).json({error:'unauthorized'});
+			return res.status(401).json({
+				status: 401, 
+				data: {
+					error:'unauthorized'
+				}
+			});
 		}
 		const mine=token.split(' ');
 		jwt.verify(mine[1],secret,(err,decoded)=>{
 			if(err){
-				return res.status(401).json({error:'unauthorized'});
+				return res.status(401).json({
+					status: 401, 
+					data: {
+						error:'unauthorized'
+					}
+				});
 			}
 			req.user=decoded;
 			next();
