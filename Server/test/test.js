@@ -3,9 +3,9 @@ const chai = require('chai');
 chai.use(require('chai-http'));
 
 const app = require('../../app');
-const questionSpecTest = require('./questionTest');
-const MeetupSpecTest = require('./meetupTests');
-const UserTests = require('./user');
+const questionSpecTest = require('./questions');
+const MeetupSpecTest = require('./meetups');
+const UserTests = require('./users');
 
 //Running test cases for global app.js file and connecting it to other test files, models and controllers
 describe('Testing the Qustioner API', () => {

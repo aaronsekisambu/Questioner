@@ -1,5 +1,6 @@
 const moment = require('moment');
 const uuidv4 = require('uuidv4');
+const Validate = require('../helpers/utils');
 
 const db = require('../db');
 
@@ -109,6 +110,19 @@ class QuestionController {
 				0
 			];
 			await db.query(insert, insertValues);
+			const validation = Validate._validateUser;
+			const {error} = validation(req.body);
+			if(error){
+				const {details} = error;
+				const messages = [];
+				details.forEach(detail => {
+					messages.push(detail.message);
+				});
+				return res.status(400).send({
+					status: 400,
+					error: messages
+				});
+			}
 			return res.status(200).json({ message: 'Your question has been saved'});
 		} catch (err) {
 			res.status(400).send({
@@ -129,6 +143,19 @@ class QuestionController {
 		];
 		try {
 			const { rows } = await db.query(createQuery, values);
+			const validation = Validate._validateUser;
+			const {error} = validation(req.body);
+			if(error){
+				const {details} = error;
+				const messages = [];
+				details.forEach(detail => {
+					messages.push(detail.message);
+				});
+				return res.status(400).send({
+					status: 400,
+					error: messages
+				});
+			}
 			return res.status(200).send(rows[0]);
 		} catch(error) {
 			return res.status(400).send(error.message);
