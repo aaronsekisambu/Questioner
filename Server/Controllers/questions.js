@@ -1,5 +1,6 @@
 const moment = require('moment');
 const uuidv4 = require('uuidv4');
+const Validate = require('../helpers/utils');
 
 const db = require('../db');
 
@@ -15,6 +16,64 @@ class QuestionController {
 			return res.status(400).send(error.message);
 		}
 	}
+	async getAllComments(req, res) {
+		const createQuery = 'select * from comments';
+		try {
+			const { rows } = await db.query(createQuery);
+	
+			return res.status(200).send(rows);
+		} catch(error) {
+			return res.status(400).send({
+				status: 400,
+				data: {
+					error: error.message
+				}
+			});
+		}
+		
+	}
+	// Create a comment
+	async postAComment (req, res) {
+		const comments = req.body;
+
+	
+		try {
+			const insert = 'insert into comments(c_id, body, user_id, questions_id) ' +
+					'values($1, $2, $3, $4)';
+			const insertValues = [
+				uuidv4(),
+				comments.body,
+				comments.userId,
+				comments.questions_id
+			];
+			await db.query(insert, insertValues);
+			const validation = Validate._validateUser;
+			const {error} = validation(req.body);
+			if(error){
+				const {details} = error;
+				const messages = [];
+				details.forEach(detail => {
+					messages.push(detail.message);
+				});
+				return res.status(400).send({
+					status: 400,
+					error: messages
+				});
+			}
+			return res.status(200).json({ 
+				status: 200,
+				data: {message: 'Your question has been saved'
+				}
+			
+			});
+		} catch (err) {
+			res.status(400).send({
+				status: 400,
+				error: err.message
+			});
+		}
+	}
+
 	// Get a specific question
 	async getAQuestion(req, res) {
 		const { id } = req.params;
@@ -39,8 +98,8 @@ class QuestionController {
 	//upvote on a question
 	async upVote (req, res) {
 		const { id: questionId } = req.params;
-		console.log(questionId);
 		const { id: userId } = req.body;
+
 		try {
 			const find = `select * from votes where users_id='${userId}'`;
 			const insert = 'insert into votes(v_id, upvote, downvote, users_id, questions_id) values($1, 1, 0, $2, $3)';
@@ -93,7 +152,7 @@ class QuestionController {
 	async postAQuestion (req, res) {
 		// const { id: meetupId } = req.params;
 		const question = req.body;
-		
+
 	
 		try {
 			const insert = 'insert into questions(q_id, meetup, title, body, createdby, createdon, upvote, downvote) ' +
@@ -101,6 +160,7 @@ class QuestionController {
 			const insertValues = [
 				uuidv4(),
 				question.title,
+				question.meetup,
 				question.body,
 				question.createdby,
 				moment(new Date()),
@@ -108,7 +168,25 @@ class QuestionController {
 				0
 			];
 			await db.query(insert, insertValues);
-			return res.status(200).json({ message: 'Your question has been saved'});
+			const validation = Validate._validateUser;
+			const {error} = validation(req.body);
+			if(error){
+				const {details} = error;
+				const messages = [];
+				details.forEach(detail => {
+					messages.push(detail.message);
+				});
+				return res.status(400).send({
+					status: 400,
+					error: messages
+				});
+			}
+			return res.status(200).json({ 
+				status: 200,
+				data: {message: 'Your question has been saved'
+				}
+			
+			});
 		} catch (err) {
 			res.status(400).send({
 				status: 400,
@@ -128,6 +206,19 @@ class QuestionController {
 		];
 		try {
 			const { rows } = await db.query(createQuery, values);
+			const validation = Validate._validateUser;
+			const {error} = validation(req.body);
+			if(error){
+				const {details} = error;
+				const messages = [];
+				details.forEach(detail => {
+					messages.push(detail.message);
+				});
+				return res.status(400).send({
+					status: 400,
+					error: messages
+				});
+			}
 			return res.status(200).send(rows[0]);
 		} catch(error) {
 			return res.status(400).send(error.message);

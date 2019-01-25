@@ -1,6 +1,7 @@
 const moment = require('moment');
 const uuidv4 = require('uuidv4');
 moment.suppressDeprecationWarnings = true;
+const Validate = require('../helpers/utils');
 
 const db = require('../db/index');
 
@@ -22,7 +23,20 @@ const meetupsController = {
 		];
 		try {
 			const { rows } = await db.query(createQuery, values);
-			return res.status(201).send(rows[0]);
+			const validate = Validate._validateMeetup;
+			const {error} = validate(req.body);
+			if(error) {
+				const {details} = error;
+				const messages = [];
+				details.forEach(detail => {
+					messages.push(detail.message);
+				});
+				return res.status(400).send({
+					status: 400,
+					error: messages
+				});
+			}
+			return res.status(200).send(rows[0]);
 		} catch(error) {
 			return res.status(400).send(error.message);
 		}
@@ -66,6 +80,19 @@ const meetupsController = {
 		];
 		try {
 			const { rows } = await db.query(createQuery, values);
+			const validate = Validate._validateMeetup;
+			const {error} = validate(req.body);
+			if(error) {
+				const {details} = error;
+				const messages = [];
+				details.forEach(detail => {
+					messages.push(detail.message);
+				});
+				return res.status(400).send({
+					status: 400,
+					error: messages
+				});
+			}
 			return res.status(200).send(rows[0]);
 		} catch(error) {
 			return res.status(400).send(error.message);

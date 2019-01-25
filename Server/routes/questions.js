@@ -1,6 +1,6 @@
 const express = require('express');
 const routesQuestions = express.Router();
-const questionsController = require('../controllers/questions');
+const questionsController = require('../Controllers/questions');
 const auth = require('../middleware/authenticate/verify');
 
 routesQuestions.route('/api/v1/questions')
@@ -20,6 +20,12 @@ routesQuestions.route('/api/v1/questions/:id/upvotes')
 	.patch(auth.verifyToken, questionsController.upVote);
 routesQuestions.route('/api/v1/questions/:id/downvotes')
 	.patch(auth.verifyToken, questionsController.downVote);
+
+routesQuestions.route('/api/v1/questions/:id/comments')
+	.get(auth.verifyToken,  questionsController.getAllComments);
+	
+routesQuestions.route('/api/v1/questions/:id/comments')
+	.post(auth.verifyToken,  questionsController.postAComment);
 
 
 module.exports = routesQuestions;

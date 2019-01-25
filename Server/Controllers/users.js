@@ -95,7 +95,13 @@ const UserQuery = {
 			if (error.routine === '_bt_check_unique') {
 				return res.status(400).send({ 'message': 'username or email already exists' });
 			}
-			return res.status(400).send(error);
+			return res.status(400).send({
+				status: 200,
+				data: {
+					error:	error.message
+				}
+			});
+			
 		}
 	},
 	// Update a specific user
