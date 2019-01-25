@@ -34,44 +34,26 @@ class QuestionController {
 	}
 	// Create a comment
 	async postAComment (req, res) {
-		const comments = req.body;
-
-	
-		try {
-			const insert = 'insert into comments(c_id, body, user_id, questions_id) ' +
-					'values($1, $2, $3, $4)';
-			const insertValues = [
-				uuidv4(),
-				comments.body,
-				comments.userId,
-				comments.questions_id
-			];
-			await db.query(insert, insertValues);
-			const validation = Validate._validateUser;
-			const {error} = validation(req.body);
-			if(error){
-				const {details} = error;
-				const messages = [];
-				details.forEach(detail => {
-					messages.push(detail.message);
-				});
-				return res.status(400).send({
-					status: 400,
-					error: messages
-				});
-			}
-			return res.status(200).json({ 
-				status: 200,
-				data: {message: 'Your question has been saved'
+		const newComment = {
+			user: req.user.id,
+			comment: req.body.comment,
+			question: parseInt(req.params.id, 10),
+		};
+		db.query('SELECT * FROM question WHERE q_id=$1', [newComment.question])
+			.then((result) => {
+				if (result.rows.length === 0) {
+					return res.status(404).json({ error: 'No question not found' });
 				}
-			
+				db.query('INSERT INTO comments(user_id,questions_id,body) VALUES($1,$2,$3) returning *',
+					[newComment.user, newComment.question, newComment.comment])
+					.then(comment => res.json({ status: 200, comment: comment.rows }))
+					.catch((er) => {
+						console.log(er);
+					});
+			})
+			.catch((error) => {
+				console.log(error);
 			});
-		} catch (err) {
-			res.status(400).send({
-				status: 400,
-				error: err.message
-			});
-		}
 	}
 
 	// Get a specific question
