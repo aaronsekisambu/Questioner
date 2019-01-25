@@ -21,5 +21,11 @@ routesQuestions.route('/api/v1/questions/:id/upvotes')
 routesQuestions.route('/api/v1/questions/:id/downvotes')
 	.patch(auth.verifyToken, questionsController.downVote);
 
+routesQuestions.route('/api/v1/questions/:id/comments')
+	.get(auth.verifyToken,  questionsController.getAllComments);
+	
+routesQuestions.route('/api/v1/questions/:id/comments')
+	.post(auth.verifyToken,  questionsController.postAComment);
+
 
 module.exports = routesQuestions;

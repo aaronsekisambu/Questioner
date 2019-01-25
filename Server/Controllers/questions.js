@@ -16,6 +16,64 @@ class QuestionController {
 			return res.status(400).send(error.message);
 		}
 	}
+	async getAllComments(req, res) {
+		const createQuery = 'select * from comments';
+		try {
+			const { rows } = await db.query(createQuery);
+	
+			return res.status(200).send(rows);
+		} catch(error) {
+			return res.status(400).send({
+				status: 400,
+				data: {
+					error: error.message
+				}
+			});
+		}
+		
+	}
+	// Create a comment
+	async postAComment (req, res) {
+		const comments = req.body;
+
+	
+		try {
+			const insert = 'insert into comments(c_id, body, user_id, questions_id) ' +
+					'values($1, $2, $3, $4)';
+			const insertValues = [
+				uuidv4(),
+				comments.body,
+				comments.userId,
+				comments.questions_id
+			];
+			await db.query(insert, insertValues);
+			const validation = Validate._validateUser;
+			const {error} = validation(req.body);
+			if(error){
+				const {details} = error;
+				const messages = [];
+				details.forEach(detail => {
+					messages.push(detail.message);
+				});
+				return res.status(400).send({
+					status: 400,
+					error: messages
+				});
+			}
+			return res.status(200).json({ 
+				status: 200,
+				data: {message: 'Your question has been saved'
+				}
+			
+			});
+		} catch (err) {
+			res.status(400).send({
+				status: 400,
+				error: err.message
+			});
+		}
+	}
+
 	// Get a specific question
 	async getAQuestion(req, res) {
 		const { id } = req.params;
@@ -123,7 +181,12 @@ class QuestionController {
 					error: messages
 				});
 			}
-			return res.status(200).json({ message: 'Your question has been saved'});
+			return res.status(200).json({ 
+				status: 200,
+				data: {message: 'Your question has been saved'
+				}
+			
+			});
 		} catch (err) {
 			res.status(400).send({
 				status: 400,

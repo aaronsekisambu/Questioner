@@ -11,6 +11,5 @@ routesMeetup.route('/api/v1/meetups/:id')
 	.get(auth.verifyToken, meetupsController.getAMeetup)
 	.put(auth.verifyToken, meetupsController.updateAMeetup)
 	.delete(auth.verifyToken, meetupsController.deleteAMeetup);
-/* End of Meet up End points 
------------------------------------------------------------------------------*/
+	
 module.exports = routesMeetup;
