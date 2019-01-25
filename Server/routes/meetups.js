@@ -1,6 +1,6 @@
 const express = require('express');
 const routesMeetup = express.Router();
-const meetupsController  = require('../controllers/meetups');
+const meetupsController  = require('../Controllers/meetups');
 const auth = require('../middleware/authenticate/verify');
 
 routesMeetup.route('/api/v1/meetups')
