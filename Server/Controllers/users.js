@@ -183,7 +183,12 @@ const UserQuery = {
 	// Login into your account
 	async login(req, res) {
 		if (!req.body.email || !req.body.password) {
-			return res.status(400).send({'message': 'Some values are missing'});
+			return res.status(400).send({
+				status: 200,
+				data: {
+					message: 'Some values are missing'
+				}
+			});
 		}
 		if (!Helper.isValidEmail(req.body.email)) {
 			return res.status(400).send({ 'message': 'Please enter a valid email address' });
