@@ -23,19 +23,6 @@ const meetupsController = {
 		];
 		try {
 			const { rows } = await db.query(createQuery, values);
-			const validate = Validate._validateMeetup;
-			const {error} = validate(req.body);
-			if(error) {
-				const {details} = error;
-				const messages = [];
-				details.forEach(detail => {
-					messages.push(detail.message);
-				});
-				return res.status(400).send({
-					status: 400,
-					error: messages
-				});
-			}
 			return res.status(200).send(rows[0]);
 		} catch(error) {
 			return res.status(400).send(error.message);
