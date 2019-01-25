@@ -29,7 +29,12 @@ const UserQuery = {
 		try {
 			const { rows } = await db.query(text, [req.params.id]);
 			if (!rows[0]) {
-				return res.status(404).send({'message': 'user not found'});
+				return res.status(404).send({
+					status: 200,
+					data: {
+						'message': 'user not found'
+					}
+				});
 			}
 			return res.status(200).send({
 				status: 200,
@@ -44,7 +49,12 @@ const UserQuery = {
 	// created a user and insert a user in the database
 	async create(req, res) {
 		if (!req.body.email || !req.body.password) {
-			return res.status(400).send({'message': 'Some values are missing'});
+			return res.status(400).send({
+				status: 200, 
+				data: {
+					'message': 'Some values are missing'
+				}
+			});
 		}
 		if (!Helper.isValidEmail(req.body.email)) {
 			return res.status(400).send({ 'message': 'Please enter a valid email address' });
@@ -93,7 +103,12 @@ const UserQuery = {
 			});
 		} catch(error) {
 			if (error.routine === '_bt_check_unique') {
-				return res.status(400).send({ 'message': 'username or email already exists' });
+				return res.status(400).send({ 
+					status: 200,
+					data: {
+						'message': 'username or email already exists' 
+					}
+				});
 			}
 			return res.status(400).send({
 				status: 200,
