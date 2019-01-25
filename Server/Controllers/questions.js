@@ -150,19 +150,6 @@ class QuestionController {
 				0
 			];
 			await db.query(insert, insertValues);
-			const validation = Validate._validateUser;
-			const {error} = validation(req.body);
-			if(error){
-				const {details} = error;
-				const messages = [];
-				details.forEach(detail => {
-					messages.push(detail.message);
-				});
-				return res.status(400).send({
-					status: 400,
-					error: messages
-				});
-			}
 			return res.status(200).json({ 
 				status: 200,
 				data: {message: 'Your question has been saved'
