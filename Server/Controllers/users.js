@@ -192,10 +192,19 @@ const UserQuery = {
 		try {
 			const { rows } = await db.query(text, [req.body.email]);
 			if (!rows[0]) {
-				return res.status(400).send({'message': 'The credentials you provided are incorrect'});
+				return res.status(400).send({
+					status: 400, 
+					data: {
+						message: 'The credentials you provided are incorrect'
+					}
+				});
 			}
 			if(!Helper.comparePassword(rows[0].password, req.body.password)) {
-				return res.status(400).send({ 'message': 'The credentials you provided are incorrect' });
+				return res.status(400).send({ 
+					status: 200,
+					data: {message: 'The credentials you provided are incorrect'
+					}
+				});
 			}
 			const payload={
 				userId:rows[0].u_id,
