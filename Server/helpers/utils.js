@@ -17,6 +17,7 @@ class ValidateQuestion {
 			location: Joi.string().min(2).required().trim(),
 			topic: Joi.string().required().trim(),
 			tags: Joi.array().items(Joi.string(), Joi.string()),
+			images: Joi.string().trim()
 		};
 		return Joi.validate(meetup, schema, { abortEarly: false });
 	}
