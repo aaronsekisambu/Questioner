@@ -1,6 +1,6 @@
 const express = require('express');
 const routesQuestions = express.Router();
-const questionsController = require('../controllers/questions');
+const questionsController = require('../Controllers/questions');
 const auth = require('../middleware/authenticate/verify');
 
 routesQuestions.route('/api/v1/questions')

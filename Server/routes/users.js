@@ -1,6 +1,6 @@
 const express = require('express');
 const routes = express.Router();
-const usersController = require('../controllers/users');
+const usersController = require('../Controllers/users');
 const auth = require('../middleware/authenticate/verify');
 
 routes.route('/api/v1/users')
