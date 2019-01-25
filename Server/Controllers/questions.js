@@ -36,7 +36,7 @@ class QuestionController {
 	async postAComment (req, res) {
 		const comments = req.body;
 
-	
+
 		try {
 			const insert = 'insert into comments(c_id, body, user_id, questions_id) ' +
 					'values($1, $2, $3, $4)';
