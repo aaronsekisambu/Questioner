@@ -4,6 +4,7 @@
   "description": "Crowd-source questions for a meetup. Questioner helps the meetup organizer prioritize questions to be answered. Other users can vote on asked questions and they bubble to the top or bottom of the log.",
   "main": "server.js",
   "dependencies": {
+    "babel-core": "^6.26.3",
     "babel-eslint": "^10.0.1",
     "bcrypt": "^3.0.3",
     "body-parser": "^1.18.3",
@@ -47,6 +48,7 @@
   },
   "homepage": "https://github.com/aaronsekisambu/Questioner#readme",
   "devDependencies": {
+    "@babel/preset-env": "^7.3.1",
     "nyc": "^13.1.0"
   }
 }
