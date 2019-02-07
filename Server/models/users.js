@@ -1,5 +1,7 @@
-const moment = require('moment');
-const uuid = require('uuid');
+import moment from 'moment';
+
+import uuid from 'uuid';
+
 class UserModel {
 	constructor() {
 		this.users = [];
@@ -52,4 +54,4 @@ class UserModel {
 	}
 }
 
-module.exports = new UserModel();
+export default new UserModel();

@@ -1,8 +1,10 @@
-const moment = require('moment');
-const uuidv4 = require('uuidv4');
-const Validate = require('../helpers/utils');
+import moment from 'moment';
 
-const db = require('../db');
+import uuidv4 from 'uuidv4';
+
+import Validate from '../helpers/utils';
+
+import db from '../db';
 
 class QuestionController {
 	// Get all questions
@@ -207,4 +209,5 @@ class QuestionController {
 		}
 	}
 }
-module.exports = new QuestionController();
+
+export default new QuestionController();

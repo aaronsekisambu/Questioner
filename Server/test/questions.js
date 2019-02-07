@@ -1,12 +1,15 @@
-const expect = require('chai').expect;
-const chai = require('chai');
-chai.use(require('chai-http'));
-const assertArrays = require('chai-arrays');
+import {expect} from 'chai';
+
+import chai from 'chai';
+
+import assertArrays from 'chai-arrays';
+
+import app from '../../app';
+
+import chai_http from 'chai-http';
+
+chai.use(chai_http);
 chai.use(assertArrays);
-
-const app = require('../../app');
-
-
 const questionSpecTest = () => {
 	describe('Test the questioner root', () => {
 		it('Should GET all questions at api/v1/questions', (done) => {
@@ -41,4 +44,4 @@ const questionSpecTest = () => {
 };
 
 
-module.exports = questionSpecTest();
+export default questionSpecTest();

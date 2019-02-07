@@ -1,11 +1,15 @@
-const expect = require('chai').expect;
-const chai = require('chai');
-chai.use(require('chai-http'));
-const assertArrays = require('chai-arrays');
+import {expect} from 'chai';
+
+import chai from 'chai';
+
+import app from '../../app';
+
+import assertArrays from 'chai-arrays';
+
+import chai_http from 'chai-http';
+
+chai.use(chai_http);
 chai.use(assertArrays);
-
-const app = require('../../app');
-
 const MeetupSpecTest = () => {
 	describe('Test the meetup root', () => {
 		it('Should GET all meetup api/v1/meetups', (done) => {
@@ -52,4 +56,4 @@ const MeetupSpecTest = () => {
 };
 
 
-module.exports = MeetupSpecTest();
+export default MeetupSpecTest();

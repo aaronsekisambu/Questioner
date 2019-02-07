@@ -1,11 +1,14 @@
-const moment = require('moment');
-const uuidv4 = require('uuidv4');
+import moment from 'moment';
+
+import uuidv4 from 'uuidv4';
+
+import db from '../db';
+
+import Helper from '../helpers/helper';
+
+import Validate from '../helpers/utils';
+
 moment.suppressDeprecationWarnings = true;
-
-const db = require('../db');
-const Helper = require('../helpers/helper');
-const Validate = require('../helpers/utils');
-
 const UserQuery = {
 	// Get all users from the database
 	async getAll(req, res) {
@@ -247,4 +250,4 @@ const UserQuery = {
 	}
 };
 
-module.exports = UserQuery;
+export default UserQuery;

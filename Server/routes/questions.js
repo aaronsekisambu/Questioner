@@ -1,8 +1,10 @@
-const express = require('express');
-const routesQuestions = express.Router();
-const questionsController = require('../Controllers/questions');
-const auth = require('../middleware/authenticate/verify');
+import express from 'express';
 
+import auth from '../middleware/authenticate/verify';
+
+import questionsController from '../Controllers/questions';
+
+const routesQuestions = express.Router();
 routesQuestions.route('/api/v1/questions')
 	.get(auth.verifyToken, questionsController.getAllQuestions);
 routesQuestions.route('/api/v1/meetups/:id/questions')
@@ -28,4 +30,4 @@ routesQuestions.route('/api/v1/questions/:id/comments')
 	.post(auth.verifyToken,  questionsController.postAComment);
 
 
-module.exports = routesQuestions;
+export default routesQuestions;

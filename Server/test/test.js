@@ -1,12 +1,18 @@
-const expect = require('chai').expect;
-const chai = require('chai');
-chai.use(require('chai-http'));
+import app from '../../app';
 
-const app = require('../../app');
-const questionSpecTest = require('./questions');
-const MeetupSpecTest = require('./meetups');
-const UserTests = require('./users');
+import {expect} from 'chai';
 
+import chai from 'chai';
+
+import chai_http from 'chai-http';
+
+import questionSpecTest from './questions';
+
+import MeetupSpecTest from './meetups';
+
+import UserTests from './users';
+
+chai.use(chai_http);
 //Running test cases for global app.js file and connecting it to other test files, models and controllers
 describe('Testing the Qustioner API', () => {
 	describe('Testing the home directory ', () => {

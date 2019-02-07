@@ -1,6 +1,8 @@
-const bcrypt = require('bcrypt');
-const jwt = require('jsonwebtoken');
-const key=require('../helpers/keys');
+import bcrypt from 'bcrypt';
+
+import jwt from 'jsonwebtoken';
+
+import key from '../helpers/keys';
 
 const Helper = {
 	/**
@@ -40,4 +42,4 @@ const Helper = {
 	}
 };
 
-module.exports =  Helper;
+export default Helper;

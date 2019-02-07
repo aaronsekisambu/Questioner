@@ -1,10 +1,12 @@
-const moment = require('moment');
-const uuidv4 = require('uuidv4');
+import moment from 'moment';
+
+import uuidv4 from 'uuidv4';
+
+import db from '../db/index';
+
+import Validate from '../helpers/utils';
+
 moment.suppressDeprecationWarnings = true;
-const Validate = require('../helpers/utils');
-
-const db = require('../db/index');
-
 const meetupsController = {
 	// Create a meetup
 	async postAMeetup(req, res) {
@@ -99,4 +101,4 @@ const meetupsController = {
 		}
 	}
 };
-module.exports = meetupsController;
+export default meetupsController;

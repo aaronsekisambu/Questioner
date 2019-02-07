@@ -1,8 +1,10 @@
-const express = require('express');
-const routes = express.Router();
-const usersController = require('../Controllers/users');
-const auth = require('../middleware/authenticate/verify');
+import express from 'express';
 
+import auth from '../middleware/authenticate/verify';
+
+import usersController from '../Controllers/users';
+
+const routes = express.Router();
 routes.route('/api/v1/users')
 	.get(auth.verifyToken, usersController.getAll )
 	.post(usersController.create);
@@ -20,4 +22,4 @@ routes.route('/api/v1/auth/login')
 routes.route('/api/v1/auth/signup')
 	.post(usersController.create);
 
-module.exports = routes;
+export default routes;

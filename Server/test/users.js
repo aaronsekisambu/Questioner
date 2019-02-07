@@ -1,11 +1,14 @@
-const expect = require('chai').expect;
-const chai = require('chai');
-chai.use(require('chai-http'));
-const assertArrays = require('chai-arrays');
+import assertArrays from 'chai-arrays';
+
+import chai from 'chai';
+
+import chai_http from 'chai-http';
+
+import app from '../../app';
+
+const expect = chai.expect;
+chai.use(chai_http);
 chai.use(assertArrays);
-
-const app = require('../../app');
-
 const UserTests = () => {
 	describe('Test the user root', () => {
 		it('Should GET all users at api/v1/users', (done) => {
@@ -53,4 +56,4 @@ const UserTests = () => {
 };
 
 
-module.exports = UserTests();
+export default UserTests();
