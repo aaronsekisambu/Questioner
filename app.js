@@ -1,18 +1,18 @@
-const express = require('express');
-const bodyParser = require('body-parser');
+import express, { json } from 'express';
+import { json as _json, urlencoded } from 'body-parser';
 const app = express();
 
 // call express to json objects
-app.use(express.json());
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(json());
+app.use(_json());
+app.use(urlencoded({ extended: false }));
 
 // Require different routes
-const routesMeetup  = require('./Server/routes/meetups');
+import routesMeetup from './Server/routes/meetups';
 app.use(routesMeetup);
-const router = require('./Server/routes/users');
+import router from './Server/routes/users';
 app.use(router);
-const routesQuestions  = require('./Server/routes/questions');
+import routesQuestions from './Server/routes/questions';
 
 app.use(routesQuestions);
 //Root of Endpoint for all users
@@ -30,7 +30,7 @@ app.all('*', (req, res) => {
 		status: 404,
 		error: 'Page not found. Please try again'});
 });
-module.exports = app;
+export default app;
 
 
 
