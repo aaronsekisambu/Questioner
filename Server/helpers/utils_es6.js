@@ -1,4 +1,4 @@
-import Joi from 'joi';
+const Joi = require('joi');
 
 class ValidateQuestion {
 // using Joi to validate the question function
@@ -46,6 +46,6 @@ class ValidateQuestion {
 }
 
 
-export default new ValidateQuestion();
+module.exports = new ValidateQuestion();
 
 
