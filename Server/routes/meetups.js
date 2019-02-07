@@ -1,6 +1,6 @@
 import express from 'express';
 
-import meetupsController from '../Controllers/meetups';
+import meetupsController from '../controllers/meetups';
 
 import auth from '../middleware/authenticate/verify';
 

@@ -2,7 +2,7 @@ import express from 'express';
 
 import auth from '../middleware/authenticate/verify';
 
-import usersController from '../Controllers/users';
+import usersController from '../controllers/users';
 
 const routes = express.Router();
 routes.route('/api/v1/users')

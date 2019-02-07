@@ -2,7 +2,7 @@ import express from 'express';
 
 import auth from '../middleware/authenticate/verify';
 
-import questionsController from '../Controllers/questions';
+import questionsController from '../controllers/questions';
 
 const routesQuestions = express.Router();
 routesQuestions.route('/api/v1/questions')
