@@ -1,5 +1,6 @@
-const { Pool } = require('pg');
-const dotenv = require('dotenv');
+import {Pool} from 'pg';
+
+import dotenv from 'dotenv';
 
 dotenv.config();
 
@@ -10,7 +11,7 @@ if (process.env.DATABASE_URL) {
 	});
 } else {
 	conString = new Pool({
-		user: 'aaron',
+		user: 'questioner',
 		host: 'localhost',
 		database: 'questioner-db',
 		password: null,

@@ -22,8 +22,6 @@ app.get('/', (req, res)=> {
 		message: 'This is the root directory, You have not made any request'});
 });
 
-/* General Page Return error
-============================================================================== */
 // check on wrong input
 app.all('*', (req, res) => {
 	res.status(404).send({
