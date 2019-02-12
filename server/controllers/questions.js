@@ -1,11 +1,12 @@
 import moment from 'moment';
 
 import uuidv4 from 'uuidv4';
+import jwt from 'jsonwebtoken';
 
 import Validate from '../helpers/utils';
 
 import db from '../db';
-import meetups from '../test/meetups';
+
 
 class QuestionController {
   // Get all questions
@@ -13,7 +14,7 @@ class QuestionController {
     const createQuery = 'select * from questions';
     try {
       const { rows } = await db.query(createQuery);
-	
+
       return res.status(200).json({
         status: 200,
         data: rows
@@ -29,7 +30,7 @@ class QuestionController {
     const createQuery = 'select * from comments';
     try {
       const { rows } = await db.query(createQuery);
-	
+
       return res.status(200).send(rows);
     } catch(error) {
       return res.status(400).json({
@@ -39,7 +40,7 @@ class QuestionController {
         }
       });
     }
-		
+
   }
   // Create a comment
   async postAComment (req, res) {
@@ -48,7 +49,7 @@ class QuestionController {
       comment: req.body.comment,
       question: parseInt(req.params.id, 10),
     };
-    db.query('SELECT * FROM question WHERE q_id=$1', [newComment.question])
+    db.query('SELECT * FROM questions WHERE q_id=$1', [newComment.question])
       .then((result) => {
         if (result.rows.length === 0) {
           return res.status(404).json({
@@ -77,7 +78,7 @@ class QuestionController {
     const createQuery = `select * from questions where meetup='${id}'`;
     try {
       const { rows } = await db.query(createQuery);
-	
+
       return res.status(200).json({
         status: 200,
         data: rows
@@ -94,72 +95,12 @@ class QuestionController {
     res.status(200).json({
       status: 200,
       data: votes
-    }); 
+    });
   }
-  //upvote on a question
-  async upVote (req, res) {
-    const { id: questionId } = req.params;
-    const { id: userId } = req.body;
 
-    try {
-      const find = `select * from votes where users_id='${userId}'`;
-      const insert = 'insert into votes(v_id, upvote, downvote, users_id, questions_id) values($1, 1, 0, $2, $3)';
-      const insertValues = [uuidv4(), userId, questionId];
-
-      const findValue = await db.query(find);
-      if (findValue.rowCount > 0) {
-        return res.status(200).json({
-          status: 200,
-          message: 'You have already upvoted this question'});
-      }
-      const resp = await db.query(insert, insertValues);
-      if (resp) {
-        const update = `update questions set upvote=(upvote + 1) where q_id='${questionId}'`;
-        await db.query(update);
-      }
-      return res.status(200).json({ message: 'Thank you for your vote'});
-    } catch (err) {
-      res.status(400).send({
-        status: 400,
-        error: err.message,
-      });
-    }
-  }
-  // downvote on a question
-  async downVote (req, res) {
-    const { id: questionId } = req.params;
-    const { id: userId } = req.body;
-    try {
-      const find = `select * from votes where users_id='${userId}'`;
-      const insert = 'insert into votes(v_id, upvote, downvote, users_id, questions_id) values($1, 0, 1, $2, $3)';
-      const insertValues = [uuidv4(), userId, questionId];
-			
-      const findValue = await db.query(find);
-      if (findValue.rowCount > 0) {
-        return res.status(200).json({
-          status: 200,
-          message: 'You have already upvoted this question'});
-      }
-      const resp = await db.query(insert, insertValues);
-      if (resp) {
-        const update = `update questions set upvote=(upvote - 1) where q_id='${questionId}'`;
-        await db.query(update);
-      }
-      return res.status(200).json({
-        status: 200,
-        message: 'Thank you for your vote'});
-    } catch (err) {
-      res.status(400).send({
-        status: 400,
-        error: err.message,
-      });
-    }
-  }
   // post a question
   async postAQuestion (req, res) {
-    const meetup  = req.params.id;
-	let meetupId = await meetups.findAll({meetups: id}).exec();
-	console.log((meetupId));
+    let meetupId  = req.params.id;
     const question = req.body;
 
     try {
@@ -180,7 +121,7 @@ class QuestionController {
 					values($1, $2, $3, $4, $5, $6, $7, $8) returning *`;
       const insertValues = [
         uuidv4(),
-        meetup.meetup,
+        meetupId,
         question.title,
         question.body,
         question.createdby,
@@ -188,9 +129,8 @@ class QuestionController {
         0,
         0
       ];
-	  console.log(insertValues);
       const {rows} = await db.query(insert, insertValues);
-      return res.status(200).json({ 
+      return res.status(200).json({
         status: 200,
         message: 'Your question has been saved',
         data: rows
@@ -202,10 +142,145 @@ class QuestionController {
       });
     }
   }
+
+  //upvote on a question
+  async upVote (req, res) {
+
+    const token = req.headers.authorization.split(' ')[1];
+    const payload = jwt.decode(token);
+    const userId = payload.userId;
+
+    const { id: questionId } = req.params;
+
+    try {
+      const find = `select * from votes where users_id='${userId}' and questions_id='${questionId}'`;
+
+      const insertValues = [
+        uuidv4(),
+        userId,
+        questionId
+      ];
+
+      const responseRows = `select title, body, questions.upvote, questions.downvote, users_id,  v_id, m_id from votes, questions, meetups where (questions.q_id=votes.questions_id AND
+       meetups.m_id=questions.meetup AND questions.q_id='${questionId}')`;
+
+      let didUserDownVote = false;
+
+      const findValue = await db.query(find);
+      if (findValue.rowCount > 0) {
+        if (Number.parseInt(findValue.rows[0].upvote) === 0 && Number.parseInt(findValue.rows[0].downvote) === 1) {
+          didUserDownVote = true;
+        }
+        if (!didUserDownVote) {
+          const response = await db.query(responseRows);
+          return res.status(200).json({
+            status: 200,
+            message: 'You have already upVoted this question',
+            upvoted: response.rows
+          });
+        }
+      }
+
+      let update;
+      let insert;
+      let shouldUpdate = false;
+      if (didUserDownVote) {
+        update = `update questions set upvote=(upvote + 1), downvote=(downvote - 1) where q_id='${questionId}'`;
+        insert = `update votes set upvote=1, downvote=0 where v_id='${findValue.rows[0].v_id}'`;
+        shouldUpdate = true;
+      } else {
+        insert = `insert into votes(v_id, upvote, downvote, users_id, questions_id)
+       values($1, 1, 0, $2, $3) returning *`;
+        update = `update questions set upvote=(upvote + 1) where q_id='${questionId}'`;
+      }
+
+      const resp = await db.query(insert, shouldUpdate ? [] : insertValues);
+      if (resp) {
+        await db.query(update);
+      }
+      const response = await db.query(responseRows);
+      return res.status(200).json({
+        message: 'Thank you for your vote',
+        upvoted: response.rows
+      });
+    } catch (err) {
+      res.status(400).send({
+        status: 400,
+        error: err.message,
+      });
+    }
+  }
+  // downvote on a question
+  async downVote (req, res) {
+
+    const token = req.headers.authorization.split(' ')[1];
+    const payload = jwt.decode(token);
+    const userId = payload.userId;
+
+    const { id: questionId } = req.params;
+
+    try {
+      const find = `select * from votes where users_id='${userId}' and questions_id='${questionId}'`;
+
+      const insertValues = [
+        uuidv4(),
+        userId,
+        questionId
+      ];
+
+      const responseRows = `select title, body, questions.upvote, questions.downvote, users_id,  v_id, m_id from votes, questions, meetups where (questions.q_id=votes.questions_id AND
+       meetups.m_id=questions.meetup AND questions.q_id='${questionId}')`;
+
+      let didUserUpVote = false;
+
+      const findValue = await db.query(find);
+      if (findValue.rowCount > 0) {
+        if (Number.parseInt(findValue.rows[0].downvote) === 0 && Number.parseInt(findValue.rows[0].upvote) === 1) {
+          didUserUpVote = true;
+        }
+        if (!didUserUpVote) {
+          const response = await db.query(responseRows);
+          return res.status(200).json({
+            status: 200,
+            message: 'You have already downVoted this question',
+            upvoted: response.rows
+          });
+        }
+      }
+
+      let update;
+      let insert;
+      let shouldUpdate = false;
+      if (didUserUpVote) {
+        update = `update questions set downvote=(downvote + 1), upvote=(upvote - 1) where q_id='${questionId}'`;
+        insert = `update votes set upvote=0, downvote=1 where v_id='${findValue.rows[0].v_id}'`;
+        shouldUpdate = true;
+      } else {
+        insert = `insert into votes(v_id, upvote, downvote, users_id, questions_id)
+       values($1, 1, 0, $2, $3) returning *`;
+        update = `update questions set downvote=(downvote + 1) where q_id='${questionId}'`;
+      }
+
+      const resp = await db.query(insert, shouldUpdate ? [] : insertValues);
+      if (resp) {
+        await db.query(update);
+      }
+      const response = await db.query(responseRows);
+      return res.status(200).json({
+        message: 'Thank you for your vote',
+        upvoted: response.rows
+      });
+    } catch (err) {
+      res.status(400).send({
+        status: 400,
+        error: err.message,
+      });
+    }
+  }
   // update a specific questions
   async updateAQuestion(req, res) {
     const createQuery = 'update questions set title=$1, body=$2 ' +
-				'where (meetup=$3 and createdby=$4) returning *';
+      'where (meetup=$3 and createdby=$4) returning *';
     const values = [
       req.body.title,
       req.body.body,

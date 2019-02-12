@@ -186,7 +186,7 @@ const UserQuery = {
       return res.status(200).send({ 
         status: 200,
         data: {
-          message: 'Succefully Deleted',
+          message: 'Successfully Deleted',
           user: rows
 
         } 

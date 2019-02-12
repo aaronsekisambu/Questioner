@@ -82,7 +82,7 @@ CREATE TABLE public.rsvps (
 );
 
 
-ALTER TABLE public.rsvps OWNER TO aaron;
+ALTER TABLE public.meetups_rsvps OWNER TO aaron;
 
 --
 -- Name: tags; Type: TABLE; Schema: public; Owner: aaron

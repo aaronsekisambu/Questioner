@@ -56,4 +56,4 @@ const MeetupSpecTest = () => {
 };
 
 
-export default MeetupSpecTest;
+export default MeetupSpecTest();

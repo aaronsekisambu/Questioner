@@ -5,7 +5,6 @@ class ValidateQuestion {
   _validateQuestion(question) {
     const schema = {
       createdby: Joi.string().min(1).required(),
-      meetup: Joi.number().min(1).required(),
       title: Joi.string().min(2).required().trim(),
       body: Joi.string().min(2).required().trim(),
     };
