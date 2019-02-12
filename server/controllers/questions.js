@@ -44,31 +44,47 @@ class QuestionController {
   }
   // Create a comment
   async postAComment (req, res) {
-    const newComment = {
-      user: req.user.id,
-      comment: req.body.comment,
-      question: parseInt(req.params.id, 10),
-    };
-    db.query('SELECT * FROM questions WHERE q_id=$1', [newComment.question])
-      .then((result) => {
-        if (result.rows.length === 0) {
-          return res.status(404).json({
-            status: 200,
-            error: 'Question not found' });
-        }
-        db.query('INSERT INTO comments(user_id,questions_id,body) VALUES($1,$2,$3) returning *',
-          [newComment.user, newComment.question, newComment.comment])
-          .then(comment => res.json({
-            status: 200,
-            comment: comment.rows
-          }))
-          .catch((er) => {
-            console.log(er);
-          });
-      })
-      .catch((error) => {
-        console.log(error);
+    const questionId = req.params.id;
+
+    const token = req.headers.authorization.split(' ')[1];
+    const payload = jwt.decode(token);
+    const userId = payload.userId;
+
+    try {
+      const validation = Validate._validateComments;
+      const {error} = validation(req.body);
+      if(error) {
+        const {details} = error;
+        const messages = [];
+        details.forEach(detail => {
+          messages.push(detail.message);
+        });
+        return res.status(400).send({
+          status: 400,
+          error: messages
+        });
+      }
+      const insert = `insert into comments(c_id, user_id, questions_id, body)
+					values($1, $2, $3, $4) returning *`;
+      const insertValues = [
+        uuidv4(),
+        userId,
+        questionId,
+        req.body.body,
+      ];
+
+      const {rows} = await db.query(insert, insertValues);
+      return res.status(200).json({
+        status: 200,
+        message: 'Thank you for commenting',
+        data: rows
       });
+    } catch (err) {
+      res.status(400).send({
+        status: 400,
+        error: err.message
+      });
+    }
   }
 
   // Get a specific question based off a meetup
@@ -117,8 +133,8 @@ class QuestionController {
           error: messages
         });
       }
-      const insert = `insert into questions(q_id, meetup, title, body, createdby, createdon, upvote, downvote)
-					values($1, $2, $3, $4, $5, $6, $7, $8) returning *`;
+      const insert = `insert into questions(q_id, meetup, title, body, createdby, createdon, upvote, downvote, comments)
+					values($1, $2, $3, $4, $5, $6, $7, $8, $9) returning *`;
       const insertValues = [
         uuidv4(),
         meetupId,
@@ -127,7 +143,8 @@ class QuestionController {
         question.createdby,
         moment(new Date()),
         0,
-        0
+        0,
+        question.comments
       ];
       const {rows} = await db.query(insert, insertValues);
       return res.status(200).json({

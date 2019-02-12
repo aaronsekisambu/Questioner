@@ -10,6 +10,13 @@ class ValidateQuestion {
     };
     return Joi.validate(question, schema, { abortEarly: false });
   }
+
+  _validateComments(comment){
+    const schema = {
+      body: Joi.string().min(2).required()
+    };
+    return Joi.validate(comment, schema, {abortEarly: false});
+  }
   // using Joi to validate in this function
   _validateMeetup(meetup) {
     const schema = {
