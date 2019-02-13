@@ -1,12 +1,12 @@
-const { Pool } = require('pg');
-const dotenv = require('dotenv');
+import dotenv from 'dotenv';
+
+import {Pool} from 'pg';
 
 dotenv.config();
 
 const pool = new Pool({
 	connectionString: process.env.DATABASE_URL
 });
-// nconst connect = async () => pool.connect();
 
 pool.on('connect', () => {
 	console.log('connected to the db');
