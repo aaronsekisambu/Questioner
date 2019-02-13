@@ -14,4 +14,7 @@ routesMeetup.route('/api/v1/meetups/:id')
   .put(auth.verifyToken, meetupsController.updateAMeetup)
   .delete(auth.verifyToken, meetupsController.deleteAMeetup);
 
+routesMeetup.route('/api/v1/meetups/:id/rsvps')
+  .post(auth.verifyToken, meetupsController.postRvsp)
+
 export default routesMeetup;

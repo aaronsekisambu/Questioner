@@ -29,6 +29,16 @@ class ValidateQuestion {
     return Joi.validate(meetup, schema, { abortEarly: false });
   }
 
+  _validateRsvp(meetup) {
+    const schema = Joi.object().keys({
+      yes: Joi.string().min(2).required().trim(),
+      no: Joi.string().required().trim(),
+      maybe: Joi.array().items(Joi.string(), Joi.string())
+        .xor('yes', 'no', 'maybe')
+    });
+    return Joi.validate(meetup, schema, { abortEarly: false });
+  }
+
   // using Joi to validate in this function
   _validateUser(user) {
     const schema = {
