@@ -4,6 +4,7 @@ import auth from '../middleware/authenticate/verify';
 
 import usersController from '../controllers/users';
 
+
 const routes = express.Router();
 routes.route('/api/v1/users')
   .get(auth.verifyToken, usersController.getAll )

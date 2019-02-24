@@ -12,6 +12,7 @@
     "chai": "^4.2.0",
     "chai-arrays": "^2.0.0",
     "chai-http": "^4.2.0",
+    "cors": "^2.8.5",
     "dotenv": "^6.2.0",
     "eslint-config-airbnb": "^17.1.0",
     "eslint-plugin-import": "^2.14.0",

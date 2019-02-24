@@ -5,19 +5,19 @@ import {Pool} from 'pg';
 dotenv.config();
 
 const pool = new Pool({
-	connectionString: process.env.DATABASE_URL
+  connectionString: process.env.DATABASE_URL
 });
 
 pool.on('connect', () => {
-	console.log('connected to the db');
+  console.log('connected to the db');
 });
 
 /**
  * Create users Table
  */
 const createUsersTable = () => {
-	const queryText =      
-      `CREATE TABLE IF NOT EXISTS users
+  const queryText =
+    `CREATE TABLE IF NOT EXISTS users
 (
     u_id uuid NOT NULL PRIMARY KEY,
     firstname varchar(50) NOT NULL,
@@ -32,31 +32,31 @@ const createUsersTable = () => {
     modified date NOT NULL
 )`;
 
-	pool.query(queryText)
-		.then((res) => {
-			console.log(res);
-			pool.end();
-		})
-		.catch((err) => {
-			console.log(err);
-			pool.end();
-		});
+  pool.query(queryText)
+    .then((res) => {
+      console.log(res);
+      pool.end();
+    })
+    .catch((err) => {
+      console.log(err);
+      pool.end();
+    });
 };
 
 /**
  * Drop users Table
  */
 const dropUsersTable = () => {
-	const queryText = 'DROP TABLE IF EXISTS users returning *';
-	pool.query(queryText)
-		.then((res) => {
-			console.log(res);
-			pool.end();
-		})
-		.catch((err) => {
-			console.log(err);
-			pool.end();
-		});
+  const queryText = 'DROP TABLE IF EXISTS users returning *';
+  pool.query(queryText)
+    .then((res) => {
+      console.log(res);
+      pool.end();
+    })
+    .catch((err) => {
+      console.log(err);
+      pool.end();
+    });
 };
 
 
@@ -64,8 +64,8 @@ const dropUsersTable = () => {
  * Create questions Table
  */
 const createQuestionsTable = () => {
-	const queryText =
-  `CREATE TABLE IF NOT EXISTS questions
+  const queryText =
+    `CREATE TABLE IF NOT EXISTS questions
 (
     q_id uuid NOT NULL PRIMARY KEY,
     meetup uuid NOT NULL,
@@ -79,39 +79,39 @@ const createQuestionsTable = () => {
 	FOREIGN KEY (meetup) REFERENCES meetups (m_id) ON DELETE CASCADE
 )`;
 
-	pool.query(queryText)
-		.then((res) => {
-			console.log(res);
-			pool.end();
-		})
-		.catch((err) => {
-			console.log(err);
-			pool.end();
-		});
+  pool.query(queryText)
+    .then((res) => {
+      console.log(res);
+      pool.end();
+    })
+    .catch((err) => {
+      console.log(err);
+      pool.end();
+    });
 };
 
 // /**
 //  * Drop Questions Table
 //  */
 const dropQuestionsTable = () => {
-	const queryText = 'DROP TABLE IF EXISTS questions returning *';
-	pool.query(queryText)
-		.then((res) => {
-			console.log(res);
-			pool.end();
-		})
-		.catch((err) => {
-			console.log(err);
-			pool.end();
-		});
+  const queryText = 'DROP TABLE IF EXISTS questions returning *';
+  pool.query(queryText)
+    .then((res) => {
+      console.log(res);
+      pool.end();
+    })
+    .catch((err) => {
+      console.log(err);
+      pool.end();
+    });
 };
 
 // /**
 //  * Create meetups Table
 //  */
 const createMeetupsTable = () => {
-	const queryText =
-  `CREATE TABLE IF NOT EXISTS meetups
+  const queryText =
+    `CREATE TABLE IF NOT EXISTS meetups
   (
 	  m_id uuid NOT NULL PRIMARY KEY,
 	  topic text NOT NULL,
@@ -123,31 +123,31 @@ const createMeetupsTable = () => {
 	  FOREIGN KEY (createdby) REFERENCES users (u_id) ON DELETE CASCADE
   )`;
 
-	pool.query(queryText)
-		.then((res) => {
-			console.log(res);
-			pool.end();
-		})
-		.catch((err) => {
-			console.log(err);
-			pool.end();
-		});
+  pool.query(queryText)
+    .then((res) => {
+      console.log(res);
+      pool.end();
+    })
+    .catch((err) => {
+      console.log(err);
+      pool.end();
+    });
 };
 
 // /**
 //  * Drop Questions Table
 //  */
 const dropMeetupsTable = () => {
-	const queryText = 'DROP TABLE IF EXISTS meetups returning *';
-	pool.query(queryText)
-		.then((res) => {
-			console.log(res);
-			pool.end();
-		})
-		.catch((err) => {
-			console.log(err);
-			pool.end();
-		});
+  const queryText = 'DROP TABLE IF EXISTS meetups returning *';
+  pool.query(queryText)
+    .then((res) => {
+      console.log(res);
+      pool.end();
+    })
+    .catch((err) => {
+      console.log(err);
+      pool.end();
+    });
 };
 
 
@@ -155,8 +155,8 @@ const dropMeetupsTable = () => {
 //  * Create Votes Table
 //  */
 const createVotesTable = () => {
-	const queryText =
-  `CREATE TABLE IF NOT EXISTS votes
+  const queryText =
+    `CREATE TABLE IF NOT EXISTS votes
   (
 	  v_id uuid NOT NULL PRIMARY KEY,
 	  upvote int NOT NULL,
@@ -167,31 +167,31 @@ const createVotesTable = () => {
 	  FOREIGN KEY (users_id) REFERENCES users (u_id) ON DELETE CASCADE
   )`;
 
-	pool.query(queryText)
-		.then((res) => {
-			console.log(res);
-			pool.end();
-		})
-		.catch((err) => {
-			console.log(err);
-			pool.end();
-		});
+  pool.query(queryText)
+    .then((res) => {
+      console.log(res);
+      pool.end();
+    })
+    .catch((err) => {
+      console.log(err);
+      pool.end();
+    });
 };
 
 // /**
 //  * Drop Votes Table
 //  */
 const dropVotesTable = () => {
-	const queryText = 'DROP TABLE IF EXISTS votes returning *';
-	pool.query(queryText)
-		.then((res) => {
-			console.log(res);
-			pool.end();
-		})
-		.catch((err) => {
-			console.log(err);
-			pool.end();
-		});
+  const queryText = 'DROP TABLE IF EXISTS votes returning *';
+  pool.query(queryText)
+    .then((res) => {
+      console.log(res);
+      pool.end();
+    })
+    .catch((err) => {
+      console.log(err);
+      pool.end();
+    });
 };
 
 
@@ -200,8 +200,8 @@ const dropVotesTable = () => {
 //  * Create Tags Table
 //  */
 const createTagsTable = () => {
-	const queryText =
-  `CREATE TABLE IF NOT EXISTS tags
+  const queryText =
+    `CREATE TABLE IF NOT EXISTS tags
   (
 	  tags_id uuid NOT NULL PRIMARY KEY,
 	  user_id uuid NOT NULL,
@@ -211,39 +211,39 @@ const createTagsTable = () => {
 	  FOREIGN KEY (user_id) REFERENCES users (u_id) ON DELETE CASCADE
   )`;
 
-	pool.query(queryText)
-		.then((res) => {
-			console.log(res);
-			pool.end();
-		})
-		.catch((err) => {
-			console.log(err);
-			pool.end();
-		});
+  pool.query(queryText)
+    .then((res) => {
+      console.log(res);
+      pool.end();
+    })
+    .catch((err) => {
+      console.log(err);
+      pool.end();
+    });
 };
 
 // /**
 //  * Drop Tags Table
 //  */
 const dropTagsTable = () => {
-	const queryText = 'DROP TABLE IF EXISTS tags returning *';
-	pool.query(queryText)
-		.then((res) => {
-			console.log(res);
-			pool.end();
-		})
-		.catch((err) => {
-			console.log(err);
-			pool.end();
-		});
+  const queryText = 'DROP TABLE IF EXISTS tags returning *';
+  pool.query(queryText)
+    .then((res) => {
+      console.log(res);
+      pool.end();
+    })
+    .catch((err) => {
+      console.log(err);
+      pool.end();
+    });
 };
 
 // /**
 //  * Create Comments Table
 //  */
 const createCommentsTable = () => {
-	const queryText =
-	`CREATE TABLE IF NOT EXISTS comments
+  const queryText =
+    `CREATE TABLE IF NOT EXISTS comments
   	(
 	  c_id uuid NOT NULL PRIMARY KEY,
 	  user_id uuid NOT NULL,
@@ -253,39 +253,39 @@ const createCommentsTable = () => {
 	  FOREIGN KEY (questions_id) REFERENCES questions (q_id) ON DELETE CASCADE
     )`;
 
-	pool.query(queryText)
-		.then((res) => {
-			console.log(res);
-			pool.end();
-		})
-		.catch((err) => {
-			console.log(err);
-			pool.end();
-		});
+  pool.query(queryText)
+    .then((res) => {
+      console.log(res);
+      pool.end();
+    })
+    .catch((err) => {
+      console.log(err);
+      pool.end();
+    });
 };
 
 // /**
 //  * Drop Comments Table
 //  */
 const dropCommentsTable = () => {
-	const queryText = 'DROP TABLE IF EXISTS comments returning *';
-	pool.query(queryText)
-		.then((res) => {
-			console.log(res);
-			pool.end();
-		})
-		.catch((err) => {
-			console.log(err);
-			pool.end();
-		});
+  const queryText = 'DROP TABLE IF EXISTS comments returning *';
+  pool.query(queryText)
+    .then((res) => {
+      console.log(res);
+      pool.end();
+    })
+    .catch((err) => {
+      console.log(err);
+      pool.end();
+    });
 };
 
 // /**
 //  * Create Rsvps Table
 //  */
 const createRsvpsTable = () => {
-	const queryText =
-  `CREATE TABLE IF NOT EXISTS rsvps
+  const queryText =
+    `CREATE TABLE IF NOT EXISTS rsvps
   (
 	rsvp_id uuid NOT NULL PRIMARY KEY,
 	users_id uuid NOT NULL,
@@ -295,37 +295,37 @@ const createRsvpsTable = () => {
 	FOREIGN KEY (users_id) REFERENCES users (u_id) ON DELETE CASCADE
   )`;
 
-	pool.query(queryText)
-		.then((res) => {
-			console.log(res);
-			pool.end();
-		})
-		.catch((err) => {
-			console.log(err);
-			pool.end();
-		});
+  pool.query(queryText)
+    .then((res) => {
+      console.log(res);
+      pool.end();
+    })
+    .catch((err) => {
+      console.log(err);
+      pool.end();
+    });
 };
 
 /**
  * Drop Tags Table
  */
 const dropRsvpsTable = () => {
-	const queryText = 'DROP TABLE IF EXISTS tags returning *';
-	pool.query(queryText)
-		.then((res) => {
-			console.log(res);
-			pool.end();
-		})
-		.catch((err) => {
-			console.log(err);
-			pool.end();
-		});
+  const queryText = 'DROP TABLE IF EXISTS tags returning *';
+  pool.query(queryText)
+    .then((res) => {
+      console.log(res);
+      pool.end();
+    })
+    .catch((err) => {
+      console.log(err);
+      pool.end();
+    });
 };
 
 
 pool.on('remove', () => {
-	console.log('client removed');
-	process.exit(0);
+  console.log('client removed');
+  process.exit(0);
 });
 createUsersTable();
 createMeetupsTable();
@@ -333,20 +333,20 @@ createQuestionsTable();
 createVotesTable();
 
 module.exports = {
-	createUsersTable,
-	createQuestionsTable,
-	createMeetupsTable,
-	createVotesTable,
-	createTagsTable,
-	createCommentsTable,
-	createRsvpsTable,
-	dropUsersTable,
-	dropQuestionsTable,
-	dropMeetupsTable,
-	dropVotesTable,
-	dropTagsTable,
-	dropCommentsTable,
-	dropRsvpsTable
+  createUsersTable,
+  createQuestionsTable,
+  createMeetupsTable,
+  createVotesTable,
+  createTagsTable,
+  createCommentsTable,
+  createRsvpsTable,
+  dropUsersTable,
+  dropQuestionsTable,
+  dropMeetupsTable,
+  dropVotesTable,
+  dropTagsTable,
+  dropCommentsTable,
+  dropRsvpsTable
 };
 
 require('make-runnable');

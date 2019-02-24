@@ -8,42 +8,40 @@
     <link rel="stylesheet" href="../css/main.css">
 </head>
 <body name="crt-account">
-    <div class="main-container">
-        <div id="parent-form">
-                <form action="">
-                        <div class="logo">
-                            <img src="../img/kogoQnier.png" alt="">
-                        </div>
-                        <div class="sub-container">
-                            <div>
-                                <label for="name">Name</label> <br>
-                                <input type="text" placeholder="First Name" name="names" required>
-                                <input type="text" placeholder="Last Name" name="names" required> <br>
+<div class="main-container">
+    <div id="parent-form">
+        <form action="">
+            <div class="logo">
+                <img src="../img/kogoQnier.png" alt="">
+            </div>
+            <div class="sub-container">
+                <div>
+                    <label for="name">Name</label> <br>
+                    <input id="firstName" type="text" placeholder="First Name" name="names" required>
+                    <input id="lastName" type="text" placeholder="Last Name" name="names" required> <br>
 
-                                <label for="name">Email Address</label> <br>
-                                <input type="text" placeholder="Valid Email Address" name="email" required> <br>
+                    <label for="name">Email Address</label> <br>
+                    <input id="emailAddress" type="text" placeholder="Valid Email Address" name="email" required> <br>
 
-                                <label for="pswd">Password</label> <br>
-                                <input type="password" placeholder="Password" name="new-pswd" required>
-                                <input type="password" placeholder="Confirm Password" name="conf-pswd" required> <br>
+                    <label for="pswd">Password</label> <br>
+                    <input id="password" type="password" placeholder="Password" name="new-pswd" required>
+                    <input id="confirmPassword" type="password" placeholder="Confirm Password" name="conf-pswd" required> <br>
 
-                                <button type="submit" name="opt-back-signIn">Sign in instead</button> 
-                                <a href="./createMeetUps.html"> <button type="submit" name="next01">  sign up </a></button>
-                               
-                                <!-- <div id="opt-text02">Sign in instead</div>  -->
-                
-                                <div>
-                                 <span class="tc">By creating an account you agree to our  <a href="#">
-                                                    Terms & Privacy.
-                                                        </a></span>
-                                </div>
-                            </div>
-                         </div>
+                    <button type="submit" name="opt-back-signIn">Sign in instead</button>
+                    <button id="signUpButton" type="submit" name="next01">  sign up </button>
 
-                 </form>
-        </div>
-        
-    </div>   
-    <script src="../js/index.js"></script>
+                    <div>
+                        <span class="tc">By creating an account you agree to our
+                            <a href="#">Terms & Privacy. </a>
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+        </form>
+    </div>
+
+</div>
+<script type="module" src="../../server/views/users.js"></script>
 </body>
 </html>
