@@ -18,27 +18,29 @@
         </div>
     </div>
     <div id="parent-form">
-        <form action="">
+        <form id="userLoginForm">
             <div class="logo">
                 <img src="../img/kogoQnier.png" alt="">
             </div>
             <div class="sub-container">
                 <div>
-                    <label for="username">Username/Email</label> <br>
-                    <input type="text" placeholder="Username or Email" name="uname" required> <br>
+                    <label id="userNameLabel" for="username">Username/Email</label> <br>
+                    <input type="text" id="userName" placeholder="Username or Email" name="uname" required> <br>
 
                     <label for="pswd">Password</label> <br>
-                    <input type="password" placeholder="Password" name="pswd" required> <br>
+                    <input type="password" id="userPassword" placeholder="Password" name="pswd" required> <br>
 
-                    <button type="submit" name="sign01">Sign In</button> <br>
+                    <button type="submit" id="signIn" name="sign01">Sign In</button> <br>
                     <div  id="checkbox">
                         <label>
                             <input type="checkbox" checked="" name="remember"> Remember me
                         </label>
                         <div>
-                                             <span class="fgt-pswd">Forgot <a href="#">
-                                                        password?
-                                                    </a></span>
+                            <span class="fgt-pswd">Forgot
+                                <a href="#">
+                                 password?
+                                </a>
+                            </span>
                         </div>
                     </div>
                 </div>
@@ -58,6 +60,6 @@
 
 </div>
 
-<script src="../js/index.js"></script>
+<script type="module" src="../../server/views/users.js" ></script>
 </body>
 </html>

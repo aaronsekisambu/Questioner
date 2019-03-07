@@ -49,7 +49,7 @@ class ValidateQuestion {
       phonenumber: Joi.number().min(3).optional(),
       password: Joi.string().min(5).required(),
       username: Joi.string().min(2).optional().trim(),
-      isadmin: Joi.boolean().required()
+      isadmin: Joi.boolean()
     };
     return Joi.validate(user, schema, { abortEarly: false });
   }
