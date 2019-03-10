@@ -15,11 +15,11 @@ const UserQuery = {
     const findAllQuery = 'SELECT * FROM users';
     try {
       const { rows, rowCount } = await db.query(findAllQuery);
-      return res.status(200).send({ 
+      return res.status(200).send({
         status: 200,
         data: {
-          user: rows, 
-          length: rowCount 
+          user: rows,
+          length: rowCount
         }
       });
     } catch(error) {
@@ -53,7 +53,7 @@ const UserQuery = {
   async create(req, res) {
     if (!req.body.email || !req.body.password) {
       return res.status(400).send({
-        status: 400, 
+        status: 400,
         data: {
           'message': 'Some values are missing'
         }
@@ -96,30 +96,30 @@ const UserQuery = {
       }
       const { rows } = await db.query(createQuery, values);
       const token = Helper.generateToken(rows[0].u_id);
-      return res.status(201).send({ 
+      return res.status(201).send({
         status: 201,
         token,
         data:{
           message: 'Successfully Created',
           user:rows
-        } 
+        }
       });
     } catch(error) {
       if (error.routine === '_bt_check_unique') {
-        return res.status(400).send({ 
+        return res.status(400).send({
           status: 400,
           data: {
-            'message': 'username or email already exists' 
+            'message': 'username or email already exists'
           }
         });
       }
       return res.status(400).send({
         status: 400,
         data: {
-          error:	error.message
+          error: error.message
         }
       });
-			
+
     }
   },
   // Update a specific user
@@ -130,7 +130,7 @@ const UserQuery = {
         status: 404,
         data: {
           error:'User not found'
-        } 
+        }
       });
     }
     const validation = Validate._validateUser;
@@ -165,32 +165,32 @@ const UserQuery = {
         data: {
           message: 'Successfully updated  a user',
           user:	update.rows
-        } 
+        }
       });
-    }	
+    }
   },
   // Delete a user from the database
   async delete(req, res) {
     const deleteQuery = 'DELETE FROM users WHERE u_id=$1 returning *';
     try {
       const { rows } = await db.query(deleteQuery, [req.params.id]);
-      if(!rows[0]) {       
+      if(!rows[0]) {
         return res.status(404).send({
           status: 404,
           data: {
             'message': 'User not found',
             user: rows
-          } 
-        }); 
+          }
+        });
       }
-      return res.status(200).send({ 
+      return res.status(200).send({
         status: 200,
         data: {
           message: 'Successfully Deleted',
           user: rows
 
-        } 
-      
+        }
+
       });
 
     } catch(error) {

@@ -323,6 +323,29 @@ form #opt-text01 {
     width: 100%;
 }
 
+/* Models pop ups*/
+#messagePops {
+    color: white;
+    font-size: 12px;
+    margin: 4.5em 0 0 12em;
+    border-radius: 1em;
+    padding: .5em 1em .5em 1em;
+    display: none;
+    position: absolute;
+}
+#secondPops {
+    color: white;
+    font-size: 12px;
+    margin: -2em 0 0 12em;
+    border-radius: 1em;
+    padding: .5em 1em .5em 1em;
+    display: none;
+    position: absolute;
+}
+.pops {
+    background-color: black;
+    opacity: .5;
+}
 
 
 

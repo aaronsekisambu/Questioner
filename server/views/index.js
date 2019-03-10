@@ -1,18 +1,4 @@
 
-// import validToken from './token';
-// console.log(validToken);
-
-// const inputPassword = document.getElementById('inputPassword');
-// const userNameInput = document.getElementById('userName');
-// const userNameLabel = document.getElementById('userNameLabel');
-
-// let fetchData = (url) => {
-//   return fetch(url)
-//     .then(res => res.json());
-// };
-//
-// fetchData('api/v1/users')
-//   .then(data => console.log(data));
 const myHeaders = new Headers();
 myHeaders.append('Accept', 'application/json');
 myHeaders.append('Access-Control-Allow-Origin', '*');

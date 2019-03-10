@@ -7,7 +7,7 @@ export default {
     const token=req.headers.authorization || req.body.token;
     if(!token){
       return res.status(401).json({
-        status: 401, 
+        status: 401,
         data: {
           error:'Unauthorised: Insert a token in the header'
         }

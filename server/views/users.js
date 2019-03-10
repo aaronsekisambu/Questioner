@@ -2,15 +2,18 @@ const userName = document.getElementById('userName');
 const loginPassword = document.getElementById('userPassword');
 const singIn = document.getElementById('signIn');
 const signUpButton = document.getElementById('signUpButton');
+let errors = document.querySelector('#messagePops');
+let popErrors = document.querySelector('#secondPops');
+
 
 const myHeaders = new Headers();
 myHeaders.append('Accept', 'application/json');
 myHeaders.append('Access-Control-Allow-Origin', '*');
 myHeaders.append('Content-type', 'application/json');
 const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJh' +
-  'ZWJkMDZmNS1hZjU1LTQyOWUtOTA3MC1lZDM4YzkxNzUwYTgiLCJ1c2VybmFtZSI6Ik1ha2' +
-  'UgaXQiLCJlbWFpbCI6Im5vdy5rYW1wYWxhQGdtYWlsLmNvbSIsImZpcnN0bmFtZSI6ImthbXBhb' +
-  'GEiLCJpYXQiOjE1NTA1MDEzMzN9.fcXZ7dggJ_0V6nyHtRvdf-3fkMUbNVvMxkCHdez86AM';
+    'ZWJkMDZmNS1hZjU1LTQyOWUtOTA3MC1lZDM4YzkxNzUwYTgiLCJ1c2VybmFtZSI6Ik1ha2' +
+    'UgaXQiLCJlbWFpbCI6Im5vdy5rYW1wYWxhQGdtYWlsLmNvbSIsImZpcnN0bmFtZSI6ImthbXBhb' +
+    'GEiLCJpYXQiOjE1NTA1MDEzMzN9.fcXZ7dggJ_0V6nyHtRvdf-3fkMUbNVvMxkCHdez86AM';
 
 localStorage.setItem('token', token);
 myHeaders.append('Authorization', `Bearer ${token}`);
@@ -35,12 +38,14 @@ let userLogin = (e)=> {
     .then(data => {
       if (data.status === 202){
         location.replace(meetUpsPage);
-        console.log(data);
       }else if (data.status === 401){
-        alert('Incorrect password or email');
-        console.log('Incorrect password or email');
+        errors.style.display = 'block';
+        errors.textContent = 'Incorrect password or email';
       }
-
+      if(data.status === 403){
+        errors.style.display = 'block';
+        errors.textContent = 'Please Insert Email and Password';
+      }
     })
     .catch(err => console.log(err));
 };
@@ -55,10 +60,17 @@ let userSignUp = (e) => {
   console.log(lastName);
   const emailAddress = document.getElementById('emailAddress').value;
   console.log(emailAddress);
-  const signUpPassword = document.getElementById('password').value;
-  console.log(signUpPassword);
-  const confirmPassword = document.getElementById('confirmPassword').value;
-  console.log(confirmPassword);
+  function validate() {
+    const signUpPassword = document.getElementById('password').value;
+    console.log(signUpPassword);
+    const confirmPassword = document.getElementById('confirmPassword').value;
+    console.log(confirmPassword);
+    if(signUpPassword !== confirmPassword){
+      errors.style.display = 'block';
+      errors.textContent = 'Password did not match';
+    }
+  }
+  let questionsPage = '../../UI/html/viewMeetupsPage';
   e.preventDefault();
   fetch(signUpURL, {
     method: 'POST',
@@ -70,12 +82,30 @@ let userSignUp = (e) => {
       firstname: firstName,
       lastname: lastName,
       email: emailAddress,
-      password: signUpPassword,
-      confirmPassword: confirmPassword
+      password: validate()
     })
   })
     .then(res => res.json())
-    .then(data => console.log(data));
+    .then(data => {
+      switch (data.status) {
+      case 201:
+        location.replace(questionsPage);
+        popErrors.style.display = 'block';
+        popErrors.textContent = 'Successfully Created';
+        break;
+      case 400:
+        popErrors.style.display = 'block';
+        popErrors.textContent = 'Some values are missing';
+        break;
+      default:
+        popErrors.style.display = 'block';
+        popErrors.textContent = 'Unauthorised';
+      }
+      console.log(data.data);
+    });
 };
-signUpButton.addEventListener('click', userSignUp);
+if(signUpButton){
+  signUpButton.addEventListener('click', userSignUp);
+}
+
 
