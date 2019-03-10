@@ -60,7 +60,12 @@ const UserQuery = {
       });
     }
     if (!Helper.isValidEmail(req.body.email)) {
-      return res.status(400).send({ 'message': 'Please enter a valid email address' });
+      return res.status(400).send({
+        status : 400,
+        data : {
+          'message': 'Please enter a valid email address'
+        }
+      });
     }
     const hashPassword = Helper.hashPassword(req.body.password);
     const createQuery = `INSERT INTO
@@ -110,7 +115,7 @@ const UserQuery = {
           status: 400,
           data: {
             'message': 'username or email already exists'
-          }
+          },
         });
       }
       return res.status(400).send({

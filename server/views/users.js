@@ -69,8 +69,10 @@ let userSignUp = (e) => {
       errors.style.display = 'block';
       errors.textContent = 'Password did not match';
     }
+    return password;
   }
-  let questionsPage = '../../UI/html/viewMeetupsPage';
+  import me from '../../'
+  let questionsPage = '';
   e.preventDefault();
   fetch(signUpURL, {
     method: 'POST',
@@ -87,21 +89,28 @@ let userSignUp = (e) => {
   })
     .then(res => res.json())
     .then(data => {
-      switch (data.status) {
-      case 201:
+      switch (data.data.message) {
+      case 'Successfully Created':
         location.replace(questionsPage);
         popErrors.style.display = 'block';
         popErrors.textContent = 'Successfully Created';
         break;
-      case 400:
+      case 'Some values are missing':
         popErrors.style.display = 'block';
         popErrors.textContent = 'Some values are missing';
+        break;
+      case 'username or email already exists':
+        popErrors.style.display = 'block';
+        popErrors.textContent = 'username or email already exists';
+        break;
+      case  'Please enter a valid email address':
+        popErrors.style.display = 'block';
+        popErrors.textContent = 'Please enter a valid email address';
         break;
       default:
         popErrors.style.display = 'block';
         popErrors.textContent = 'Unauthorised';
       }
-      console.log(data.data);
     });
 };
 if(signUpButton){
