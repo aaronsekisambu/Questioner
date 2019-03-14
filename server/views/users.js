@@ -4,19 +4,14 @@ const singIn = document.getElementById('signIn');
 const signUpButton = document.getElementById('signUpButton');
 let errors = document.querySelector('#messagePops');
 let popErrors = document.querySelector('#secondPops');
-
+let questionsPage = '../../UI/html/viewMeetupsPage.html';
+let meetUpsPageAdmin = '../../UI/html/createMeetUps.html';
+let tokenValue;
 
 const myHeaders = new Headers();
 myHeaders.append('Accept', 'application/json');
 myHeaders.append('Access-Control-Allow-Origin', '*');
 myHeaders.append('Content-type', 'application/json');
-const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJh' +
-    'ZWJkMDZmNS1hZjU1LTQyOWUtOTA3MC1lZDM4YzkxNzUwYTgiLCJ1c2VybmFtZSI6Ik1ha2' +
-    'UgaXQiLCJlbWFpbCI6Im5vdy5rYW1wYWxhQGdtYWlsLmNvbSIsImZpcnN0bmFtZSI6ImthbXBhb' +
-    'GEiLCJpYXQiOjE1NTA1MDEzMzN9.fcXZ7dggJ_0V6nyHtRvdf-3fkMUbNVvMxkCHdez86AM';
-
-localStorage.setItem('token', token);
-myHeaders.append('Authorization', `Bearer ${token}`);
 
 const loginURL = 'http://localhost:5000/api/v1/auth/login';
 const signUpURL = 'http://localhost:5000/api/v1/auth/signup';
@@ -25,28 +20,48 @@ let userLogin = (e)=> {
   e.preventDefault();
   let email = userName.value;
   let password = loginPassword.value;
-  let meetUpsPage = '../../UI/html/createMeetUps.html';
   fetch(loginURL, {
     method: 'POST',
     headers: {
       'Accept': 'application/json',
       'content-type': 'application/json',
       myHeaders},
-    body:JSON.stringify({ email: email, password: password}),
+    body:JSON.stringify({
+      email: email,
+      password: password
+    }),
   })
     .then(res => res.json())
-    .then(data => {
-      if (data.status === 202){
-        location.replace(meetUpsPage);
-      }else if (data.status === 401){
-        errors.style.display = 'block';
-        errors.textContent = 'Incorrect password or email';
-      }
-      if(data.status === 403){
+    .then(data => { console.log(data);
+      switch (data.data.message){
+      case 'Successfully logged in':
+        tokenValue = data.data.token;
+        localStorage.setItem('token', tokenValue);
+        break;
+      case 'Admin user selected':
+        location.replace(meetUpsPageAdmin);
+        break;
+      case 'Not Admin user':
+        location.replace(questionsPage);
+        break;
+      case 'Please Insert Email and Password':
         errors.style.display = 'block';
         errors.textContent = 'Please Insert Email and Password';
+        break;
+      case 'Incorrect password or email':
+        errors.style.display = 'block';
+        errors.textContent = 'Incorrect password or email';
+        break;
+      case 'The email you entered is not incorrect':
+        errors.style.display = 'block';
+        errors.textContent = `${ email } not found`;
+        break;
+      default:
+        errors.style.display = 'block';
+        errors.textContent = 'Please check your credentials';
       }
     })
+
     .catch(err => console.log(err));
 };
 if(singIn){
@@ -55,24 +70,19 @@ if(singIn){
 
 let userSignUp = (e) => {
   const firstName = document.getElementById('firstName').value;
-  console.log(firstName);
   const lastName = document.getElementById('lastName').value;
-  console.log(lastName);
   const emailAddress = document.getElementById('emailAddress').value;
-  console.log(emailAddress);
+
   function validate() {
     const signUpPassword = document.getElementById('password').value;
-    console.log(signUpPassword);
     const confirmPassword = document.getElementById('confirmPassword').value;
-    console.log(confirmPassword);
     if(signUpPassword !== confirmPassword){
       errors.style.display = 'block';
       errors.textContent = 'Password did not match';
+      return 0 ;
     }
-    return password;
+    return signUpPassword;
   }
-  import me from '../../'
-  let questionsPage = '';
   e.preventDefault();
   fetch(signUpURL, {
     method: 'POST',
@@ -91,7 +101,7 @@ let userSignUp = (e) => {
     .then(data => {
       switch (data.data.message) {
       case 'Successfully Created':
-        location.replace(questionsPage);
+        location.reload();
         popErrors.style.display = 'block';
         popErrors.textContent = 'Successfully Created';
         break;
@@ -111,7 +121,8 @@ let userSignUp = (e) => {
         popErrors.style.display = 'block';
         popErrors.textContent = 'Unauthorised';
       }
-    });
+    })
+    .catch(error => console.log(error));
 };
 if(signUpButton){
   signUpButton.addEventListener('click', userSignUp);

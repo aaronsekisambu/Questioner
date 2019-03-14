@@ -214,7 +214,8 @@ const UserQuery = {
       });
     }
     if (!Helper.isValidEmail(req.body.email)) {
-      return res.status(401).send({ 'message': 'Please enter a valid email address' });
+      return res.status(401).send({
+        'message': 'Please enter a valid email address' });
     }
     const text = 'SELECT * FROM users WHERE email = $1';
     try {
@@ -223,7 +224,7 @@ const UserQuery = {
         return res.status(401).send({
           status: 401,
           data: {
-            message: 'The credentials you provided are incorrect'
+            message: 'The email you entered is not incorrect'
           }
         });
       }
@@ -231,13 +232,28 @@ const UserQuery = {
         return res.status(401).send({
           status: 401,
           data: {
-            message: 'The credentials you provided are incorrect'
+            message: 'The password you entered is incorrect'
+          }
+        });
+      }
+      if(rows[0].isadmin === true){
+        return res.status(202).send({
+          status: 202,
+          data: {
+            message: 'Admin user selected'
+          }
+        });
+      } else {
+        res.status(202).send({
+          status: 202,
+          data: {
+            message: 'Not Admin user'
           }
         });
       }
       const payload={
         userId:rows[0].u_id,
-        username:rows[0].username,
+        isadmin:rows[0].isadmin,
         email:rows[0].email,
         firstname:rows[0].firstname
       };
