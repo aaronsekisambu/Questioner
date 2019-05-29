@@ -4,6 +4,7 @@ import cors from 'cors';
 import routesQuestions from './server/routes/questions';
 import router from './server/routes/users';
 import routesMeetup from './server/routes/meetups';
+import './server/config/passport.js';
 
 const app = express();
 
@@ -31,6 +32,7 @@ app.all('*', (req, res) => {
     status: 404,
     error: 'Page not found. Please try again'});
 });
+
 export default app;
 
 

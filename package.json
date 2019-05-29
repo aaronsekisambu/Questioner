@@ -1,10 +1,9 @@
 {
-  "name": "Questioner",
+  "name": "questioner",
   "version": "1.0.0",
   "description": "Crowd-source questions for a meetup. Questioner helps the meetup organizer prioritize questions to be answered. Other users can vote on asked questions and they bubble to the top or bottom of the log.",
   "main": "server.js",
   "dependencies": {
-    "@babel/node": "^7.2.2",
     "@babel/polyfill": "^7.2.5",
     "babel-eslint": "^10.0.1",
     "bcrypt": "^3.0.3",
@@ -13,6 +12,7 @@
     "chai-arrays": "^2.0.0",
     "chai-http": "^4.2.0",
     "cors": "^2.8.5",
+    "crypto-random-string": "^3.0.1",
     "dotenv": "^6.2.0",
     "eslint-config-airbnb": "^17.1.0",
     "eslint-plugin-import": "^2.14.0",
@@ -25,6 +25,9 @@
     "make-runnable": "^1.3.6",
     "moment": "^2.23.0",
     "nodemon": "^1.18.6",
+    "passport": "^0.4.0",
+    "passport-google-oauth": "^2.0.0",
+    "passport-google-plus-token": "^2.1.0",
     "pg": "^7.8.0",
     "request": "^2.88.0",
     "supertest": "^3.3.0",
@@ -32,8 +35,9 @@
     "uuidv4": "^2.0.0"
   },
   "scripts": {
-    "babel": "babel",
+    "babel": "babel-node ./server.js",
     "start": "nodemon --exec babel-node server.js",
+    "create:table": "babel-node ./db.js",
     "test": "NODE_ENV=test nyc --reporter=lcov --reporter=text mocha \"server/test/*.js\" --exit",
     "coveralls": "cat ./coverage/lcov.info | node node_modules/.bin/coveralls"
   },
@@ -50,11 +54,14 @@
   "homepage": "https://github.com/aaronsekisambu/Questioner#readme",
   "devDependencies": {
     "@babel/cli": "^7.2.3",
-    "@babel/core": "^7.2.2",
+    "@babel/core": "^7.4.5",
+    "@babel/node": "^7.4.5",
     "@babel/plugin-proposal-class-properties": "^7.3.0",
-    "@babel/preset-env": "^7.3.1",
+    "@babel/plugin-syntax-dynamic-import": "^7.2.0",
+    "@babel/preset-env": "^7.4.5",
     "@babel/preset-react": "^7.0.0",
     "@babel/preset-stage-2": "^7.0.0",
+    "@babel/register": "^7.4.4",
     "@types/express": "^4.16.1",
     "babel-preset-env": "^1.7.0",
     "babel-register": "^6.26.0",

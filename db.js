@@ -20,14 +20,14 @@ const createUsersTable = () => {
     `CREATE TABLE IF NOT EXISTS users
 (
     u_id uuid NOT NULL PRIMARY KEY,
-    firstname varchar(50) NOT NULL,
-    lastname varchar(50) NOT NULL,
-    email text NOT NULL,
-    password text NOT NULL,
-    isadmin boolean NOT NULL,
-    username text NOT NULL,
-    phonenumber integer NOT NULL UNIQUE,
-    othername text NOT NULL UNIQUE,
+    firstname varchar(50),
+    lastname varchar(50),
+    email text UNIQUE NOT NULL,
+    password text UNIQUE NOT NULL,
+    isadmin boolean,
+    username text UNIQUE,
+    phonenumber integer,
+    othername text,
     registered date NOT NULL DEFAULT CURRENT_DATE,
     modified date NOT NULL
 )`;

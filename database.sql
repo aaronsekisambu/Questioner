@@ -104,14 +104,14 @@ ALTER TABLE public.tags OWNER TO aaron;
 
 CREATE TABLE public.users (
     u_id uuid NOT NULL,
-    firstname character varying(50) NOT NULL,
-    lastname character varying(50) NOT NULL,
-    email text NOT NULL,
-    password text NOT NULL,
-    isadmin boolean NOT NULL,
-    username text NOT NULL,
-    phonenumber integer NOT NULL,
-    othername text NOT NULL,
+    firstname character varying(50),
+    lastname character varying(50),
+    email text UNIQUE NOT NULL,
+    password text UNIQUE NOT NULL,
+    isadmin boolean,
+    username text,
+    phonenumber integer,
+    othername text,
     registered date DEFAULT CURRENT_DATE NOT NULL,
     modified date NOT NULL
 );
